@@ -1,17 +1,92 @@
 import React from "react";
-import { Button } from "./mypageStyles";
+import styled from "styled-components";
+import Header from "../../components/header/header";
+import OMO from "../../images/OMO.png"
 
-const Mypage = (props) => {
-    return (
-        <>
-            <Button>My page</Button>
-            <h1>My page</h1>
-            <h1>My page</h1>
-            <h1>My page</h1>
-        </>
-    )
-}
+const Mypage = (props) => (
+    <Wrapper>
+        <Header />
+        <Container>
+            <MainSection>
+                <Profile>
+                    <img src={OMO} alt="프로필 사진" width="200px" height="200px" />
+                    <input tpye="text" value="닉네임" readOnly></input>
+                </Profile>
+                <TodoList>투두 리스트</TodoList>
+            </MainSection>
+            <BottomSection>
+                <RouletteList>
+                    <button>룰렛 추가</button>
+                    <div>룰렛 리스트</div>
+                </RouletteList>
+            </BottomSection>
 
+        </Container>
+    </Wrapper>
+);
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 1px solid red; */
+`;
+
+const Container = styled.div`
+  font-size: 30px;
+  /* border: 5px solid black; */
+`;
+
+const MainSection = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 40vh;
+`
+const Profile = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 40%;
+  border: 1px solid blue;
+  & > input {
+      margin-top: 20px;
+      width: 200px;
+  }
+`;
+
+const TodoList = styled.div`
+  flex-basis: 40%;
+  border: 1px solid blue;
+`;
+
+const BottomSection = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+
+const RouletteList = styled.div`
+  display: flex;
+  height: 40vh;
+  width: 80%;
+  border: 2px solid red;
+  & > button {
+      margin-top: 5%;
+      width: 200px;
+      height: 100px;
+  }
+  & > div {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      border: 1px solid red;
+      align-items: center;
+      justify-content: center;
+  }
+`;
 
 
 export default Mypage;
