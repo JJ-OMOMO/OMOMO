@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import SocialLogin from "../social_login_modal/socialLogin";
 
-const Header = (props) => (
-  <Wrapper>
-    <HeaderBox>
-      <HeaderTitle>오모오모</HeaderTitle>
-      <LoginMyPage>
-        <HeaderLogin>Login</HeaderLogin>
-        <HeaderMyPage>MyPage</HeaderMyPage>
-      </LoginMyPage>
-    </HeaderBox>
-  </Wrapper>
-);
+const Header = (props) => {
+  return (
+    <Wrapper>
+      <HeaderBox>
+        <HeaderTitle>오모오모</HeaderTitle>
+        <LoginMyPage>
+          <HeaderLogin>Login</HeaderLogin>
+          <HeaderMyPage>MyPage</HeaderMyPage>
+        </LoginMyPage>
+      </HeaderBox>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
