@@ -8,7 +8,7 @@ const Mainpage = () => (
   <Wrapper>
     <Header />
     <Container>
-      <SocialLogin />
+      {/* <SocialLogin /> */}
       <TrialRoulette>룰렛 체험판</TrialRoulette>
       <RouletteDescription>룰렛 예시 설명란</RouletteDescription>
     </Container>

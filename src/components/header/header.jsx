@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import SocialLogin from "../social_login_modal/socialLogin";
 
-const Header = (props) => {
+const Header = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Wrapper>
+      {openModal && <SocialLogin closeModal={setOpenModal} />}
       <HeaderBox>
-        <HeaderTitle>오모오모</HeaderTitle>
+        <HeaderTitle>
+          <Link to="/">오모오모</Link>
+        </HeaderTitle>
         <LoginMyPage>
-          <HeaderLogin>Login</HeaderLogin>
-          <HeaderMyPage>MyPage</HeaderMyPage>
+          <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+          <HeaderMyPage>
+            <Link to="/mypage">MyPage</Link>
+          </HeaderMyPage>
         </LoginMyPage>
       </HeaderBox>
     </Wrapper>
@@ -18,27 +25,29 @@ const Header = (props) => {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   height: 100px;
-  background-color: black;
+  border: 1px solid blue;
 `;
 
 const HeaderBox = styled.div`
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   margin: auto;
 `;
 const HeaderTitle = styled.span`
   font-size: 30px;
-  color: #e9f108;
   display: flex;
   justify-content: center;
-  border: 1px solid yellow;
+  border: 1px solid green;
 `;
 
 const LoginMyPage = styled.div`
-  display: flex;
+  position: absolute;
+  right: 0px;
+  border: 1px solid red;
 `;
 const HeaderLogin = styled.button`
   font-size: 20px;
