@@ -1,30 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
 import OMO from "../../images/OMO.png"
+import Roulette from "../../components/roulette_modal/roulette";
 
-const Mypage = (props) => (
+const Mypage = (props) => {
+  const [createRoulette, setCreateRoulette] = useState(false);
+
+  return (
     <Wrapper>
-        <Header />
-        <Container>
-            <MainSection>
-                <Profile>
-                    <img src={OMO} alt="프로필 사진" width="200px" height="200px" />
-                    <input tpye="text" value="닉네임" readOnly></input>
-                </Profile>
-                <TodoList>투두 리스트</TodoList>
-            </MainSection>
-            <BottomSection>
-                <RouletteList>
-                    <button>룰렛 추가</button>
-                    <div>룰렛 리스트</div>
-                </RouletteList>
-            </BottomSection>
+      <Header />
+      {createRoulette && <Roulette closeModal={setCreateRoulette} />}
+      <Container>
+        <MainSection>
+          <Profile>
+            <div>
+              <span>프로필</span>
+              &nbsp;
+              <button>수정</button>
+            </div>
+            <img src={OMO} alt="프로필 사진" width="200px" height="200px" />
+            <input tpye="text" value="닉네임" readOnly></input>
+          </Profile>
+          <TodoList>투두 리스트</TodoList>
+        </MainSection>
+        <BottomSection>
+          <RouletteList>
+            <button onClick={() => { setCreateRoulette(true) }}>룰렛 추가</button>
+            <div>룰렛 리스트</div>
+          </RouletteList>
+        </BottomSection>
 
-        </Container>
+      </Container>
     </Wrapper>
-);
-
+  );
+};
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -55,6 +65,9 @@ const Profile = styled.div`
       margin-top: 20px;
       width: 200px;
   }
+  & > div > button {
+    cursor: pointer;
+  }
 `;
 
 const TodoList = styled.div`
@@ -77,6 +90,7 @@ const RouletteList = styled.div`
       margin-top: 5%;
       width: 200px;
       height: 100px;
+      cursor: pointer;
   }
   & > div {
       display: flex;
