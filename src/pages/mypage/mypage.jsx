@@ -3,13 +3,16 @@ import styled from "styled-components";
 import Header from "../../components/header/header";
 import OMO from "../../images/OMO.png"
 import Roulette from "../../components/roulette_modal/roulette";
+import ProfileModal from "../../components/profile_modal/profile";
 
 const Mypage = (props) => {
+  const [modifyProfile, setModifyProfile] = useState(false);
   const [createRoulette, setCreateRoulette] = useState(false);
 
   return (
     <Wrapper>
       <Header />
+      {modifyProfile && <ProfileModal closeModal={setModifyProfile} />}
       {createRoulette && <Roulette closeModal={setCreateRoulette} />}
       <Container>
         <MainSection>
@@ -17,7 +20,7 @@ const Mypage = (props) => {
             <div>
               <span>프로필</span>
               &nbsp;
-              <button>수정</button>
+              <button onClick={() => setModifyProfile(true)}>수정</button>
             </div>
             <img src={OMO} alt="프로필 사진" width="200px" height="200px" />
             <input tpye="text" value="닉네임" readOnly></input>
@@ -53,7 +56,7 @@ const MainSection = styled.div`
   display: flex;
   justify-content: center;
   height: 40vh;
-`
+`;
 const Profile = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,8 +65,8 @@ const Profile = styled.div`
   flex-basis: 40%;
   border: 1px solid blue;
   & > input {
-      margin-top: 20px;
-      width: 200px;
+    margin-top: 20px;
+    width: 200px;
   }
   & > div > button {
     cursor: pointer;
@@ -78,8 +81,7 @@ const TodoList = styled.div`
 const BottomSection = styled.div`
   display: flex;
   justify-content: center;
-`
-
+`;
 
 const RouletteList = styled.div`
   display: flex;
@@ -93,15 +95,13 @@ const RouletteList = styled.div`
       cursor: pointer;
   }
   & > div {
-      display: flex;
-      height: 100%;
-      width: 100%;
-      border: 1px solid red;
-      align-items: center;
-      justify-content: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
-
 export default Mypage;
-
