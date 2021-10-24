@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import SocialLogin from "../social_login_modal/socialLogin";
 
-const Header = (props) => (
-  <Wrapper>
-    <HeaderBox>
-      <HeaderTitle>
-        <Link to="/">오모오모</Link>
-      </HeaderTitle>
-      <LoginMyPage>
-        <HeaderLogin>Login</HeaderLogin>
-        <HeaderMyPage>
-          <Link to="/mypage">MyPage</Link>
-        </HeaderMyPage>
-      </LoginMyPage>
-    </HeaderBox>
-  </Wrapper>
-);
+const Header = () => {
+  const [openModal, setOpenModal] = useState(false);
+  return (
+    <Wrapper>
+      {openModal && <SocialLogin closeModal={setOpenModal} />}
+      <HeaderBox>
+        <HeaderTitle>
+          <Link to="/">오모오모</Link>
+        </HeaderTitle>
+        <LoginMyPage>
+          <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+          <HeaderMyPage>
+            <Link to="/mypage">MyPage</Link>
+          </HeaderMyPage>
+        </LoginMyPage>
+      </HeaderBox>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;

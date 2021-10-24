@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
+import SocialLogin from "../../components/social_login_modal/socialLogin";
 
 const Mainpage = () => (
   <Wrapper>
     <Header />
     <Container>
+      {/* <SocialLogin /> */}
       <TrialRoulette>룰렛 체험판</TrialRoulette>
       <RouletteDescription>룰렛 예시 설명란</RouletteDescription>
     </Container>
