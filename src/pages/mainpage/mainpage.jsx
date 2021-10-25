@@ -4,9 +4,9 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import SocialLogin from "../../components/social_login_modal/socialLogin";
 
-const Mainpage = () => (
+const Mainpage = ({ authService }) => (
   <Wrapper>
-    <Header />
+    <Header authService={authService} />
     <Container>
       {/* <SocialLogin /> */}
       <TrialRoulette>룰렛 체험판</TrialRoulette>

@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
-const SocialLogin = ({ closeModal }) => {
+const SocialLogin = ({ closeModal, authService }) => {
+  const history = useHistory();
+  const goToMain = (userId) => {
+    history.push({
+      pathname: "/",
+      state: { id: userId },
+    });
+  };
+
+  const onLogin = (event) => {
+    authService //
+      .login(event.currentTarget.textContent)
+      .then((data) => goToMain(data.user.uid));
+  };
+
+  useEffect(() => {
+    authService //
+      .onAuthChange((user) => {
+        user && goToMain(user.uid);
+      });
+  });
+
   return (
     <ModalBackground>
       <LoginModal>
         <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
-        <GoogleLogin>Google</GoogleLogin>
-        <KakaoLogin>Kakao</KakaoLogin>
-        <NaverLogin>Naver</NaverLogin>
+        <GoogleLogin onClick={onLogin}>Google</GoogleLogin>
+        <KakaoLogin onClick={onLogin}>Kakao</KakaoLogin>
+        <NaverLogin onClick={onLogin}>Naver</NaverLogin>
       </LoginModal>
     </ModalBackground>
   );
