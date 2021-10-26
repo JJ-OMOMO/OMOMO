@@ -1,25 +1,33 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SocialLogin from "../social_login_modal/socialLogin";
 
-const Header = ({ onLogout, authService }) => {
+const Header = ({ authService, userId }) => {
+  const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+
+  const onLogout = () => {
+    authService.logout();
+    history.push("/");
+    console.log("logout");
+  };
   return (
     <Wrapper>
       {openModal && (
         <SocialLogin authService={authService} closeModal={setOpenModal} />
       )}
-
-      {/* {isLogin && <HeaderLogin login={setIsLogin(false)}>Logout</HeaderLogin>} */}
-      {/* {onLogout && <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>} */}
       <HeaderBox>
         <HeaderTitle>
           <Link to="/">오모오모</Link>
         </HeaderTitle>
         <LoginMyPage>
-          <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+          {userId ? (
+            <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
+          ) : (
+            <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+          )}
           <HeaderMyPage>
             <Link to="/mypage">MyPage</Link>
           </HeaderMyPage>

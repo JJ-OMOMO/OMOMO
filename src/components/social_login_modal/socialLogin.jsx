@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-const SocialLogin = ({ closeModal, authService }) => {
+const SocialLogin = ({ login, closeModal, authService }) => {
   const history = useHistory();
   const goToMain = (userId) => {
     history.push({
@@ -12,6 +12,7 @@ const SocialLogin = ({ closeModal, authService }) => {
   };
 
   const onLogin = (event) => {
+    closeModal(false);
     authService //
       .login(event.currentTarget.textContent)
       .then((data) => goToMain(data.user.uid));
@@ -29,8 +30,7 @@ const SocialLogin = ({ closeModal, authService }) => {
       <LoginModal>
         <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
         <GoogleLogin onClick={onLogin}>Google</GoogleLogin>
-        <KakaoLogin onClick={onLogin}>Kakao</KakaoLogin>
-        <NaverLogin onClick={onLogin}>Naver</NaverLogin>
+        <GithubLogin onClick={onLogin}>Github</GithubLogin>
       </LoginModal>
     </ModalBackground>
   );
@@ -45,18 +45,22 @@ const ModalBackground = styled.div`
   align-items: center;
 `;
 
-const ExitButton = styled.button`
-  font-size: 20px;
-`;
-
 const LoginModal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 500px;
   height: 500px;
   background-color: white;
+`;
+
+const ExitButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
 `;
 
 const GoogleLogin = styled.button`
@@ -66,7 +70,7 @@ const GoogleLogin = styled.button`
   cursor: pointer;
 `;
 
-const KakaoLogin = styled.button`
+const GithubLogin = styled.button`
   width: 50%;
   height: 50px;
   font-size: 30px;

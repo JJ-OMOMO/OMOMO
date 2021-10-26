@@ -1,20 +1,23 @@
 import React from "react";
+import { useLocation } from "react-router";
 import styled from "styled-components";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
-import SocialLogin from "../../components/social_login_modal/socialLogin";
 
-const Mainpage = ({ authService }) => (
-  <Wrapper>
-    <Header authService={authService} />
-    <Container>
-      {/* <SocialLogin /> */}
-      <TrialRoulette>룰렛 체험판</TrialRoulette>
-      <RouletteDescription>룰렛 예시 설명란</RouletteDescription>
-    </Container>
-    <Footer />
-  </Wrapper>
-);
+const Mainpage = ({ authService }) => {
+  const location = useLocation();
+  const userId = location.state;
+  return (
+    <Wrapper>
+      <Header authService={authService} userId={userId} />
+      <Container>
+        <TrialRoulette>룰렛 체험판</TrialRoulette>
+        <RouletteDescription>룰렛 예시 설명란</RouletteDescription>
+      </Container>
+      <Footer />
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   width: 100%;
