@@ -4,43 +4,43 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import SocialLogin from "../../components/social_login_modal/socialLogin";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
+import { useLocation } from "react-router";
 
 const initialData = [
-  { option: '가' },
-  { option: '나' },
-  { option: '다' },
-  { option: '라' },
-  { option: '마' },
-  { option: '바' }
+  { option: "가" },
+  { option: "나" },
+  { option: "다" },
+  { option: "라" },
+  { option: "마" },
+  { option: "바" },
 ];
 
-const Mainpage = () => {
+const Mainpage = ({ authService }) => {
+  const location = useLocation();
+  const userId = location.state;
   const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
 
   useEffect(() => {
-    console.log(data)
+    console.log(data);
   }, [data]);
 
-
   const reset = () => {
-    return window.location.reload(true)
-  }
+    return window.location.reload(true);
+  };
 
   const create = () => {
-    setData([
-      ...data,
-      { option: test },
-    ])
-  }
+    setData([...data, { option: test }]);
+  };
 
   return (
     <Wrapper>
-      <Header />
+      <Header authService={authService} userId={userId} />
       <Container>
         {/* <SocialLogin /> */}
-        <TrialRoulette>룰렛 체험판
+        <TrialRoulette>
+          룰렛 체험판
           <Wheel
             mustSpin={mustSpin}
             prizeNumber={3}
@@ -69,8 +69,8 @@ const Mainpage = () => {
         <RouletteDescription>룰렛 예시 설명란</RouletteDescription>
       </Container>
       <Footer />
-    </Wrapper >
-  )
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -111,7 +111,7 @@ const AddItem = styled.div`
   & > button {
     width: 40px;
   }
-`
+`;
 
 const Bottom = styled.div`
   margin-top: 20px;
@@ -123,7 +123,7 @@ const Bottom = styled.div`
     height: 40px;
     margin: 0 10px 10px 0;
   }
-`
+`;
 
 const RouletteDescription = styled.div`
   flex-basis: 40%;

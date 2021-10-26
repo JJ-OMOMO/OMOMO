@@ -1,19 +1,33 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SocialLogin from "../social_login_modal/socialLogin";
 
-const Header = () => {
+const Header = ({ authService, userId }) => {
+  const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
+
+  const onLogout = () => {
+    authService.logout();
+    history.push("/");
+    console.log("logout");
+  };
   return (
     <Wrapper>
-      {openModal && <SocialLogin closeModal={setOpenModal} />}
+      {openModal && (
+        <SocialLogin authService={authService} closeModal={setOpenModal} />
+      )}
       <HeaderBox>
         <HeaderTitle>
           <Link to="/">오모오모</Link>
         </HeaderTitle>
         <LoginMyPage>
-          <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+          {userId ? (
+            <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
+          ) : (
+            <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+          )}
           <HeaderMyPage>
             <Link to="/mypage">MyPage</Link>
           </HeaderMyPage>
@@ -27,6 +41,10 @@ const Wrapper = styled.div`
   display: flex;
   height: 100px;
   border: 1px solid blue;
+`;
+
+const HeaderLogout = styled.button`
+  font-size: 20px;
 `;
 
 const HeaderBox = styled.div`

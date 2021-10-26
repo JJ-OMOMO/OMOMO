@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import OMO from "../../images/OMO.png";
 
-const ProfileModal = (props) => {
+const ProfileModal = ({ closeModal }) => {
   return (
     <ModalBackground>
       <ModalContainer>
-        <BackButton>&lt;</BackButton>
+        <BackButton onClick={() => closeModal(false)}>&lt;</BackButton>
         <Profile>
           <img src={OMO} alt="프로필 사진" width="200px" height="200px" />
           <input tpye="text" value="닉네임" readOnly></input>
@@ -40,6 +40,7 @@ const ModalContainer = styled.div`
 
 const BackButton = styled.div`
   font-size: 20px;
+  cursor: pointer;
 `;
 
 const Profile = styled.div`
