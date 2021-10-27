@@ -4,7 +4,6 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
 import { useLocation } from "react-router";
-import { dbService } from "../../service/firebase";
 
 const initialData = [
   { option: "가" },
@@ -23,15 +22,6 @@ const Mainpage = ({ authService }) => {
   const [test, setTest] = useState("");
 
   useEffect(() => {
-    dbService
-      .collection("roulettes") //
-      .get()
-      .then((snapshot) =>
-        snapshot.docs.forEach((doc) => console.log(doc.data()))
-      );
-  });
-
-  useEffect(() => {
     console.log(data);
   }, [data]);
 
@@ -47,7 +37,6 @@ const Mainpage = ({ authService }) => {
     <Wrapper>
       <Header authService={authService} userId={userId} />
       <Container>
-        {/* <SocialLogin /> */}
         <TrialRoulette>
           룰렛 체험판
           <Wheel

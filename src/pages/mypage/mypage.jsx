@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
-import OMO from "../../images/OMO.png"
+import OMO from "../../images/OMO.png";
 import Roulette from "../../components/roulette_modal/roulette";
 import ProfileModal from "../../components/profile_modal/profile";
 
-const Mypage = (props) => {
+const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
   const [createRoulette, setCreateRoulette] = useState(false);
 
@@ -29,11 +29,16 @@ const Mypage = (props) => {
         </MainSection>
         <BottomSection>
           <RouletteList>
-            <button onClick={() => { setCreateRoulette(true) }}>룰렛 추가</button>
+            <button
+              onClick={() => {
+                setCreateRoulette(true);
+              }}
+            >
+              룰렛 추가
+            </button>
             <div>룰렛 리스트</div>
           </RouletteList>
         </BottomSection>
-
       </Container>
     </Wrapper>
   );
@@ -89,10 +94,10 @@ const RouletteList = styled.div`
   width: 80%;
   border: 2px solid red;
   & > button {
-      margin-top: 5%;
-      width: 200px;
-      height: 100px;
-      cursor: pointer;
+    margin-top: 5%;
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
   }
   & > div {
     display: flex;

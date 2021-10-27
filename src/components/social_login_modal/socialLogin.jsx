@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-const SocialLogin = ({ login, closeModal, authService }) => {
+const SocialLogin = ({ closeModal, authService }) => {
   const history = useHistory();
   const goToMain = (userId) => {
     history.push({
