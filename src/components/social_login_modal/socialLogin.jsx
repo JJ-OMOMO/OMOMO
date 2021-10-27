@@ -15,15 +15,19 @@ const SocialLogin = ({ closeModal, authService }) => {
     closeModal(false);
     authService //
       .login(event.currentTarget.textContent)
-      .then((data) => goToMain(data.user.uid));
+      // .then((data) => goToMain(data.user.uid));
+      .then((data) =>
+        localStorage.setItem('uid', data.user.uid)
+      )
+      .then(() => history.push("/mypage"));
   };
 
-  useEffect(() => {
-    authService //
-      .onAuthChange((user) => {
-        user && goToMain(user.uid);
-      });
-  });
+  // useEffect(() => {
+  //   authService //
+  //     .onAuthChange((user) => {
+  //       user && goToMain(user.uid);
+  //     });
+  // });
 
   return (
     <ModalBackground>

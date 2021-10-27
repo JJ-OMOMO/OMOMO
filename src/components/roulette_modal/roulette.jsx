@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dbService } from "../../service/firebase";
-import roulette_wheel from "../roulette_wheel/roulette_wheel";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
 
 const Roulette = ({ closeModal }) => {
@@ -19,6 +18,14 @@ const Roulette = ({ closeModal }) => {
     { option: "마" },
     { option: "바" },
   ];
+
+  const reset = () => {
+    setData([]);
+  };
+
+  const create = () => {
+    data.length === 8 ? alert("stop") : setData([...data, { option: test }]);
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -75,8 +82,14 @@ const Roulette = ({ closeModal }) => {
               fontSize={33}
               textDistance={60}
             />
-            {/* <Wheel></Wheel>
-            <Option></Option> */}
+            <AddItem>
+              <input onChange={(e) => setTest(e.target.value)}></input>
+              <button onClick={() => create()}>추가</button>
+            </AddItem>
+            <Bottom>
+              <button onClick={() => reset()}>reset</button>
+              <button onClick={() => setMustSpin(true)}>spin</button>
+            </Bottom>
           </LeftSection>
           <RightSection onSubmit={onSubmit}>
             {/* <div>
@@ -160,6 +173,7 @@ const RouletteModalBody = styled.div`
 
 const LeftSection = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -173,12 +187,39 @@ const LeftSection = styled.div`
 //   border: 2px solid white;
 //   border-radius: 50%;
 // `;
-const Option = styled.input`
-  position: absolute;
-  top: 45%;
-  left: 40%;
-  width: 100px;
-  height: 30px;
+
+// const Option = styled.input`
+//   position: absolute;
+//   top: 45%;
+//   left: 40%;
+//   width: 100px;
+//   height: 30px;
+// `;
+
+const AddItem = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > input {
+    margin-right: 10px;
+    width: 100px;
+  }
+  & > button {
+    width: 40px;
+  }
+`;
+
+const Bottom = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > button {
+    width: 100px;
+    height: 40px;
+    margin: 0 10px 10px 0;
+  }
 `;
 
 const RightSection = styled.div`
