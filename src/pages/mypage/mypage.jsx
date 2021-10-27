@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
 import OMO from "../../images/OMO.png"
@@ -8,6 +8,10 @@ import ProfileModal from "../../components/profile_modal/profile";
 const Mypage = (props) => {
   const [modifyProfile, setModifyProfile] = useState(false);
   const [createRoulette, setCreateRoulette] = useState(false);
+
+  useEffect(() => {
+    console.log(localStorage.getItem("uid"))
+  }, []);
 
   return (
     <Wrapper>

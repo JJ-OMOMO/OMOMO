@@ -9,9 +9,11 @@ const Header = ({ authService, userId }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const onLogout = () => {
-    authService.logout();
+    localStorage.removeItem("uid");
     history.push("/");
-    console.log("logout");
+    // authService.logout();
+
+    // console.log("logout");
   };
   return (
     <Wrapper>
@@ -23,14 +25,19 @@ const Header = ({ authService, userId }) => {
           <Link to="/">오모오모</Link>
         </HeaderTitle>
         <LoginMyPage>
-          {userId ? (
+          {localStorage.getItem("uid") ? (
             <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
           ) : (
             <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
           )}
-          <HeaderMyPage>
-            <Link to="/mypage">MyPage</Link>
-          </HeaderMyPage>
+          {localStorage.getItem("uid") ?
+            <HeaderMyPage>
+              <Link to="/mypage">MyPage</Link>
+            </HeaderMyPage>
+            :
+            <HeaderMyPage onClick={() => alert('로그인 먼저 해주세요')}>MyPage</HeaderMyPage>
+          }
+
         </LoginMyPage>
       </HeaderBox>
     </Wrapper>
