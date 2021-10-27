@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
-import SocialLogin from "../../components/social_login_modal/socialLogin";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
 import { useLocation } from "react-router";
+import { dbService } from "../../service/firebase";
 
 const initialData = [
   { option: "가" },
@@ -21,6 +21,15 @@ const Mainpage = ({ authService }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
+
+  useEffect(() => {
+    dbService
+      .collection("roulettes") //
+      .get()
+      .then((snapshot) =>
+        snapshot.docs.forEach((doc) => console.log(doc.data()))
+      );
+  });
 
   useEffect(() => {
     console.log(data);
