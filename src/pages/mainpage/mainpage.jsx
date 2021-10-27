@@ -31,7 +31,7 @@ const Mainpage = ({ authService }) => {
   };
 
   const create = () => {
-    setData([...data, { option: test }]);
+    data.length === 8 ? alert('stop') : setData([...data, { option: test }]);
   };
 
   return (
