@@ -6,7 +6,7 @@ import Wheel from "../../components/roulette_wheel/roulette_wheel";
 const Roulette = ({ closeModal }) => {
   const [rouletteName, setRouletteName] = useState("");
   const [date, setDate] = useState("");
-  const [mustSpin, setMustSpin] = useState(false);
+  //   const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
 
@@ -29,11 +29,16 @@ const Roulette = ({ closeModal }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    closeModal(false);
     await dbService.collection("roulettes").add({
+      userId: localStorage.uid,
       rouletteName,
+      optionName: data,
       date,
     });
     setRouletteName("");
+    setData([]);
+    setDate("");
   };
   const onChange = (event) => {
     const {
@@ -41,20 +46,6 @@ const Roulette = ({ closeModal }) => {
     } = event;
     setRouletteName(value);
   };
-  //   const [roulette, setRoulette] = useState([]);
-  //   const getRoulette = async () => {
-  //     const roulette = await dbService.collection("roulettes").get();
-  //     roulette.forEach((doc) => {
-  //       const rouletteObj = {
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       };
-  //       setRoulette((prev) => [rouletteObj, ...prev]);
-  //     });
-  //   };
-  //   useEffect(() => {
-  //     getRoulette();
-  //   }, []);
 
   return (
     <ModalBackground>
@@ -64,10 +55,9 @@ const Roulette = ({ closeModal }) => {
           <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
         </RouletteHeader>
         <RouletteModalBody>
-          <LeftSection>
-            <roulette_wheel />
+          <LeftSection onSubmit={onSubmit}>
             <Wheel
-              mustSpin={mustSpin}
+              //   mustSpin={mustSpin}
               prizeNumber={3}
               data={data.length === 0 ? initialData : data}
               backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
@@ -88,24 +78,17 @@ const Roulette = ({ closeModal }) => {
             </AddItem>
             <Bottom>
               <button onClick={() => reset()}>reset</button>
-              <button onClick={() => setMustSpin(true)}>spin</button>
+              {/* <button onClick={() => setMustSpin(true)}>spin</button> */}
             </Bottom>
           </LeftSection>
           <RightSection onSubmit={onSubmit}>
-            {/* <div>
-              {roulette.map((data) => (
-                <div key={data.id}>
-                  <h4>{data.rouletteName}</h4>
-                </div>
-              ))}
-            </div> */}
             <RouletteName
               value={rouletteName}
               onChange={onChange}
               type="text"
               placeholder="룰렛 네임"
             ></RouletteName>
-            <RouletteOption name="otion">
+            {/* <RouletteOption name="otion">
               <option value="">룰렛 개수</option>
               <option value="">1</option>
               <option value="학생">2</option>
@@ -113,7 +96,7 @@ const Roulette = ({ closeModal }) => {
               <option value="기타">4</option>
               <option value="기타">5</option>
               <option value="기타">6</option>
-            </RouletteOption>
+            </RouletteOption> */}
             <RouletteTime type="time" placeholder="시간"></RouletteTime>
           </RightSection>
         </RouletteModalBody>
