@@ -23,22 +23,21 @@ const Mainpage = ({ authService }) => {
   const [test, setTest] = useState("");
 
   useEffect(() => {
-    console.log(localStorage.getItem("uid"))
+    console.log(localStorage.getItem("uid"));
   }, []);
 
   const reset = () => {
-    setData([])
+    setData([]);
   };
 
   const create = () => {
-    data.length === 8 ? alert('stop') : setData([...data, { option: test }]);
+    data.length === 8 ? alert("stop") : setData([...data, { option: test }]);
   };
 
   return (
     <Wrapper>
       <Header authService={authService} userId={userId} />
       <Container>
-        {/* <SocialLogin /> */}
         <TrialRoulette>
           룰렛 체험판
           <Wheel
