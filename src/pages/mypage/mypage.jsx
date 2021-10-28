@@ -4,20 +4,38 @@ import Header from "../../components/header/header";
 import OMO from "../../images/OMO.png";
 import Roulette from "../../components/roulette_modal/roulette";
 import ProfileModal from "../../components/profile_modal/profile";
+import { dbService } from "../../service/firebase";
 
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
-  const [createRoulette, setCreateRoulette] = useState(false);
+  const [roulette, setRoulette] = useState(false);
+  const [data, setData] = useState([])
+
+  const getRoulette = async () => {
+    const result = []
+    const citiesRef = dbService.collection('roulettes');
+    const snapshot = await citiesRef.where('userId', '==', localStorage.uid).get()
+
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
+    }
+    snapshot.forEach(doc => {
+      result.push(doc.data())
+    });
+    return setData(result);
+  }
 
   useEffect(() => {
-    console.log(localStorage.getItem("uid"))
+    getRoulette()
   }, []);
 
   return (
     <Wrapper>
       <Header />
       {modifyProfile && <ProfileModal closeModal={setModifyProfile} />}
-      {createRoulette && <Roulette closeModal={setCreateRoulette} />}
+      {roulette && <Roulette closeModal={setRoulette} />}
+      {roulette && <Roulette closeModal={setRoulette} />}
       <Container>
         <MainSection>
           <Profile>
@@ -35,16 +53,22 @@ const Mypage = () => {
           <RouletteList>
             <button
               onClick={() => {
-                setCreateRoulette(true);
+                setRoulette(true);
               }}
             >
               룰렛 추가
             </button>
-            <div>룰렛 리스트</div>
+            <ul>
+              {data.map((data, index) =>
+                <li key={index} onClick={() => setRoulette(true)}>
+                  {data.rouletteName}
+                </li>
+              )}
+            </ul>
           </RouletteList>
         </BottomSection>
       </Container>
-    </Wrapper>
+    </Wrapper >
   );
 };
 const Wrapper = styled.div`
@@ -94,22 +118,36 @@ const BottomSection = styled.div`
 
 const RouletteList = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40vh;
   width: 80%;
-  border: 2px solid red;
+  border: 1px solid green;
   & > button {
-    margin-top: 5%;
     width: 200px;
     height: 100px;
     cursor: pointer;
   }
-  & > div {
-    display: flex;
+  & > ul {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
     height: 100%;
     width: 100%;
     border: 1px solid red;
     align-items: center;
-    justify-content: center;
+    list-style: none;
+    overflow: hidden;
+  }
+  & > ul > li {
+    border: 1px solid orange;
+    width: 80%;
+    height: 80%;
+    font-size: 30px;
+    font-weight: 500px;
+    text-align: center;
+    cursor: pointer;
+    
   }
 `;
 

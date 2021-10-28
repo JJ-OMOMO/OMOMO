@@ -4,16 +4,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SocialLogin from "../social_login_modal/socialLogin";
 
-const Header = ({ authService, userId }) => {
+const Header = ({ authService }) => {
   const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
 
   const onLogout = () => {
     localStorage.removeItem("uid");
     history.push("/");
-    // authService.logout();
 
-    // console.log("logout");
   };
   return (
     <Wrapper>
@@ -25,12 +23,12 @@ const Header = ({ authService, userId }) => {
           <Link to="/">오모오모</Link>
         </HeaderTitle>
         <LoginMyPage>
-          {localStorage.getItem("uid") ? (
+          {localStorage.uid ? (
             <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
           ) : (
             <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
           )}
-          {localStorage.getItem("uid") ?
+          {localStorage.uid ?
             <HeaderMyPage>
               <Link to="/mypage">MyPage</Link>
             </HeaderMyPage>
