@@ -23,7 +23,7 @@ const Mainpage = ({ authService }) => {
   const [test, setTest] = useState("");
 
   useEffect(() => {
-    console.log(localStorage.getItem("uid"));
+    // console.log(localStorage.getItem("uid"));
   }, []);
 
   const reset = () => {
