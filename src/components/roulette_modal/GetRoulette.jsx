@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { dbService } from "../../service/firebase";
-import Wheel from "../../components/roulette_wheel/roulette_wheel";
+import Wheel from "../roulette_wheel/roulette_wheel";
 
-const Roulette = ({ closeModal }) => {
+const GetRoulette = ({ closeModal, rouletteData }) => {
   const [rouletteName, setRouletteName] = useState("");
   const [date, setDate] = useState("");
-  //   const [mustSpin, setMustSpin] = useState(false);
+  const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
 
@@ -63,6 +63,8 @@ const Roulette = ({ closeModal }) => {
     setRouletteName(value);
   };
 
+  //   console.log(rouletteData.map((data) => console.log(data.rouletteName)));
+
   return (
     <ModalBackground>
       <RouletteModalWrapper>
@@ -73,7 +75,7 @@ const Roulette = ({ closeModal }) => {
         <RouletteModalBody>
           <LeftSection onSubmit={onSubmit}>
             <Wheel
-              //   mustSpin={mustSpin}
+              mustSpin={mustSpin}
               prizeNumber={3}
               data={data.length === 0 ? initialData : data}
               backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
@@ -94,34 +96,40 @@ const Roulette = ({ closeModal }) => {
             </AddItem>
             <Bottom>
               <button onClick={() => reset()}>reset</button>
-              {/* <button onClick={() => setMustSpin(true)}>spin</button> */}
+              <button onClick={() => setMustSpin(true)}>spin</button>
             </Bottom>
           </LeftSection>
           <RightSection onSubmit={onSubmit}>
             <RouletteName
-              value={rouletteName}
+              value={rouletteData.map((data) => data.rouletteName)}
               onChange={onChange}
               type="text"
               placeholder="룰렛 네임"
             ></RouletteName>
             {/* <RouletteOption name="otion">
-              <option value="">룰렛 개수</option>
-              <option value="">1</option>
-              <option value="학생">2</option>
-              <option value="회사원">3</option>
-              <option value="기타">4</option>
-              <option value="기타">5</option>
-              <option value="기타">6</option>
-            </RouletteOption> */}
-            <RouletteTime onChange={(e) => setDate(e.target.value)} type="time" placeholder="시간"></RouletteTime>
+                <option value="">룰렛 개수</option>
+                <option value="">1</option>
+                <option value="학생">2</option>
+                <option value="회사원">3</option>
+                <option value="기타">4</option>
+                <option value="기타">5</option>
+                <option value="기타">6</option>
+              </RouletteOption> */}
+            <RouletteTime
+              onChange={(e) => setDate(e.target.value)}
+              type="time"
+              placeholder="시간"
+            ></RouletteTime>
           </RightSection>
         </RouletteModalBody>
-        <RoultteButton onClick={onSubmit}>저장하기</RoultteButton>
+        <RouletteButtonWrapper>
+          <RoultteButton onClick={onSubmit}>수정하기</RoultteButton>
+          <RoultteButton onClick={onSubmit}>삭제하기</RoultteButton>
+        </RouletteButtonWrapper>
       </RouletteModalWrapper>
     </ModalBackground>
   );
 };
-
 const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
@@ -170,6 +178,9 @@ const RouletteModalBody = styled.div`
   margin: 5px 0;
 `;
 
+const RouletteButtonWrapper = styled.div`
+  display: flex;
+`;
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -260,5 +271,4 @@ const RoultteButton = styled.button`
   font-weight: 700;
   cursor: pointer;
 `;
-
-export default Roulette;
+export default GetRoulette;

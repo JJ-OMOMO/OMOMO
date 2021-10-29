@@ -2,40 +2,46 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
 import OMO from "../../images/OMO.png";
-import Roulette from "../../components/roulette_modal/roulette";
+import CreateRoulette from "../../components/roulette_modal/CreateRoulette";
 import ProfileModal from "../../components/profile_modal/profile";
 import { dbService } from "../../service/firebase";
+import GetRoulette from "../../components/roulette_modal/GetRoulette";
 
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
   const [roulette, setRoulette] = useState(false);
-  const [data, setData] = useState([])
+  const [rouletteList, setRouletteList] = useState(false);
+  const [data, setData] = useState([]);
 
   const getRoulette = async () => {
-    const result = []
-    const citiesRef = dbService.collection('roulettes');
-    const snapshot = await citiesRef.where('userId', '==', localStorage.uid).get()
+    const result = [];
+    const citiesRef = dbService.collection("roulettes");
+    const snapshot = await citiesRef
+      .where("userId", "==", localStorage.uid)
+      .get();
 
     if (snapshot.empty) {
-      console.log('No matching documents.');
+      console.log("No matching documents.");
       return;
     }
-    snapshot.forEach(doc => {
-      result.push(doc.data())
+    snapshot.forEach((doc) => {
+      result.push(doc.data());
     });
     return setData(result);
-  }
+  };
 
   useEffect(() => {
-    getRoulette()
+    getRoulette();
   }, []);
 
   return (
     <Wrapper>
       <Header />
       {modifyProfile && <ProfileModal closeModal={setModifyProfile} />}
-      {roulette && <Roulette closeModal={setRoulette} />}
-      {roulette && <Roulette closeModal={setRoulette} />}
+      {roulette && <CreateRoulette closeModal={setRoulette} />}
+      {rouletteList && (
+        <GetRoulette rouletteData={data} closeModal={setRouletteList} />
+      )}
       <Container>
         <MainSection>
           <Profile>
@@ -59,16 +65,16 @@ const Mypage = () => {
               룰렛 추가
             </button>
             <ul>
-              {data.map((data, index) =>
-                <li key={index} onClick={() => setRoulette(true)}>
+              {data.map((data, index) => (
+                <li key={index} onClick={() => setRouletteList(true)}>
                   {data.rouletteName}
                 </li>
-              )}
+              ))}
             </ul>
           </RouletteList>
         </BottomSection>
       </Container>
-    </Wrapper >
+    </Wrapper>
   );
 };
 const Wrapper = styled.div`
@@ -147,7 +153,6 @@ const RouletteList = styled.div`
     font-weight: 500px;
     text-align: center;
     cursor: pointer;
-    
   }
 `;
 
