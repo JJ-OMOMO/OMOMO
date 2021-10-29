@@ -40,6 +40,22 @@ const Roulette = ({ closeModal }) => {
     setData([]);
     setDate("");
   };
+
+  // const onSubmit = async (event) => {
+  //   const info = {
+  //     userId: localStorage.uid,
+  //     rouletteName,
+  //     optionName: data,
+  //     date,
+  //   }
+  //   event.preventDefault();
+  //   closeModal(false);
+  //   await dbService.collection("roulettes").doc(localStorage.uid).set(info)
+  //   setRouletteName("");
+  //   setData([]);
+  //   setDate("");
+  // };
+
   const onChange = (event) => {
     const {
       target: { value },
@@ -97,7 +113,7 @@ const Roulette = ({ closeModal }) => {
               <option value="기타">5</option>
               <option value="기타">6</option>
             </RouletteOption> */}
-            <RouletteTime type="time" placeholder="시간"></RouletteTime>
+            <RouletteTime onChange={(e) => setDate(e.target.value)} type="time" placeholder="시간"></RouletteTime>
           </RightSection>
         </RouletteModalBody>
         <RoultteButton onClick={onSubmit}>저장하기</RoultteButton>

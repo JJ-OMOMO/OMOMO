@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 const SocialLogin = ({ closeModal, authService }) => {
   const history = useHistory();
-  const goToMain = (userId) => {
-    history.push({
-      pathname: "/",
-      state: { id: userId },
-    });
-  };
+  // const goToMain = (userId) => {
+  //   history.push({
+  //     pathname: "/",
+  //     state: { id: userId },
+  //   });
+  // };
 
   const onLogin = (event) => {
     closeModal(false);
@@ -19,7 +19,7 @@ const SocialLogin = ({ closeModal, authService }) => {
       .then((data) =>
         localStorage.setItem('uid', data.user.uid)
       )
-      .then(() => history.push("/mypage"));
+      .then(() => history.push("/"));
   };
 
   // useEffect(() => {
