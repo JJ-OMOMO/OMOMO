@@ -9,7 +9,20 @@ import { dbService } from "../../service/firebase";
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
   const [roulette, setRoulette] = useState(false);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [character, setCharacter] = useState("");
+  const [nickname, setNickname] = useState("");
+
+  const getProfile = async () => {
+    const tempNick = []
+    const tempChar = []
+    const snapshot = await dbService.collection('profile').where('userId', '==', localStorage.uid).get()
+    snapshot.forEach(doc => {
+      tempNick.push(doc.data().nickname)
+      tempChar.push(doc.data().character)
+    });
+    return setCharacter(tempChar), setNickname(tempNick)
+  };
 
   const getRoulette = async () => {
     const result = []
@@ -17,7 +30,7 @@ const Mypage = () => {
     const snapshot = await citiesRef.where('userId', '==', localStorage.uid).get()
 
     if (snapshot.empty) {
-      console.log('No matching documents.');
+      console.log('empty roulette');
       return;
     }
     snapshot.forEach(doc => {
@@ -26,14 +39,34 @@ const Mypage = () => {
     return setData(result);
   }
 
+  const InitialSetProfile = async () => {
+    const citiesRef = dbService.collection('profile');
+    const snapshot = await citiesRef.where('userId', '==', localStorage.uid).get();
+
+    if (snapshot.empty) {
+      setModifyProfile(true);
+      alert('처음이시군요 프로필을 설정해주세요');
+      return;
+    }
+  }
+
   useEffect(() => {
     getRoulette()
+    getProfile()
+    InitialSetProfile()
   }, []);
 
   return (
     <Wrapper>
       <Header />
-      {modifyProfile && <ProfileModal closeModal={setModifyProfile} />}
+      {modifyProfile &&
+        <ProfileModal
+          Char={character}
+          setChar={setCharacter}
+          Nick={nickname}
+          setNick={setNickname}
+          closeModal={setModifyProfile}
+        />}
       {roulette && <Roulette closeModal={setRoulette} />}
       {roulette && <Roulette closeModal={setRoulette} />}
       <Container>
@@ -44,8 +77,26 @@ const Mypage = () => {
               &nbsp;
               <button onClick={() => setModifyProfile(true)}>수정</button>
             </div>
-            <img src={OMO} alt="프로필 사진" width="200px" height="200px" />
-            <input tpye="text" value="닉네임" readOnly></input>
+            {character.length < 1 ?
+              <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: '150px',
+                height: '150px',
+                border: '1px solid black',
+                fontSize: '16px',
+              }}>
+                프로필 사진 없음
+              </div> :
+              <img src={character} alt="프로필 사진" width="150px" height="150px" />
+            }
+            {
+              nickname.length < 1 ?
+                <input tpye="text" value={"닉네임을 설정해주세요"} style={{ textAlign: "center" }} readOnly></input> :
+                <input tpye="text" value={nickname} style={{ textAlign: "center" }} readOnly></input>
+            }
+
           </Profile>
           <TodoList>투두 리스트</TodoList>
         </MainSection>
