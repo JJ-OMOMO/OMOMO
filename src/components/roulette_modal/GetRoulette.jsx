@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dbService } from "../../service/firebase";
 import Wheel from "../roulette_wheel/roulette_wheel";
@@ -9,6 +9,7 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
+  // const [roulette, setRoulette] = useState([]);
 
   const initialData = [
     { option: "가" },
@@ -41,6 +42,21 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
     setDate("");
   };
 
+  const docId = rouletteData.map((doc) => doc.id);
+  console.log(docId);
+  // console.log(rouletteData);
+  // const rouletteObj = {
+  //   ...rouletteData,
+  // };
+  // console.log(rouletteObj);
+  const onDelete = async () => {
+    const ok = window.confirm("룰렛을 삭제하시겠습니까?");
+    if (ok) {
+      const docId = rouletteData.map((doc) => doc.id);
+      // await dbService.doc(`roulettes/${docId}`).delete();
+    }
+  };
+
   // const onSubmit = async (event) => {
   //   const info = {
   //     userId: localStorage.uid,
@@ -63,7 +79,7 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
     setRouletteName(value);
   };
 
-  //   console.log(rouletteData.map((data) => console.log(data.rouletteName)));
+  //   console.log(rouletteData.map((data) => console.log(data)));
 
   return (
     <ModalBackground>
@@ -77,7 +93,8 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
             <Wheel
               mustSpin={mustSpin}
               prizeNumber={3}
-              data={data.length === 0 ? initialData : data}
+              //   data={data.length === 0 ? initialData : data}
+              data={rouletteData.map((data) => data.optionName[0])}
               backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
               textColors={["black"]}
               outerBorderColor={"#eeeeee"}
@@ -90,12 +107,12 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
               fontSize={33}
               textDistance={60}
             />
-            <AddItem>
+            {/* <AddItem>
               <input onChange={(e) => setTest(e.target.value)}></input>
               <button onClick={() => create()}>추가</button>
-            </AddItem>
+            </AddItem> */}
             <Bottom>
-              <button onClick={() => reset()}>reset</button>
+              {/* <button onClick={() => reset()}>reset</button> */}
               <button onClick={() => setMustSpin(true)}>spin</button>
             </Bottom>
           </LeftSection>
@@ -106,16 +123,9 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
               type="text"
               placeholder="룰렛 네임"
             ></RouletteName>
-            {/* <RouletteOption name="otion">
-                <option value="">룰렛 개수</option>
-                <option value="">1</option>
-                <option value="학생">2</option>
-                <option value="회사원">3</option>
-                <option value="기타">4</option>
-                <option value="기타">5</option>
-                <option value="기타">6</option>
-              </RouletteOption> */}
+
             <RouletteTime
+              //   value={rouletteData.map((data) => data.date)}
               onChange={(e) => setDate(e.target.value)}
               type="time"
               placeholder="시간"
@@ -123,13 +133,14 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
           </RightSection>
         </RouletteModalBody>
         <RouletteButtonWrapper>
-          <RoultteButton onClick={onSubmit}>수정하기</RoultteButton>
-          <RoultteButton onClick={onSubmit}>삭제하기</RoultteButton>
+          <RoultteButton>수정하기</RoultteButton>
+          <RoultteButton onClick={onDelete}>삭제하기</RoultteButton>
         </RouletteButtonWrapper>
       </RouletteModalWrapper>
     </ModalBackground>
   );
 };
+
 const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
@@ -240,7 +251,7 @@ const RightSection = styled.div`
   width: 50%;
   height: 100%;
   border: 1px solid white;
-  //   color: white;
+  // color: white;
 `;
 
 const RouletteName = styled.input`

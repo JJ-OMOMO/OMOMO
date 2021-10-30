@@ -41,9 +41,13 @@ const Mypage = () => {
       return;
     }
     snapshot.forEach((doc) => {
-      result.push(doc.data());
+      // result.push(doc.data());
+      const rouletteObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      return setData((prev) => [rouletteObj, ...prev]);
     });
-    return setData(result);
   };
 
   const InitialSetProfile = async () => {
@@ -142,6 +146,7 @@ const Mypage = () => {
               {data.map((data, index) => (
                 <li key={index} onClick={() => setRouletteList(true)}>
                   {data.rouletteName}
+                  {data.id}
                 </li>
               ))}
             </ul>
