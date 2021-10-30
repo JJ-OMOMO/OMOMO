@@ -29,7 +29,6 @@ const CreateRoulette = ({ closeModal }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    closeModal(false);
     await dbService.collection("roulettes").add({
       userId: localStorage.uid,
       rouletteName,
@@ -39,6 +38,8 @@ const CreateRoulette = ({ closeModal }) => {
     setRouletteName("");
     setData([]);
     setDate("");
+    closeModal(false);
+
   };
 
   // const onSubmit = async (event) => {

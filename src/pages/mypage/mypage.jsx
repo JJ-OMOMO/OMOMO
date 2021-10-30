@@ -12,6 +12,7 @@ const Mypage = () => {
   const [roulette, setRoulette] = useState(false);
   const [rouletteList, setRouletteList] = useState(false);
   const [data, setData] = useState([]);
+  const [onClickData, setOnClickData] = useState([]);
   const [character, setCharacter] = useState("");
   const [nickname, setNickname] = useState("");
 
@@ -50,6 +51,12 @@ const Mypage = () => {
     });
   };
 
+  const onClickRoulette = async (index) => {
+    const temp = [...data]
+    setOnClickData(temp[index])
+    await setRouletteList(true)
+  }
+
   const InitialSetProfile = async () => {
     const citiesRef = dbService.collection("profile");
     const snapshot = await citiesRef
@@ -83,7 +90,7 @@ const Mypage = () => {
       )}
       {roulette && <CreateRoulette closeModal={setRoulette} />}
       {rouletteList && (
-        <GetRoulette rouletteData={data} closeModal={setRouletteList} />
+        <GetRoulette rouletteData={onClickData} setRouletteList={setRouletteList} closeModal={setRouletteList} />
       )}
       <Container>
         <MainSection>
@@ -144,9 +151,8 @@ const Mypage = () => {
             </button>
             <ul>
               {data.map((data, index) => (
-                <li key={index} onClick={() => setRouletteList(true)}>
+                <li key={index} onClick={() => onClickRoulette(index)}>
                   {data.rouletteName}
-                  {data.id}
                 </li>
               ))}
             </ul>
