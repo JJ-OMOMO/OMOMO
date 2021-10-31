@@ -3,30 +3,28 @@ import styled from "styled-components";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import { dbService } from "../../service/firebase";
 
-const GetRoulette = ({ closeModal, rouletteData, setRouletteList }) => {
+const GetRoulette = ({ closeModal, rouletteData }) => {
   const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
   const [data, setData] = useState([]);
   const [edit, setEdit] = useState(false);
-  const [newRouletteName, setNewRouletteName] = useState(
-    rouletteData.rouletteName
-  );
+  const [newRouletteName, setNewRouletteName] = useState(rouletteData.rouletteName);
   const [newDate, setNewDate] = useState(rouletteData.date);
   const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
 
-  // console.log(data, rouletteData.optionName);
 
   const onDelete = async () => {
     const ok = window.confirm("룰렛을 삭제하시겠습니까?");
     if (ok) {
       const docId = rouletteData.id;
       await dbService.doc(`roulettes/${docId}`).delete();
-      await setRouletteList(false);
+      await closeModal(false);
+      await window.location.reload();
     }
   };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    // console.log(rouletteData, newRouletteName);
     const docId = rouletteData.id;
 
     if (data.length === 0) {
@@ -42,7 +40,6 @@ const GetRoulette = ({ closeModal, rouletteData, setRouletteList }) => {
         date: newDate,
       });
     }
-    // await setEdit(false);
     await closeModal(false);
     await window.location.reload();
   };
@@ -64,6 +61,12 @@ const GetRoulette = ({ closeModal, rouletteData, setRouletteList }) => {
       : setData([...data, { option: newOptionName }]);
   };
 
+  const handleSpinClick = async () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    setPrizeNumber(newPrizeNumber);
+    setMustSpin(true);
+  }
+
   return (
     <ModalBackground>
       <RouletteModalWrapper>
@@ -74,9 +77,12 @@ const GetRoulette = ({ closeModal, rouletteData, setRouletteList }) => {
         <RouletteModalBody>
           <LeftSection>
             <Wheel
+              closeModal={closeModal}
               onSubmit={onSubmit}
               mustSpin={mustSpin}
-              prizeNumber={3}
+              setMustSpin={setMustSpin}
+              rouletteData={rouletteData}
+              prizeNumber={prizeNumber}
               data={data.length === 0 ? rouletteData.optionName : data}
               backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
               textColors={["black"]}
@@ -102,7 +108,9 @@ const GetRoulette = ({ closeModal, rouletteData, setRouletteList }) => {
               {edit ? (
                 <button onClick={() => reset()}>reset</button>
               ) : (
-                <button onClick={() => setMustSpin(true)}>spin</button>
+                <>
+                  <button onClick={handleSpinClick}>spin</button>
+                </>
               )}
             </Bottom>
           </LeftSection>

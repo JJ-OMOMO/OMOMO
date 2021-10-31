@@ -39,6 +39,7 @@ const CreateRoulette = ({ closeModal }) => {
     setData([]);
     setDate("");
     closeModal(false);
+    await window.location.reload();
   };
 
   // const onSubmit = async (event) => {

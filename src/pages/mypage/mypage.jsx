@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
 import CreateRoulette from "../../components/roulette_modal/CreateRoulette";
@@ -16,6 +16,7 @@ const Mypage = () => {
   const [onClickData, setOnClickData] = useState([]);
   const [character, setCharacter] = useState("");
   const [nickname, setNickname] = useState("");
+  const [todo, setTodo] = useState([]);
 
   const getProfile = async () => {
     const tempNick = [];
@@ -72,10 +73,46 @@ const Mypage = () => {
     }
   };
 
+  const GetTodolist = () => {
+    const arr = []
+    console.log("실행횟수")
+    // data.forEach((e) => {
+    // const result = JSON.parse(localStorage.getItem(e.id));
+    // console.log(e)
+    // }
+    for (let i = 0; i < data.length; i++) {
+      console.log('확인')
+
+    }
+    return setTodo(arr);
+  }
+  // const GetTodolist = async () => {
+  //   const result = [];
+  //   const citiesRef = dbService.collection("roulettes");
+  //   const snapshot = await citiesRef
+  //     .where("userId", "==", localStorage.uid)
+  //     .get();
+
+  //   if (snapshot.empty) {
+  //     console.log("empty roulette");
+  //     return;
+  //   }
+
+  //   snapshot.forEach((doc) => {
+  //     const rouletteObj = {
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     };
+  //     result.push(rouletteObj);
+  //     return setTodo(result);
+  //   });
+  // }
+
   useEffect(() => {
     getRoulette();
     getProfile();
     InitialSetProfile();
+    GetTodolist();
   }, []);
 
   return (
@@ -92,7 +129,7 @@ const Mypage = () => {
       )}
       {roulette && <CreateRoulette closeModal={setRoulette} />}
       {rouletteList && (
-        <GetRoulette rouletteData={onClickData} setRouletteList={setRouletteList} closeModal={setRouletteList} />
+        <GetRoulette rouletteData={onClickData} closeModal={setRouletteList} />
       )}
       <Container>
         <MainSection>
@@ -141,47 +178,20 @@ const Mypage = () => {
             )}
           </Profile>
           <TodoList>
-            투두 리스트
-            <div>
-              <h5>룰렛 네임</h5>
-              <p>가나다라마바사</p>
-              <span>
-                <input type="time" value="09:00" readOnly />
-                <input type="time" value="12:00" readOnly />
-              </span>
-            </div>
-            <div>
-              <h5>룰렛 네임</h5>
-              <p>당첨 룰렛</p>
-              <span>
-                <input type="time" value="09:00" readOnly />
-                <input type="time" value="12:00" readOnly />
-              </span>
-            </div>
-            <div>
-              <h5>룰렛 네임</h5>
-              <p>당첨 룰렛</p>
-              <span>
-                <input type="time" value="09:00" readOnly />
-                <input type="time" value="12:00" readOnly />
-              </span>
-            </div>
-            <div>
-              <h5>룰렛 네임</h5>
-              <p>당첨 룰렛</p>
-              <span>
-                <input type="time" value="09:00" readOnly />
-                <input type="time" value="12:00" readOnly />
-              </span>
-            </div>
-            <div>
-              <h5>룰렛 네임</h5>
-              <p>당첨 룰렛</p>
-              <span>
-                <input type="time" value="09:00" readOnly />
-                <input type="time" value="12:00" readOnly />
-              </span>
-            </div>
+            투두리스트
+            {todo.length > 0 ?
+              todo.map((data, index) => (
+                <div key={index}>
+                  <h5>{data.rouletteName}</h5>
+                  <p>{data.optionName}</p>
+                  <span>
+                    <input type="time" value={data.date} readOnly />
+                    <input type="time" value={data.date} readOnly />
+                  </span>
+                </div>)) :
+              <h1>룰렛을 돌려주세요~</h1>
+            }
+
           </TodoList>
         </MainSection>
         <BottomSection>
@@ -219,7 +229,7 @@ const Mypage = () => {
           </RouletteList>
         </BottomSection>
       </Container>
-    </Wrapper>
+    </Wrapper >
   );
 };
 const Wrapper = styled.div`
