@@ -43,6 +43,7 @@ export default ({
                 result.optionName = data[prizeNumber].option;
                 localStorage.setItem(result.id, JSON.stringify(result));
                 await closeModal(false);
+                await window.location.reload();
             }}
         />
     </>
