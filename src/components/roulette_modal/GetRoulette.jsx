@@ -128,6 +128,7 @@ const ModalBackground = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 1000;
 `;
 
 const RouletteModalWrapper = styled.div`

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
-import OMO from "../../images/OMO.png";
 import CreateRoulette from "../../components/roulette_modal/CreateRoulette";
 import ProfileModal from "../../components/profile_modal/profile";
 import { dbService } from "../../service/firebase";
 import GetRoulette from "../../components/roulette_modal/GetRoulette";
+import { Wheel } from "react-custom-roulette";
+import Arrow from "../../images/arrow.png";
 
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
@@ -41,15 +42,16 @@ const Mypage = () => {
       console.log("empty roulette");
       return;
     }
+
     snapshot.forEach((doc) => {
-      // result.push(doc.data());
       const rouletteObj = {
         id: doc.id,
         ...doc.data(),
       };
-      return setData((prev) => [rouletteObj, ...prev]);
+      result.push(rouletteObj);
+      return setData(result);
     });
-  };
+  }
 
   const onClickRoulette = async (index) => {
     const temp = [...data]
@@ -138,7 +140,49 @@ const Mypage = () => {
               ></input>
             )}
           </Profile>
-          <TodoList>투두 리스트</TodoList>
+          <TodoList>
+            투두 리스트
+            <div>
+              <h5>룰렛 네임</h5>
+              <p>가나다라마바사</p>
+              <span>
+                <input type="time" value="09:00" readOnly />
+                <input type="time" value="12:00" readOnly />
+              </span>
+            </div>
+            <div>
+              <h5>룰렛 네임</h5>
+              <p>당첨 룰렛</p>
+              <span>
+                <input type="time" value="09:00" readOnly />
+                <input type="time" value="12:00" readOnly />
+              </span>
+            </div>
+            <div>
+              <h5>룰렛 네임</h5>
+              <p>당첨 룰렛</p>
+              <span>
+                <input type="time" value="09:00" readOnly />
+                <input type="time" value="12:00" readOnly />
+              </span>
+            </div>
+            <div>
+              <h5>룰렛 네임</h5>
+              <p>당첨 룰렛</p>
+              <span>
+                <input type="time" value="09:00" readOnly />
+                <input type="time" value="12:00" readOnly />
+              </span>
+            </div>
+            <div>
+              <h5>룰렛 네임</h5>
+              <p>당첨 룰렛</p>
+              <span>
+                <input type="time" value="09:00" readOnly />
+                <input type="time" value="12:00" readOnly />
+              </span>
+            </div>
+          </TodoList>
         </MainSection>
         <BottomSection>
           <RouletteList>
@@ -153,6 +197,22 @@ const Mypage = () => {
               {data.map((data, index) => (
                 <li key={index} onClick={() => onClickRoulette(index)}>
                   {data.rouletteName}
+                  <Wheel
+                    mustSpin={1}
+                    prizeNumber={3}
+                    data={data.optionName}
+                    backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
+                    textColors={["black"]}
+                    outerBorderColor={"#eeeeee"}
+                    outerBorderWidth={20}
+                    innerBorderColor={"#30261a"}
+                    innerBorderWidth={0}
+                    innerRadius={0}
+                    radiusLineColor={"#eeeeee"}
+                    radiusLineWidth={10}
+                    fontSize={33}
+                    textDistance={60}
+                  />
                 </li>
               ))}
             </ul>
@@ -199,19 +259,56 @@ const Profile = styled.div`
 
 const TodoList = styled.div`
   flex-basis: 40%;
+  height: 100%;
   border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  & > div {
+    width: 100%;
+    height: 20%;
+    margin: 5px 5px 0px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid red;
+    & > h5 {
+      width: 20%;
+      margin-left: 20px;
+      border: 1px solid blue;
+    }
+    & > p {
+      font-size: 1rem;
+    }
+    & > span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5%;
+      width: 40%;
+      border: 1px solid green;
+      & > :nth-child(1) {
+        margin-right: 5px;
+      }
+    }
+
+  }
 `;
 
 const BottomSection = styled.div`
   display: flex;
   justify-content: center;
+  height: 50vh;
 `;
 
 const RouletteList = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40vh;
+  height: 100%;
   width: 80%;
   border: 1px solid green;
   & > button {
@@ -229,15 +326,30 @@ const RouletteList = styled.div`
     align-items: center;
     list-style: none;
     overflow: hidden;
-  }
-  & > ul > li {
-    border: 1px solid orange;
+
+    & > li {
+    padding-bottom: 20px;
+    position: relative;
+    /* border: 1px solid orange; */
     width: 80%;
     height: 80%;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 500px;
     text-align: center;
     cursor: pointer;
+      & > :nth-child(1) {
+      width: 100%;
+      height: 100%;
+        & > :nth-child(2) {
+          position: absolute;
+          z-index: 5;
+          width: 17%;
+          right: 10px;
+          top: 7px;
+          content: url(${Arrow}); 
+        }
+      }
+    }
   }
 `;
 
