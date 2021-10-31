@@ -39,7 +39,6 @@ const CreateRoulette = ({ closeModal }) => {
     setData([]);
     setDate("");
     closeModal(false);
-
   };
 
   // const onSubmit = async (event) => {
@@ -105,15 +104,6 @@ const CreateRoulette = ({ closeModal }) => {
               type="text"
               placeholder="룰렛 네임"
             ></RouletteName>
-            {/* <RouletteOption name="otion">
-              <option value="">룰렛 개수</option>
-              <option value="">1</option>
-              <option value="학생">2</option>
-              <option value="회사원">3</option>
-              <option value="기타">4</option>
-              <option value="기타">5</option>
-              <option value="기타">6</option>
-            </RouletteOption> */}
             <RouletteTime
               onChange={(e) => setDate(e.target.value)}
               type="time"

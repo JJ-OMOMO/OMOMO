@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
-import SocialLogin from "../../components/social_login_modal/socialLogin";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
 import { useLocation } from "react-router";
 
@@ -33,7 +32,7 @@ const Mainpage = ({ authService }) => {
   const create = () => {
     data.length === 8 ? alert("stop") : setData([...data, { option: test }]);
   };
-
+  console.log("MAINDATA", data);
   return (
     <Wrapper>
       <Header authService={authService} userId={userId} />
