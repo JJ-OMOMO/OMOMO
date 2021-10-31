@@ -3,7 +3,10 @@ import { Wheel } from 'react-custom-roulette'
 
 
 export default ({
+    closeModal,
     mustSpin,
+    setMustSpin,
+    rouletteData,
     prizeNumber,
     data,
     backgroundColors,
@@ -34,6 +37,13 @@ export default ({
             radiusLineColor={radiusLineColor}
             radiusLineWidth={radiusLineWidth}
             textDistance={textDistance}
+            onStopSpinning={async () => {
+                setMustSpin(false);
+                const result = { ...rouletteData }
+                result.optionName = data[prizeNumber].option;
+                localStorage.setItem(result.id, JSON.stringify(result));
+                await closeModal(false);
+            }}
         />
     </>
 )

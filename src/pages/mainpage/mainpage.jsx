@@ -32,7 +32,7 @@ const Mainpage = ({ authService }) => {
   const create = () => {
     data.length === 8 ? alert("stop") : setData([...data, { option: test }]);
   };
-  console.log("MAINDATA", data);
+  // console.log("MAINDATA", data);
   return (
     <Wrapper>
       <Header authService={authService} userId={userId} />

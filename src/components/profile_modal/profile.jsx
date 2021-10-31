@@ -58,6 +58,7 @@ const ModalBackground = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #ffff00f1;
+  z-index: 1000;
 `;
 
 const ModalContainer = styled.div`
