@@ -18,6 +18,12 @@ const Mypage = () => {
   const [nickname, setNickname] = useState("");
   const [todo, setTodo] = useState([]);
 
+  useEffect(async () => {
+    await getRoulette();
+    await getProfile();
+    await InitialSetProfile();
+  }, []);
+
   const getProfile = async () => {
     const tempNick = [];
     const tempChar = [];
@@ -34,24 +40,29 @@ const Mypage = () => {
 
   const getRoulette = async () => {
     const result = [];
+    const arr = [];
     const citiesRef = dbService.collection("roulettes");
     const snapshot = await citiesRef
       .where("userId", "==", localStorage.uid)
       .get();
-
     if (snapshot.empty) {
       console.log("empty roulette");
       return;
     }
-
     snapshot.forEach((doc) => {
       const rouletteObj = {
         id: doc.id,
         ...doc.data(),
       };
       result.push(rouletteObj);
-      return setData(result);
+    })
+    // TO-DO list 목록 보기
+    result.map(e => {
+      const result = JSON.parse(localStorage.getItem(e.id));
+      result !== null ? arr.push(result) : console.log('패스')
     });
+    setTodo(arr);
+    setData(result);
   }
 
   const onClickRoulette = async (index) => {
@@ -72,48 +83,6 @@ const Mypage = () => {
       return;
     }
   };
-
-  const GetTodolist = () => {
-    const arr = []
-    console.log("실행횟수")
-    // data.forEach((e) => {
-    // const result = JSON.parse(localStorage.getItem(e.id));
-    // console.log(e)
-    // }
-    for (let i = 0; i < data.length; i++) {
-      console.log('확인')
-
-    }
-    return setTodo(arr);
-  }
-  // const GetTodolist = async () => {
-  //   const result = [];
-  //   const citiesRef = dbService.collection("roulettes");
-  //   const snapshot = await citiesRef
-  //     .where("userId", "==", localStorage.uid)
-  //     .get();
-
-  //   if (snapshot.empty) {
-  //     console.log("empty roulette");
-  //     return;
-  //   }
-
-  //   snapshot.forEach((doc) => {
-  //     const rouletteObj = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     result.push(rouletteObj);
-  //     return setTodo(result);
-  //   });
-  // }
-
-  useEffect(() => {
-    getRoulette();
-    getProfile();
-    InitialSetProfile();
-    GetTodolist();
-  }, []);
 
   return (
     <Wrapper>
