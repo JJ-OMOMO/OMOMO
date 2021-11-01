@@ -4,14 +4,18 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
 import { useLocation } from "react-router";
+import avatar1 from "../../images/avatar1.png";
+import avatar2 from "../../images/avatar2.png";
+import avatar3 from "../../images/avatar3.png";
+import avatar4 from "../../images/avatar4.png";
 
 const initialData = [
-  { option: "가" },
-  { option: "나" },
-  { option: "다" },
-  { option: "라" },
-  { option: "마" },
-  { option: "바" },
+  { option: "모" },
+  { option: "하" },
+  { option: "지" },
+  { option: "오" },
+  { option: "늘" },
+  { option: "은" },
 ];
 
 const Mainpage = ({ authService }) => {
@@ -38,25 +42,28 @@ const Mainpage = ({ authService }) => {
       <Header authService={authService} userId={userId} />
       <Container>
         <TrialRoulette>
-          룰렛 체험판
+          나만의 룰렛을 만들어보세요.
           <Wheel
             mustSpin={mustSpin}
             prizeNumber={3}
             data={data.length === 0 ? initialData : data}
-            backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
+            backgroundColors={["#ff8f43", "#C0BC83", "#F7F2CB", "#F7FA1B"]}
             textColors={["black"]}
-            outerBorderColor={"#eeeeee"}
-            outerBorderWidth={20}
+            outerBorderColor={"005248"}
+            // outerBorderWidth={10}
             innerBorderColor={"#30261a"}
             innerBorderWidth={0}
             innerRadius={0}
-            radiusLineColor={"#eeeeee"}
-            radiusLineWidth={10}
+            radiusLineColor={"#005248"}
+            // radiusLineWidth={10}
             fontSize={33}
             textDistance={60}
           />
           <AddItem>
-            <input onChange={(e) => setTest(e.target.value)}></input>
+            <input
+              onChange={(e) => setTest(e.target.value)}
+              placeholder="OMOMO"
+            ></input>
             <button onClick={() => create()}>추가</button>
           </AddItem>
           <Bottom>
@@ -64,7 +71,35 @@ const Mainpage = ({ authService }) => {
             <button onClick={() => setMustSpin(true)}>spin</button>
           </Bottom>
         </TrialRoulette>
-        <RouletteDescription>룰렛 예시 설명란</RouletteDescription>
+        <RouletteDescription>
+          <DescriptionWrapper>
+            <Avatar>
+              <img src={avatar1} alt="avatar1" width="100px" height="100px" />
+            </Avatar>
+            <DescriptionBubble>오늘은 모하지?</DescriptionBubble>
+          </DescriptionWrapper>
+          <DescriptionWrapper>
+            <DescriptionBubble>오늘은 모먹지?</DescriptionBubble>
+            <Avatar>
+              <img src={avatar2} alt="avatar2" width="100px" height="100px" />
+            </Avatar>
+          </DescriptionWrapper>
+          <DescriptionWrapper>
+            <Avatar>
+              <img src={avatar3} alt="avatar3" width="100px" height="100px" />
+            </Avatar>
+            <DescriptionBubble>이번 주말에 어디갈까?</DescriptionBubble>
+          </DescriptionWrapper>
+          <DescriptionWrapper>
+            <DescriptionBubble>무슨 게임하고 놀까?</DescriptionBubble>
+            <Avatar>
+              <img src={avatar4} alt="avatar4" width="100px" height="100px" />
+            </Avatar>
+          </DescriptionWrapper>
+          선택의 기로에 놓인 당신... <br />
+          오모오모가 당신의 선택을 도와드립니다. <br />
+          무엇이든 돌리기만 하면 OK~
+        </RouletteDescription>
       </Container>
       <Footer />
     </Wrapper>
@@ -77,7 +112,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: black;
+  background-color: #ffc6a4;
 `;
 
 const Container = styled.div`
@@ -94,7 +129,8 @@ const TrialRoulette = styled.div`
   align-items: center;
   flex-basis: 40%;
   padding-top: 10px;
-  background-color: #78db56;
+  background-color: #f88f70;
+  // border-radius: 20px;
 `;
 
 const AddItem = styled.div`
@@ -105,9 +141,17 @@ const AddItem = styled.div`
   & > input {
     margin-right: 10px;
     width: 100px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-radius: 4px;
   }
   & > button {
     width: 40px;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #fdfae6;
   }
 `;
 
@@ -117,15 +161,45 @@ const Bottom = styled.div`
   justify-content: center;
   align-items: center;
   & > button {
-    width: 100px;
-    height: 40px;
+    width: 80px;
+    height: 35px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #fdfae6;
     margin: 0 10px 10px 0;
   }
 `;
 
 const RouletteDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-basis: 40%;
-  background-color: #00bb80;
+  // background-color: #f88f70;
+  background-color: #bb5b3f;
+  // border-radius: 20px;
+`;
+
+const DescriptionWrapper = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
+
+const Avatar = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: #fdfae6;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+const DescriptionBubble = styled.div`
+  width: 400px;
+  height: 100px;
+  background-color: #fdfae6;
+  border-radius: 4px;
+  margin-right: 10px;
 `;
 
 export default Mainpage;
