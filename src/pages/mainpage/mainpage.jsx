@@ -42,7 +42,7 @@ const Mainpage = ({ authService }) => {
       <Header authService={authService} userId={userId} />
       <Container>
         <TrialRoulette>
-          나만의 룰렛을 만들어보세요.
+          <TrialRouletteIntro>나만의 룰렛을 만들어보세요.</TrialRouletteIntro>
           <Wheel
             mustSpin={mustSpin}
             prizeNumber={3}
@@ -76,10 +76,19 @@ const Mainpage = ({ authService }) => {
             <Avatar>
               <img src={avatar1} alt="avatar1" width="100px" height="100px" />
             </Avatar>
-            <DescriptionBubble>오늘은 모하지?</DescriptionBubble>
+            <DescriptionBubbleLeft>
+              오늘은 모하지? <br />
+              공부도 해야되고, 운동도 해야되는데 <br />
+              공부는 뭘 하지? 운동은 또 뭘 하고? <br />
+              나는 매번 뭐할지 고민만 하다 시간이 다 가.
+            </DescriptionBubbleLeft>
           </DescriptionWrapper>
           <DescriptionWrapper>
-            <DescriptionBubble>오늘은 모먹지?</DescriptionBubble>
+            <DescriptionBubbleRight>
+              오늘은 모먹지? <br />
+              피자? 햄버거? 치킨? 쌀국수? <br />
+              메뉴 정하는 건 너무 어려워. 누가 좀 정해줬으면~
+            </DescriptionBubbleRight>
             <Avatar>
               <img src={avatar2} alt="avatar2" width="100px" height="100px" />
             </Avatar>
@@ -88,17 +97,19 @@ const Mainpage = ({ authService }) => {
             <Avatar>
               <img src={avatar3} alt="avatar3" width="100px" height="100px" />
             </Avatar>
-            <DescriptionBubble>이번 주말에 어디갈까?</DescriptionBubble>
+            <DescriptionBubbleLeft>이번 주말에 어디갈까?</DescriptionBubbleLeft>
           </DescriptionWrapper>
           <DescriptionWrapper>
-            <DescriptionBubble>무슨 게임하고 놀까?</DescriptionBubble>
+            <DescriptionBubbleRight>무슨 게임하고 놀까?</DescriptionBubbleRight>
             <Avatar>
               <img src={avatar4} alt="avatar4" width="100px" height="100px" />
             </Avatar>
           </DescriptionWrapper>
-          선택의 기로에 놓인 당신... <br />
-          오모오모가 당신의 선택을 도와드립니다. <br />
-          무엇이든 돌리기만 하면 OK~
+          <RouletteDescriptionIntro>
+            선택의 기로에 놓인 당신... <br />
+            오모오모가 당신의 선택을 도와드립니다. <br />
+            무엇이든 적고 돌리기만 하면 OK~
+          </RouletteDescriptionIntro>
         </RouletteDescription>
       </Container>
       <Footer />
@@ -131,6 +142,11 @@ const TrialRoulette = styled.div`
   padding-top: 10px;
   background-color: #f88f70;
   // border-radius: 20px;
+`;
+
+const TrialRouletteIntro = styled.div`
+  font-family: "CookieRun-Regular";
+  padding-bottom: 20px;
 `;
 
 const AddItem = styled.div`
@@ -182,6 +198,12 @@ const RouletteDescription = styled.div`
   // border-radius: 20px;
 `;
 
+const RouletteDescriptionIntro = styled.div`
+  color: #fdfae6;
+  font-family: "CookieRun-Regular";
+  padding-top: 17px;
+`;
+
 const DescriptionWrapper = styled.div`
   display: flex;
   margin-bottom: 10px;
@@ -194,12 +216,65 @@ const Avatar = styled.div`
   border-radius: 50%;
   margin-right: 10px;
 `;
-const DescriptionBubble = styled.div`
-  width: 400px;
-  height: 100px;
+const DescriptionBubbleLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
+  font-size: 18px;
+  font-family: "GowunDodum-Regular";
+  padding-left: 7px;
+  position: relative;
+  width: 380px;
+  height: auto;
   background-color: #fdfae6;
   border-radius: 4px;
-  margin-right: 10px;
+  margin-left: 20px;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-right-color: #fdfae6;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -10px;
+    margin-left: -20px;
+  }
+`;
+
+const DescriptionBubbleRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
+  font-size: 18px;
+  font-family: "GowunDodum-Regular";
+  // text-align: right;
+  padding-left: 7px;
+  position: relative;
+  width: 380px;
+  height: auto;
+  background-color: #fdfae6;
+  border-radius: 4px;
+  margin-right: 27px;
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-left-color: #fdfae6;
+    border-right: 0;
+    border-top: 0;
+    margin-top: -10px;
+    margin-right: -20px;
+  }
 `;
 
 export default Mainpage;
