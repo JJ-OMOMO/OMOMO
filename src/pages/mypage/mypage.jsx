@@ -56,21 +56,21 @@ const Mypage = () => {
         ...doc.data(),
       };
       result.push(rouletteObj);
-    })
+    });
     // TO-DO list 목록 보기
-    result.map(e => {
+    result.map((e) => {
       const result = JSON.parse(localStorage.getItem(e.id));
-      result !== null ? arr.push(result) : console.log('패스')
+      result !== null ? arr.push(result) : console.log("패스");
     });
     setTodo(arr);
     setData(result);
-  }
+  };
 
   const onClickRoulette = async (index) => {
-    const temp = [...data]
-    setOnClickData(temp[index])
-    await setRouletteList(true)
-  }
+    const temp = [...data];
+    setOnClickData(temp[index]);
+    await setRouletteList(true);
+  };
 
   const InitialSetProfile = async () => {
     const citiesRef = dbService.collection("profile");
@@ -148,22 +148,25 @@ const Mypage = () => {
             )}
           </Profile>
           <TodoList>
-            To-do list
-            {todo.length > 0 ?
-              todo.map((data, index) => (
-                <div key={index}>
-                  <h5>{data.rouletteName}</h5>
-                  <p>{data.optionName}</p>
-                  <span>
-                    <input type="time" value={data.date} readOnly />
-                    <input type="time" value={data.date} readOnly />
-                  </span>
-                </div>)) :
-              <h1>룰렛을 돌려주세요~</h1>
+            To -do list
+            {
+              todo.length > 0 ?
+                todo.map((data, index) => (
+                  <div key={index}>
+                    <h5>{data.rouletteName}</h5>
+                    <p>{data.optionName}</p>
+                    <span>
+                      <input type="time" value={data.date} readOnly />
+                      <input type="time" value={data.date} readOnly />
+                    </span>
+                  </div>
+                ))
+                : (
+                  <h1>룰렛을 돌려주세요~</h1>
+                )
             }
-
-          </TodoList>
-        </MainSection>
+          </TodoList >
+        </MainSection >
         <BottomSection>
           <RouletteList>
             <button
@@ -198,7 +201,7 @@ const Mypage = () => {
             </ul>
           </RouletteList>
         </BottomSection>
-      </Container>
+      </Container >
     </Wrapper >
   );
 };
@@ -313,7 +316,6 @@ const TodoList = styled.div`
 
       }
     }
-
   }
 `;
 
@@ -370,8 +372,8 @@ const RouletteList = styled.div`
       transform: scale(1.2);
     }
       & > :nth-child(1) {
-      width: 100%;
-      height: 100%;
+        width: 100%;
+        height: 100%;
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
