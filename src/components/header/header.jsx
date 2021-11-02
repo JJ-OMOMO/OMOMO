@@ -53,11 +53,11 @@ const Header = ({ authService }) => {
 const Wrapper = styled.div`
   display: flex;
   height: 100px;
-  border: 1px solid blue;
 `;
 
 const HeaderLogout = styled.button`
   font-size: 20px;
+  font-family: "CookieRun-Regular";
   height: 40px;
   cursor: pointer;
   border: 1px solid transparent;
@@ -81,16 +81,15 @@ const HeaderTitle = styled.span`
   font-size: 30px;
   display: flex;
   justify-content: center;
-  // border: 1px solid green;
 `;
 
 const LoginMyPage = styled.div`
   position: absolute;
   right: 0px;
-  // border: 1px solid red;
 `;
 const HeaderLogin = styled.button`
   font-size: 20px;
+  font-family: "CookieRun-Regular";
   height: 40px;
   cursor: pointer;
   border: 1px solid transparent;
@@ -103,6 +102,7 @@ const HeaderLogin = styled.button`
 
 const HeaderMyPage = styled.button`
   font-size: 20px;
+  font-family: "CookieRun-Regular";
   height: 40px;
   margin-left: 10px;
   cursor: pointer;

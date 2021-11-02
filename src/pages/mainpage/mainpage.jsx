@@ -67,8 +67,8 @@ const Mainpage = ({ authService }) => {
             <button onClick={() => create()}>추가</button>
           </AddItem>
           <Bottom>
-            <button onClick={() => reset()}>reset</button>
-            <button onClick={() => setMustSpin(true)}>spin</button>
+            <button onClick={() => reset()}>다시할래</button>
+            <button onClick={() => setMustSpin(true)}>돌려봐</button>
           </Bottom>
         </TrialRoulette>
         <RouletteDescription>
@@ -165,6 +165,7 @@ const AddItem = styled.div`
     width: 40px;
     height: 100%;
     cursor: pointer;
+    font-family: "CookieRun-Regular";
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: #fdfae6;
@@ -180,6 +181,7 @@ const Bottom = styled.div`
     width: 80px;
     height: 35px;
     cursor: pointer;
+    font-family: "CookieRun-Regular";
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: #fdfae6;
