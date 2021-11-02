@@ -7,6 +7,7 @@ import { dbService } from "../../service/firebase";
 import GetRoulette from "../../components/roulette_modal/GetRoulette";
 import { Wheel } from "react-custom-roulette";
 import Arrow from "../../images/arrow.png";
+import Share from "../../images/share.png";
 
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
@@ -126,8 +127,8 @@ const Mypage = () => {
               <img
                 src={character}
                 alt="프로필 사진"
-                width="150px"
-                height="150px"
+                width="140px"
+                height="140px"
               />
             )}
             {nickname.length < 1 ? (
@@ -147,7 +148,7 @@ const Mypage = () => {
             )}
           </Profile>
           <TodoList>
-            투두리스트
+            To-do list
             {todo.length > 0 ?
               todo.map((data, index) => (
                 <div key={index}>
@@ -180,15 +181,15 @@ const Mypage = () => {
                     mustSpin={1}
                     prizeNumber={3}
                     data={data.optionName}
-                    backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
+                    backgroundColors={["#F7FA1B", "#82E35B", "#00C184", "#009993", "#007083", "#2F4858"]}
                     textColors={["black"]}
-                    outerBorderColor={"#eeeeee"}
-                    outerBorderWidth={20}
-                    innerBorderColor={"#30261a"}
+                    outerBorderColor={"rgb(40,71,64)"}
+                    outerBorderWidth={10}
+                    innerBorderColor={"rgb(40,71,64)"}
                     innerBorderWidth={0}
                     innerRadius={0}
-                    radiusLineColor={"#eeeeee"}
-                    radiusLineWidth={10}
+                    radiusLineColor={"rgb(40,71,64)"}
+                    radiusLineWidth={5}
                     fontSize={33}
                     textDistance={60}
                   />
@@ -203,74 +204,113 @@ const Mypage = () => {
 };
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid red; */
+  background-color: #FFC6A4;
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
-  /* border: 5px solid black; */
+  width: 80%;
+  height: 110vh;
+  margin: 0 auto;
+  background-color: #BB5B3F;
 `;
+
 
 const MainSection = styled.div`
   display: flex;
-  justify-content: center;
   height: 40vh;
+  width: 80%;
+  overflow: hidden;
+  margin-bottom: 3vh;
 `;
 const Profile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 40%;
-  border: 1px solid blue;
+  flex-basis: 32%;
+  margin-right: 3%;
+  border: none;
+  background-color: rgb(250,250,229);
+  border-radius: 50%;
   & > input {
-    margin-top: 20px;
-    width: 200px;
+    height: 30px;
+    width: 130px;
+    border-radius: 12px;
+    border: none;
+    background-color: #F7FA1B !important;
+  }
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   & > div > button {
     cursor: pointer;
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #F7FA1B !important;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 `;
 
 const TodoList = styled.div`
-  flex-basis: 40%;
-  height: 100%;
-  border: 1px solid blue;
+  flex-basis: 65%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
+  background-color: rgb(250,250,229);
   overflow-y: scroll;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+}
+  padding-top: 12px;
   & > div {
+    border:1px solid red;
     width: 100%;
     height: 20%;
     margin: 5px 5px 0px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
     & > h5 {
+      border:1px solid red;
       width: 20%;
       margin-left: 20px;
-      border: 1px solid blue;
     }
     & > p {
+      width: 52%;
+      border:1px solid red;
       font-size: 1rem;
+      margin: 0 1.5%;
     }
     & > span {
+      width: 25%;
+      border:1px solid red;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-right: 5%;
-      width: 40%;
-      border: 1px solid green;
-      & > :nth-child(1) {
-        margin-right: 5px;
+      & > input {
+
       }
     }
 
@@ -280,7 +320,8 @@ const TodoList = styled.div`
 const BottomSection = styled.div`
   display: flex;
   justify-content: center;
-  height: 50vh;
+  width: 100%;
+  height: 55vh;
 `;
 
 const RouletteList = styled.div`
@@ -289,11 +330,20 @@ const RouletteList = styled.div`
   justify-content: center;
   height: 100%;
   width: 80%;
-  border: 1px solid green;
+  border-radius: 13px;
+  margin-bottom: 20px;
+  background-color:rgb(250,250,229);
   & > button {
-    width: 200px;
-    height: 100px;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
+    border-radius: 50%;
+    border:3px solid rgb(40,71,64);
+    background-color: #F7FA1B !important;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
   & > ul {
     display: grid;
@@ -301,7 +351,7 @@ const RouletteList = styled.div`
     grid-template-columns: repeat(5, minmax(100px, 1fr));
     height: 100%;
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     align-items: center;
     list-style: none;
     overflow: hidden;
@@ -316,6 +366,9 @@ const RouletteList = styled.div`
     font-weight: 500px;
     text-align: center;
     cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
       & > :nth-child(1) {
       width: 100%;
       height: 100%;
@@ -325,7 +378,7 @@ const RouletteList = styled.div`
           width: 17%;
           right: 10px;
           top: 7px;
-          content: url(${Arrow}); 
+          content: url(${Share}); 
         }
       }
     }
