@@ -6,7 +6,8 @@ import ProfileModal from "../../components/profile_modal/profile";
 import { dbService } from "../../service/firebase";
 import GetRoulette from "../../components/roulette_modal/GetRoulette";
 import { Wheel } from "react-custom-roulette";
-import Arrow from "../../images/arrow.png";
+import Roulette from "../../images/roulette.png";
+import Share from "../../images/share.png";
 
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
@@ -126,8 +127,8 @@ const Mypage = () => {
               <img
                 src={character}
                 alt="프로필 사진"
-                width="150px"
-                height="150px"
+                width="140px"
+                height="140px"
               />
             )}
             {nickname.length < 1 ? (
@@ -147,32 +148,36 @@ const Mypage = () => {
             )}
           </Profile>
           <TodoList>
-            투두리스트
-            {todo.length > 0 ? (
-              todo.map((data, index) => (
-                <div key={index}>
-                  <h5>{data.rouletteName}</h5>
-                  <p>{data.optionName}</p>
-                  <span>
-                    <input type="time" value={data.date} readOnly />
-                    <input type="time" value={data.date} readOnly />
-                  </span>
-                </div>
-              ))
-            ) : (
-              <h1>룰렛을 돌려주세요~</h1>
-            )}
-          </TodoList>
-        </MainSection>
+            To -do list
+            {
+              todo.length > 0 ?
+                todo.map((data, index) => (
+                  <div key={index}>
+                    <h5>{data.rouletteName}</h5>
+                    <p>{data.optionName}</p>
+                    <span>
+                      <input type="time" value={data.date} readOnly />
+                      <input type="time" value={data.date} readOnly />
+                    </span>
+                  </div>
+                ))
+                : (
+                  <h1>룰렛을 돌려주세요~</h1>
+                )
+            }
+          </TodoList >
+        </MainSection >
         <BottomSection>
           <RouletteList>
-            <button
-              onClick={() => {
-                setRoulette(true);
-              }}
-            >
-              룰렛 추가
-            </button>
+            <div>
+              <div
+                onClick={() => {
+                  setRoulette(true);
+                }}
+              >
+              </div>
+              룰렛 생성하기
+            </div>
             <ul>
               {data.map((data, index) => (
                 <li key={index} onClick={() => onClickRoulette(index)}>
@@ -182,18 +187,22 @@ const Mypage = () => {
                     prizeNumber={3}
                     data={data.optionName}
                     backgroundColors={[
-                      "#ff8f43",
-                      "#70bbe0",
-                      "#0b3351",
-                      "#f9dd50",
+                      "#F7FA1B",
+                      "#82E35B",
+                      "#00C184",
+                      "#009993",
+                      "#F7FA1B",
+                      "#A7E520",
+                      "#4ECD35",
+                      "#00B248"
                     ]}
                     textColors={["black"]}
-                    outerBorderColor={"#eeeeee"}
-                    outerBorderWidth={20}
-                    innerBorderColor={"#30261a"}
+                    outerBorderColor={"rgb(40,71,64)"}
+                    outerBorderWidth={10}
+                    innerBorderColor={"rgb(40,71,64)"}
                     innerBorderWidth={0}
                     innerRadius={0}
-                    radiusLineColor={"#eeeeee"}
+                    radiusLineColor={"rgb(40,71,64)"}
                     radiusLineWidth={10}
                     fontSize={33}
                     textDistance={60}
@@ -203,8 +212,8 @@ const Mypage = () => {
             </ul>
           </RouletteList>
         </BottomSection>
-      </Container>
-    </Wrapper>
+      </Container >
+    </Wrapper >
   );
 };
 const Wrapper = styled.div`
@@ -213,70 +222,122 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid red; */
+  background-color: #FFC6A4;
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
-  /* border: 5px solid black; */
+  width: 80%;
+  height: 90vh;
+  margin: 0 auto;
+  background-color: #BB5B3F;
+  font-family: "CookieRun-Regular";
 `;
+
 
 const MainSection = styled.div`
   display: flex;
-  justify-content: center;
-  height: 40vh;
+  height: 37vh;
+  width: 80%;
+  overflow: hidden;
+  margin-bottom: 3vh;
+  margin-top: 5vh;
 `;
 const Profile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 40%;
-  border: 1px solid blue;
+  flex-basis: 32%;
+  margin-right: 3%;
+  border: none;
+  background-color: rgb(250,250,229);
+  border-radius: 50%;
   & > input {
-    margin-top: 20px;
-    width: 200px;
+    height: 30px;
+    width: 130px;
+    border: none;
+    border-radius: 12px;
+    font-family: "CookieRun-Regular";
+    color: rgb(250,250,229);
+    /* background-color: #85857a !important; */
+    background-color: #1D1C0C !important;
+  }
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   & > div > button {
     cursor: pointer;
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    color: rgb(250,250,229);
+    background-color: #1D1C0C !important;
+    font-family: "CookieRun-Regular";
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 `;
 
 const TodoList = styled.div`
-  flex-basis: 40%;
-  height: 100%;
-  border: 1px solid blue;
+  flex-basis: 65%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
+  background-color: rgb(250,250,229);
   overflow-y: scroll;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+}
+  padding-top: 12px;
   & > div {
+    border-top:2px solid rgb(40,71,64);
     width: 100%;
     height: 20%;
-    margin: 5px 5px 0px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
+    /* & :hover {
+      f
+    } */
     & > h5 {
+      text-align: center;
       width: 20%;
       margin-left: 20px;
-      border: 1px solid blue;
+      font-size: 2rem;
     }
     & > p {
-      font-size: 1rem;
+      text-align: center;
+      width: 52%;
+      font-size: 1.5rem;
+      margin: 0 1.5%;
     }
     & > span {
+      width: 25%;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-right: 5%;
-      width: 40%;
-      border: 1px solid green;
-      & > :nth-child(1) {
-        margin-right: 5px;
+      & > input {
+        font-family: "CookieRun-Regular";
+        background-color:transparent;
+        border: none;
+        text-align: center;
+        font-size: 1rem;
       }
     }
   }
@@ -285,7 +346,9 @@ const TodoList = styled.div`
 const BottomSection = styled.div`
   display: flex;
   justify-content: center;
-  height: 50vh;
+  width: 100%;
+  height: 53vh;
+  margin-bottom: 2vh;
 `;
 
 const RouletteList = styled.div`
@@ -294,11 +357,35 @@ const RouletteList = styled.div`
   justify-content: center;
   height: 100%;
   width: 80%;
-  border: 1px solid green;
-  & > button {
-    width: 200px;
-    height: 100px;
+  border-radius: 13px;
+  margin-bottom: 20px;
+  background-color:rgb(250,250,229);
+  & > div {
+    width: 20%;
+    height: 100%;
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     cursor: pointer;
+    font-family: "CookieRun-Regular";
+    font-size: 1rem;
+    &:hover {
+      transform: scale(1.2);
+    }
+      & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      height: 35%;
+      cursor: pointer;
+      border-radius: 50%;
+      font-family: "CookieRun-Regular";
+      background:url(${Roulette});
+      background-size: 100% 100%;
+      }
   }
   & > ul {
     display: grid;
@@ -306,21 +393,24 @@ const RouletteList = styled.div`
     grid-template-columns: repeat(5, minmax(100px, 1fr));
     height: 100%;
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     align-items: center;
     list-style: none;
     overflow: hidden;
 
     & > li {
-      padding-bottom: 20px;
-      position: relative;
-      /* border: 1px solid orange; */
-      width: 80%;
-      height: 80%;
-      font-size: 20px;
-      font-weight: 500px;
-      text-align: center;
-      cursor: pointer;
+    padding-bottom: 20px;
+    position: relative;
+    /* border: 1px solid orange; */
+    width: 80%;
+    height: 80%;
+    font-size: 20px;
+    font-weight: 500px;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
       & > :nth-child(1) {
         width: 100%;
         height: 100%;
@@ -330,7 +420,7 @@ const RouletteList = styled.div`
           width: 17%;
           right: 10px;
           top: 7px;
-          content: url(${Arrow});
+          content: url(${Share}); 
         }
       }
     }
