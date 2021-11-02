@@ -55,21 +55,21 @@ const Mypage = () => {
         ...doc.data(),
       };
       result.push(rouletteObj);
-    })
+    });
     // TO-DO list 목록 보기
-    result.map(e => {
+    result.map((e) => {
       const result = JSON.parse(localStorage.getItem(e.id));
-      result !== null ? arr.push(result) : console.log('패스')
+      result !== null ? arr.push(result) : console.log("패스");
     });
     setTodo(arr);
     setData(result);
-  }
+  };
 
   const onClickRoulette = async (index) => {
-    const temp = [...data]
-    setOnClickData(temp[index])
-    await setRouletteList(true)
-  }
+    const temp = [...data];
+    setOnClickData(temp[index]);
+    await setRouletteList(true);
+  };
 
   const InitialSetProfile = async () => {
     const citiesRef = dbService.collection("profile");
@@ -148,7 +148,7 @@ const Mypage = () => {
           </Profile>
           <TodoList>
             투두리스트
-            {todo.length > 0 ?
+            {todo.length > 0 ? (
               todo.map((data, index) => (
                 <div key={index}>
                   <h5>{data.rouletteName}</h5>
@@ -157,10 +157,11 @@ const Mypage = () => {
                     <input type="time" value={data.date} readOnly />
                     <input type="time" value={data.date} readOnly />
                   </span>
-                </div>)) :
+                </div>
+              ))
+            ) : (
               <h1>룰렛을 돌려주세요~</h1>
-            }
-
+            )}
           </TodoList>
         </MainSection>
         <BottomSection>
@@ -180,7 +181,12 @@ const Mypage = () => {
                     mustSpin={1}
                     prizeNumber={3}
                     data={data.optionName}
-                    backgroundColors={["#ff8f43", "#70bbe0", "#0b3351", "#f9dd50"]}
+                    backgroundColors={[
+                      "#ff8f43",
+                      "#70bbe0",
+                      "#0b3351",
+                      "#f9dd50",
+                    ]}
                     textColors={["black"]}
                     outerBorderColor={"#eeeeee"}
                     outerBorderWidth={20}
@@ -198,7 +204,7 @@ const Mypage = () => {
           </RouletteList>
         </BottomSection>
       </Container>
-    </Wrapper >
+    </Wrapper>
   );
 };
 const Wrapper = styled.div`
@@ -273,7 +279,6 @@ const TodoList = styled.div`
         margin-right: 5px;
       }
     }
-
   }
 `;
 
@@ -307,25 +312,25 @@ const RouletteList = styled.div`
     overflow: hidden;
 
     & > li {
-    padding-bottom: 20px;
-    position: relative;
-    /* border: 1px solid orange; */
-    width: 80%;
-    height: 80%;
-    font-size: 20px;
-    font-weight: 500px;
-    text-align: center;
-    cursor: pointer;
+      padding-bottom: 20px;
+      position: relative;
+      /* border: 1px solid orange; */
+      width: 80%;
+      height: 80%;
+      font-size: 20px;
+      font-weight: 500px;
+      text-align: center;
+      cursor: pointer;
       & > :nth-child(1) {
-      width: 100%;
-      height: 100%;
+        width: 100%;
+        height: 100%;
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
           width: 17%;
           right: 10px;
           top: 7px;
-          content: url(${Arrow}); 
+          content: url(${Arrow});
         }
       }
     }
