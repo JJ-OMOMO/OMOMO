@@ -78,7 +78,7 @@ const Mainpage = ({ authService }) => {
             </Avatar>
             <DescriptionBubbleLeft>
               오늘은 모하지? <br />
-              공부도 해야되고, 운동도 해야되는데 <br />
+              공부도 해야되고, 운동도 해야되는데... <br />
               공부는 뭘 하지? 운동은 또 뭘 하고? <br />
               나는 매번 뭐할지 고민만 하다 시간이 다 가.
             </DescriptionBubbleLeft>
@@ -97,10 +97,19 @@ const Mainpage = ({ authService }) => {
             <Avatar>
               <img src={avatar3} alt="avatar3" width="100px" height="100px" />
             </Avatar>
-            <DescriptionBubbleLeft>이번 주말에 어디갈까?</DescriptionBubbleLeft>
+            <DescriptionBubbleLeft>
+              이번 주말에 어디갈까? <br />
+              부산? 경주? 전주? 제주도? <br />
+              여행지는 왜 이리 많은지...
+            </DescriptionBubbleLeft>
           </DescriptionWrapper>
           <DescriptionWrapper>
-            <DescriptionBubbleRight>무슨 게임하고 놀까?</DescriptionBubbleRight>
+            <DescriptionBubbleRight>
+              무슨 게임하고 놀까? <br />
+              동물의 숲? 심즈? 어몽어스?
+              <br />
+              아님 요즘 핫하다는 엑시인피니티? 선택이 어려워~
+            </DescriptionBubbleRight>
             <Avatar>
               <img src={avatar4} alt="avatar4" width="100px" height="100px" />
             </Avatar>
