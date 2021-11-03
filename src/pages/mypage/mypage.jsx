@@ -85,6 +85,17 @@ const Mypage = () => {
     }
   };
 
+  const DoneTodo = async (id) => {
+    const result = window.confirm("할 일을 끝내셨나요?!");
+    if (result) {
+      alert("수고하셨어요! 느므 멋져요!");
+      localStorage.removeItem(id);
+      return await window.location.reload();
+    } else {
+      return alert("조금만 힘내서 마무리 해봐요!");
+    }
+  };
+
   return (
     <Wrapper>
       <Header />
@@ -148,16 +159,16 @@ const Mypage = () => {
             )}
           </Profile>
           <TodoList>
-            To -do list
+            <h3>오늘은 모하지??</h3>
             {
               todo.length > 0 ?
                 todo.map((data, index) => (
-                  <div key={index}>
+                  <div key={index} onClick={() => { DoneTodo(data.id) }} style={{ cursor: "pointer" }}>
                     <h5>{data.rouletteName}</h5>
                     <p>{data.optionName}</p>
                     <span>
-                      <input type="time" value={data.date} readOnly />
-                      <input type="time" value={data.date} readOnly />
+                      <input type="time" value={data.startTime} readOnly />
+                      <input type="time" value={data.endTime} readOnly />
                     </span>
                   </div>
                 ))
@@ -265,7 +276,6 @@ const Profile = styled.div`
     border-radius: 12px;
     font-family: "CookieRun-Regular";
     color: rgb(250,250,229);
-    /* background-color: #85857a !important; */
     background-color: #1D1C0C !important;
   }
   & > div {
@@ -283,7 +293,7 @@ const Profile = styled.div`
     background-color: #1D1C0C !important;
     font-family: "CookieRun-Regular";
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.05);
     }
   }
 `;
@@ -304,17 +314,20 @@ const TodoList = styled.div`
   ::-webkit-scrollbar {
     display: none;
 }
-  padding-top: 12px;
+  & > h3 {
+    height: 3rem;
+  }
   & > div {
-    border-top:2px solid rgb(40,71,64);
+    border-bottom:2px solid rgb(40,71,64);
     width: 100%;
     height: 20%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* & :hover {
-      f
-    } */
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.02);
+    }
     & > h5 {
       text-align: center;
       width: 20%;
@@ -369,12 +382,7 @@ const RouletteList = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    cursor: pointer;
-    font-family: "CookieRun-Regular";
     font-size: 1rem;
-    &:hover {
-      transform: scale(1.1);
-    }
       & > div {
       display: flex;
       align-items: center;
@@ -386,7 +394,10 @@ const RouletteList = styled.div`
       font-family: "CookieRun-Regular";
       background:url(${Roulette});
       background-size: 100% 100%;
+      &:hover {
+      transform: scale(1.05);
       }
+    }
   }
   & > ul {
     display: grid;
@@ -408,7 +419,7 @@ const RouletteList = styled.div`
     text-align: center;
     cursor: pointer;
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.05);
     }
       & > :nth-child(1) {
         width: 100%;

@@ -109,10 +109,10 @@ const GetRoulette = ({ closeModal, rouletteData }) => {
             )}
             <Bottom>
               {edit ? (
-                <button onClick={() => reset()}>reset</button>
+                <button onClick={() => reset()}>다시할래</button>
               ) : (
                 <>
-                  <button onClick={handleSpinClick}>spin</button>
+                  <button onClick={handleSpinClick}>돌려봐</button>
                 </>
               )}
             </Bottom>
@@ -240,6 +240,10 @@ const ExitButton = styled.button`
   border: none;
   color: #FFC770;
   font-family: "CookieRun-Regular";
+  :hover {
+      transform: scale(1.2);
+      color: #F88F70;
+    }
 `;
 
 const RouletteModalBody = styled.div`
@@ -263,8 +267,8 @@ const LeftSection = styled.div`
   height: 100%;
   border-right: 5px solid #FFB896;
   & > :nth-child(1) {
-        width: 80%;
-        height: 80%;
+        width: 100%;
+        height: 100%;
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;

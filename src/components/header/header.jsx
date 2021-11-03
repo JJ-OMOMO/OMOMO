@@ -37,7 +37,9 @@ const Header = ({ authService }) => {
           )}
           {localStorage.uid ? (
             <HeaderMyPage>
-              <Link to="/mypage">MyPage</Link>
+              <Link to="/mypage" style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                MyPage
+              </Link>
             </HeaderMyPage>
           ) : (
             <HeaderMyPage onClick={() => alert("로그인 먼저 해주세요")}>
