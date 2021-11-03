@@ -79,10 +79,14 @@ const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1000px;
-  height: 800px;
+  width: 70rem;
+  height: 50rem;
   background-color: #fedb41;
   border-radius: 0.3rem;
+  @media only screen and (max-width: 768px) {
+    width: 55rem;
+    height: 55rem;
+  }
 `;
 
 const BackButton = styled.div`
@@ -116,20 +120,23 @@ const Profile = styled.div`
 `;
 
 const CharacterList = styled.div`
-  display: grid;
+  /* display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, minmax(100px, 1fr)); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* text-align: center; */
   width: 95%;
-  height: 300px;
+  height: 25rem;
   background-color: #f2fedc;
   border: 1px solid transparent;
   border-radius: 0.3rem;
   margin-top: 30px;
   overflow-x: hidden;
   & > span {
-    width: 150px;
-    height: 150px;
+    width: 10rem;
+    height: 10rem;
     /* border: 1px solid blue; */
     cursor: pointer;
     margin: 10px;

@@ -173,7 +173,7 @@ const Mypage = () => {
                   </div>
                 ))
                 : (
-                  <h1>룰렛을 돌려주세요~</h1>
+                  <h2>룰렛을 돌려주세요~</h2>
                 )
             }
           </TodoList >
@@ -238,12 +238,13 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
+  max-width: 1600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  width: 80%;
+  width: 100%;
   height: 90vh;
   margin: 0 auto;
   background-color: #BB5B3F;
@@ -331,12 +332,12 @@ const TodoList = styled.div`
     & > h5 {
       text-align: center;
       width: 20%;
-      margin-left: 20px;
-      font-size: 1.5rem;
+      margin-left: 1rem;
+      font-size: 1.2rem;
     }
     & > p {
       text-align: center;
-      width: 52%;
+      width: 32%;
       font-size: 1.3rem;
       margin: 0 1.5%;
     }
@@ -401,8 +402,8 @@ const RouletteList = styled.div`
   }
   & > ul {
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-gap: 1rem;
+    grid-template-columns: repeat(4, minmax(8rem, 1fr));
     height: 100%;
     width: 100%;
     align-items: center;
@@ -410,12 +411,12 @@ const RouletteList = styled.div`
     overflow: hidden;
 
     & > li {
-    padding-bottom: 20px;
+    padding-bottom: 1.5rem;
     position: relative;
     width: 80%;
     height: 80%;
-    font-size: 20px;
-    font-weight: 500px;
+    font-size: 1rem;
+    font-weight: 600;
     text-align: center;
     cursor: pointer;
     &:hover {
@@ -424,6 +425,7 @@ const RouletteList = styled.div`
       & > :nth-child(1) {
         width: 100%;
         height: 100%;
+
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
