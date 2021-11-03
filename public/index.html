@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="HTML">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -43,6 +43,24 @@
           format("woff");
         font-weight: normal;
         font-style: normal;
+      }
+
+      @media screen and (max-width: 1600px) {
+        #HTML {
+          font-size: 16px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        #HTML {
+          font-size: 13px;
+        }
+      }
+
+      @media screen and (max-width: 414px) {
+        #HTML {
+          font-size: 4px;
+        }
       }
     </style>
   </head>

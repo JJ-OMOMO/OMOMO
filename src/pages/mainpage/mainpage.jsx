@@ -30,7 +30,7 @@ const Mainpage = ({ authService }) => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
-  }
+  };
 
   const reset = () => {
     setData([]);
@@ -75,7 +75,7 @@ const Mainpage = ({ authService }) => {
         <RouletteDescription>
           <DescriptionWrapper>
             <Avatar>
-              <img src={avatar1} alt="avatar1" width="100px" height="100px" />
+              <img src={avatar1} alt="avatar1" width="100%" height="100%" />
             </Avatar>
             <DescriptionBubbleLeft>
               오늘은 모하지? <br />
@@ -91,12 +91,12 @@ const Mainpage = ({ authService }) => {
               메뉴 정하는 건 너무 어려워. 누가 좀 정해줬으면~
             </DescriptionBubbleRight>
             <Avatar>
-              <img src={avatar2} alt="avatar2" width="100px" height="100px" />
+              <img src={avatar2} alt="avatar2" width="100%" height="100%" />
             </Avatar>
           </DescriptionWrapper>
           <DescriptionWrapper>
             <Avatar>
-              <img src={avatar3} alt="avatar3" width="100px" height="100px" />
+              <img src={avatar3} alt="avatar3" width="100%" height="100%" />
             </Avatar>
             <DescriptionBubbleLeft>
               이번 주말에 어디갈까? <br />
@@ -112,7 +112,7 @@ const Mainpage = ({ authService }) => {
               아님 요즘 핫하다는 엑시인피니티? 선택이 어려워~
             </DescriptionBubbleRight>
             <Avatar>
-              <img src={avatar4} alt="avatar4" width="100px" height="100px" />
+              <img src={avatar4} alt="avatar4" width="100%" height="100%" />
             </Avatar>
           </DescriptionWrapper>
           <RouletteDescriptionIntro>
@@ -137,10 +137,16 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   flex: 1;
   font-size: 30px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const TrialRoulette = styled.div`
@@ -148,10 +154,9 @@ const TrialRoulette = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 40%;
+  flex-basis: 45%;
   padding-top: 10px;
   background-color: #f88f70;
-  // border-radius: 20px;
 `;
 
 const TrialRouletteIntro = styled.div`
@@ -171,8 +176,8 @@ const AddItem = styled.div`
     height: 30px;
     border: 1px solid transparent;
     border-radius: 4px;
-    font-family: "CookieRun-Regular";r
-    &::placeholder {
+    font-family: "CookieRun-Regular";
+    r &::placeholder {
       color: #a0958a;
     }
   }
@@ -209,16 +214,22 @@ const RouletteDescription = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 40%;
-  // background-color: #f88f70;
+  flex-basis: 45%;
   background-color: #bb5b3f;
-  // border-radius: 20px;
+  @media screen and (max-width: 768px) {
+    padding-top: 1rem;
+  }
 `;
 
 const RouletteDescriptionIntro = styled.div`
   color: #fdfae6;
   font-family: "CookieRun-Regular";
-  padding-top: 17px;
+  padding-top: 1.063rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.8rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
 `;
 
 const DescriptionWrapper = styled.div`
@@ -232,13 +243,17 @@ const Avatar = styled.div`
   background-color: #fdfae6;
   border-radius: 50%;
   margin-right: 10px;
+  @media screen and (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 const DescriptionBubbleLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: black;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "GowunDodum-Regular";
   padding-left: 7px;
   position: relative;
@@ -261,6 +276,10 @@ const DescriptionBubbleLeft = styled.div`
     margin-top: -10px;
     margin-left: -20px;
   }
+  @media screen and (max-width: 768px) {
+    width: 305px;
+    height: auto;
+  }
 `;
 
 const DescriptionBubbleRight = styled.div`
@@ -268,9 +287,8 @@ const DescriptionBubbleRight = styled.div`
   flex-direction: column;
   justify-content: center;
   color: black;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "GowunDodum-Regular";
-  // text-align: right;
   padding-left: 7px;
   position: relative;
   width: 380px;
@@ -291,6 +309,10 @@ const DescriptionBubbleRight = styled.div`
     border-top: 0;
     margin-top: -10px;
     margin-right: -20px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 305px;
+    height: auto;
   }
 `;
 
