@@ -37,14 +37,20 @@ export default ({
             radiusLineColor={radiusLineColor}
             radiusLineWidth={radiusLineWidth}
             textDistance={textDistance}
-            onStopSpinning={async () => {
-                setMustSpin(false);
-                const result = { ...rouletteData }
-                result.optionName = data[prizeNumber].option;
-                localStorage.setItem(result.id, JSON.stringify(result));
-                await closeModal(false);
-                await window.location.reload();
-            }}
+            onStopSpinning={
+                !setMustSpin ?
+                    () => {
+                        return alert(data[prizeNumber].option)
+                    }
+                    :
+                    async () => {
+                        setMustSpin(false);
+                        const result = { ...rouletteData }
+                        result.optionName = data[prizeNumber].option;
+                        localStorage.setItem(result.id, JSON.stringify(result));
+                        await closeModal(false);
+                        await window.location.reload();
+                    }}
         />
     </>
 )

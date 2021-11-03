@@ -24,10 +24,13 @@ const Mainpage = ({ authService }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
+  const [prizeNumber, setPrizeNumber] = useState(0);
 
-  useEffect(() => {
-    // console.log(localStorage.getItem("uid"));
-  }, []);
+  const handleSpinClick = async () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    setPrizeNumber(newPrizeNumber);
+    setMustSpin(true);
+  }
 
   const reset = () => {
     setData([]);
@@ -45,17 +48,15 @@ const Mainpage = ({ authService }) => {
           <TrialRouletteIntro>나만의 룰렛을 만들어보세요.</TrialRouletteIntro>
           <Wheel
             mustSpin={mustSpin}
-            prizeNumber={3}
+            prizeNumber={prizeNumber}
             data={data.length === 0 ? initialData : data}
             backgroundColors={["#ff8f43", "#C0BC83", "#F7F2CB", "#F7FA1B"]}
             textColors={["black"]}
             outerBorderColor={"005248"}
-            // outerBorderWidth={10}
             innerBorderColor={"#30261a"}
             innerBorderWidth={0}
             innerRadius={0}
             radiusLineColor={"#005248"}
-            // radiusLineWidth={10}
             fontSize={33}
             textDistance={60}
           />
@@ -68,7 +69,7 @@ const Mainpage = ({ authService }) => {
           </AddItem>
           <Bottom>
             <button onClick={() => reset()}>다시할래</button>
-            <button onClick={() => setMustSpin(true)}>돌려봐</button>
+            <button onClick={() => handleSpinClick()}>돌려봐</button>
           </Bottom>
         </TrialRoulette>
         <RouletteDescription>
