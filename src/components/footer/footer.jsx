@@ -8,19 +8,19 @@ const Footer = (props) => (
       <FooterContent>
         <ContactName>JiYoung</ContactName>
         <ContactLink href="https://github.com/moongaia" target="_blank">
-          <i class="fab fa-github"></i>
+          <i className="fab fa-github"></i>
         </ContactLink>
         <ContactLink href="https://velog.io/@young224" target="_blank">
-          <i class="fas fa-blog"></i>
+          <i className="fas fa-blog"></i>
         </ContactLink>
         jymoon224@gmail.com
         <ContentDivider>|</ContentDivider>
         <ContactName>JungMin</ContactName>
         <ContactLink href="https://github.com/whljm1003" target="_blank">
-          <i class="fab fa-github"></i>
+          <i className="fab fa-github"></i>
         </ContactLink>
         <ContactLink href="https://velog.io/@whljm1003" target="_blank">
-          <i class="fas fa-blog"></i>
+          <i className="fas fa-blog"></i>
         </ContactLink>
         whljm1003@gmail.com
       </FooterContent>
