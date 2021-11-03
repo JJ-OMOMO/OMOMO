@@ -8,9 +8,8 @@ const CreateRoulette = ({ closeModal }) => {
   const [rouletteName, setRouletteName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  //   const [mustSpin, setMustSpin] = useState(false);
   const [data, setData] = useState([]);
-  const [test, setTest] = useState("");
+  const [temp, setTemp] = useState("");
 
   const initialData = [
     { option: "가" },
@@ -25,12 +24,21 @@ const CreateRoulette = ({ closeModal }) => {
     setData([]);
   };
 
-  const create = () => {
-    data.length === 8 ? alert("stop") : setData([...data, { option: test }]);
+  const create = async () => {
+    !temp ? alert("내용을 입력해주세요.") :
+      data.length === 8 ? alert("최대 8개까지 설정가능합니다.") :
+        setData([...data, { option: temp }])
+    console.log(data)
+    await setTemp("");
   };
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
+  const CheckSubmit = () => {
+    !rouletteName || !data || !startTime || !endTime ?
+      alert("내용을 입력해주세요") :
+      onSubmit();
+  }
+
+  const onSubmit = async () => {
     await dbService.collection("roulettes").add({
       userId: localStorage.uid,
       rouletteName,
@@ -45,21 +53,6 @@ const CreateRoulette = ({ closeModal }) => {
     closeModal(false);
     await window.location.reload();
   };
-
-  // const onSubmit = async (event) => {
-  //   const info = {
-  //     userId: localStorage.uid,
-  //     rouletteName,
-  //     optionName: data,
-  //     date,
-  //   }
-  //   event.preventDefault();
-  //   closeModal(false);
-  //   await dbService.collection("roulettes").doc(localStorage.uid).set(info)
-  //   setRouletteName("");
-  //   setData([]);
-  //   setDate("");
-  // };
 
   const onChange = (event) => {
     const {
@@ -76,7 +69,7 @@ const CreateRoulette = ({ closeModal }) => {
           <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
         </RouletteHeader>
         <RouletteModalBody>
-          <LeftSection onSubmit={onSubmit}>
+          <LeftSection>
             <Wheel
               prizeNumber={3}
               data={data.length === 0 ? initialData : data}
@@ -93,14 +86,14 @@ const CreateRoulette = ({ closeModal }) => {
               textDistance={60}
             />
             <AddItem>
-              <input placeholder="목록을 작성해주세요~" onChange={(e) => setTest(e.target.value)}></input>
+              <input value={temp} placeholder="목록을 작성해주세요~" onChange={(e) => setTemp(e.target.value)}></input>
               <button onClick={() => create()}>추가</button>
             </AddItem>
             <Bottom>
               <button onClick={() => reset()}>다시할래</button>
             </Bottom>
           </LeftSection>
-          <RightSection onSubmit={onSubmit}>
+          <RightSection>
             <RouletteName
               value={rouletteName}
               onChange={onChange}
@@ -123,7 +116,7 @@ const CreateRoulette = ({ closeModal }) => {
             </RouletteTime>
           </RightSection>
         </RouletteModalBody>
-        <RoultteButton onClick={onSubmit}>저장하기</RoultteButton>
+        <RoultteButton onClick={CheckSubmit}>저장하기</RoultteButton>
       </RouletteModalWrapper>
     </ModalBackground >
   );
@@ -149,7 +142,14 @@ const RouletteModalWrapper = styled.div`
   background-color:rgb(250,250,231);
   border-radius: 1rem;
   font-family: "CookieRun-Regular";
+  width: 85rem;
+  height: 50rem;
+  @media only screen and (max-width: 768px) {
+    width: 55rem;
+    height: 50rem;
+  }
 `;
+
 
 const RouletteHeader = styled.header`
   position: relative;
@@ -180,13 +180,16 @@ const ExitButton = styled.button`
       transform: scale(1.2);
       color: #F88F70;
     }
+    @media only screen and (max-width: 768px) {
+    font-size: 2rem;
+  } 
 `;
 
 const RouletteModalBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  width: 100%;
   height: 70vh;
   margin: 1rem 0;
   border-top: 5px solid #FFB896;
@@ -203,8 +206,12 @@ const LeftSection = styled.div`
   height: 100%;
   border-right: 5px solid #FFB896;
   & > :nth-child(1) {
-        width: 100%;
-        height: 100%;
+        width: 28rem;
+        height: 28rem;
+        @media only screen and (max-width: 768px) {
+          width: 24rem;
+          height: 24rem;
+          } 
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
@@ -212,6 +219,11 @@ const LeftSection = styled.div`
           right: 1rem;
           top: 1rem;
           content: url(${Share}); 
+          @media only screen and (max-width: 768px) {
+            width: 15%;
+            right: 2rem;
+            top: 2rem;
+          } 
         }
   }
 `;
@@ -226,15 +238,15 @@ const AddItem = styled.div`
     border-radius: 1rem;
     border:none;
     margin-right: 10px;
-    height: 2rem;
-    width: 13rem;
+    height: 2.5rem;
+    width: 15rem;
     font-family: "CookieRun-Regular";
     &::placeholder {
       color: #a0958a;
     }
   }
   & > button {
-    width: 3rem;
+    width: 3.3rem;
     height: 2rem;
     font-family: "CookieRun-Regular";
     border: none;
