@@ -223,6 +223,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #FFC6A4;
+  overflow: hidden;
 `;
 
 const Container = styled.div`
@@ -318,12 +319,12 @@ const TodoList = styled.div`
       text-align: center;
       width: 20%;
       margin-left: 20px;
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     & > p {
       text-align: center;
       width: 52%;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin: 0 1.5%;
     }
     & > span {
@@ -372,7 +373,7 @@ const RouletteList = styled.div`
     font-family: "CookieRun-Regular";
     font-size: 1rem;
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
       & > div {
       display: flex;
@@ -393,7 +394,6 @@ const RouletteList = styled.div`
     grid-template-columns: repeat(5, minmax(100px, 1fr));
     height: 100%;
     width: 100%;
-    /* border: 1px solid red; */
     align-items: center;
     list-style: none;
     overflow: hidden;
@@ -401,7 +401,6 @@ const RouletteList = styled.div`
     & > li {
     padding-bottom: 20px;
     position: relative;
-    /* border: 1px solid orange; */
     width: 80%;
     height: 80%;
     font-size: 20px;
@@ -417,9 +416,9 @@ const RouletteList = styled.div`
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
-          width: 17%;
-          right: 10px;
-          top: 7px;
+          width: 25%;
+          right: 20px;
+          top: 8px;
           content: url(${Share}); 
         }
       }
