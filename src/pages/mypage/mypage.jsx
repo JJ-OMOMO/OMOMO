@@ -85,6 +85,17 @@ const Mypage = () => {
     }
   };
 
+  const DoneTodo = async (id) => {
+    const result = window.confirm("할 일을 끝내셨나요?!");
+    if (result) {
+      alert("수고하셨어요! 느므 멋져요!");
+      localStorage.removeItem(id);
+      return await window.location.reload();
+    } else {
+      return alert("조금만 힘내서 마무리 해봐요!");
+    }
+  };
+
   return (
     <Wrapper>
       <Header />
@@ -152,7 +163,7 @@ const Mypage = () => {
             {
               todo.length > 0 ?
                 todo.map((data, index) => (
-                  <div key={index} onClick={() => { console.log('확인') }} style={{ cursor: "pointer" }}>
+                  <div key={index} onClick={() => { DoneTodo(data.id) }} style={{ cursor: "pointer" }}>
                     <h5>{data.rouletteName}</h5>
                     <p>{data.optionName}</p>
                     <span>

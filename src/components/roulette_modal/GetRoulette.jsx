@@ -267,8 +267,8 @@ const LeftSection = styled.div`
   height: 100%;
   border-right: 5px solid #FFB896;
   & > :nth-child(1) {
-        width: 80%;
-        height: 80%;
+        width: 100%;
+        height: 100%;
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
