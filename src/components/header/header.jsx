@@ -55,6 +55,9 @@ const Header = ({ authService }) => {
 const Wrapper = styled.div`
   display: flex;
   height: 100px;
+  width: 100%;
+  max-width: 1600px;
+  margin:0 auto;
 `;
 
 const HeaderLogout = styled.button`
@@ -75,7 +78,7 @@ const HeaderBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin: auto;
 `;
 const HeaderTitle = styled.span`

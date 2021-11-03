@@ -213,6 +213,12 @@ const RouletteModalWrapper = styled.div`
   background-color:rgb(250,250,231);
   border-radius: 1rem;
   font-family: "CookieRun-Regular";
+  width: 85rem;
+  height: 50rem;
+  @media only screen and (max-width: 768px) {
+    width: 55rem;
+    height: 50rem;
+  }
 `;
 
 const RouletteHeader = styled.header`
@@ -244,13 +250,15 @@ const ExitButton = styled.button`
       transform: scale(1.2);
       color: #F88F70;
     }
+    @media only screen and (max-width: 768px) {
+    font-size: 2rem;
+  } 
 `;
-
 const RouletteModalBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  width: 100%;
   height: 70vh;
   margin: 1rem 0;
   border-top: 5px solid #FFB896;
@@ -267,8 +275,12 @@ const LeftSection = styled.div`
   height: 100%;
   border-right: 5px solid #FFB896;
   & > :nth-child(1) {
-        width: 100%;
-        height: 100%;
+        width: 28rem;
+        height: 28rem;
+        @media only screen and (max-width: 768px) {
+          width: 24rem;
+          height: 24rem;
+          } 
         & > :nth-child(2) {
           position: absolute;
           z-index: 5;
@@ -276,6 +288,11 @@ const LeftSection = styled.div`
           right: 1rem;
           top: 1rem;
           content: url(${Share}); 
+          @media only screen and (max-width: 768px) {
+            width: 15%;
+            right: 2rem;
+            top: 2rem;
+          } 
         }
   }
 `;
@@ -298,6 +315,10 @@ const AddItem = styled.div`
     height: 2rem;
     width: 13rem;
     font-family: "CookieRun-Regular";
+    @media only screen and (max-width: 768px) {
+            width: 18rem;
+            height: 3rem;
+          } 
     &::placeholder {
       color: #a0958a;
     }
@@ -316,6 +337,10 @@ const AddItem = styled.div`
       transform: scale(1.2);
       background: #F88F70;
     }
+    @media only screen and (max-width: 768px) {
+            width: 5rem;
+            height: 4rem;
+          } 
   }
 `;
 
