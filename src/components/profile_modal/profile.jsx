@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-import OMO from "../../images/OMO.png";
+import styled from "styled-components"
 import CUTE from "../../images/cuteIcon.png";
 import Github from "../../images/github.png";
 import Boy from "../../images/Glassesboy.png";
@@ -8,7 +7,7 @@ import Girl from "../../images/Glassesgirl.png";
 import Mario from "../../images/SuperMario.png";
 import { dbService } from "../../service/firebase";
 
-const ProfileIMG = [OMO, CUTE, Github, Boy, Girl, Mario];
+const ProfileIMG = [CUTE, Github, Boy, Girl, Mario];
 
 const ProfileModal = ({ closeModal, Nick, setNick, Char, setChar }) => {
   const setProfile = async () => {
@@ -32,7 +31,7 @@ const ProfileModal = ({ closeModal, Nick, setNick, Char, setChar }) => {
         </BackButton>
         <Profile>
           {Char.length < 1 ? (
-            <img src={OMO} alt={"오모오모"} width="200px" height="200px" />
+            <img src={CUTE} alt={"큐트"} width="200px" height="200px" />
           ) : (
             <img src={Char} alt={"프로필 사진"} width="200px" height="200px" />
           )}
@@ -127,11 +126,12 @@ const CharacterList = styled.div`
   border: 1px solid transparent;
   border-radius: 0.3rem;
   margin-top: 30px;
-  overflow-x: scroll;
+  overflow-x: hidden;
   & > span {
     width: 150px;
     height: 150px;
-    // border: 1px solid blue;
+    /* border: 1px solid blue; */
+    cursor: pointer;
     margin: 10px;
   }
 `;
@@ -146,6 +146,7 @@ const SaveButton = styled.button`
   border-radius: 0.5rem;
   margin-top: 30px;
   background-color: #006e5e;
+  cursor: pointer;
 `;
 
 export default ProfileModal;

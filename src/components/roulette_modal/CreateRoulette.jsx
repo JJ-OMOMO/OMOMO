@@ -97,7 +97,7 @@ const CreateRoulette = ({ closeModal }) => {
               <button onClick={() => create()}>추가</button>
             </AddItem>
             <Bottom>
-              <button onClick={() => reset()}>reset</button>
+              <button onClick={() => reset()}>다시할래</button>
             </Bottom>
           </LeftSection>
           <RightSection onSubmit={onSubmit}>
@@ -176,6 +176,10 @@ const ExitButton = styled.button`
   border: none;
   color: #FFC770;
   font-family: "CookieRun-Regular";
+  :hover {
+      transform: scale(1.2);
+      color: #F88F70;
+    }
 `;
 
 const RouletteModalBody = styled.div`

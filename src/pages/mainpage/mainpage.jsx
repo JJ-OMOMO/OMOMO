@@ -165,11 +165,16 @@ const AddItem = styled.div`
   justify-content: center;
   align-items: center;
   & > input {
+    text-align: center;
     margin-right: 10px;
     width: 100px;
     height: 30px;
     border: 1px solid transparent;
     border-radius: 4px;
+    font-family: "CookieRun-Regular";r
+    &::placeholder {
+      color: #a0958a;
+    }
   }
   & > button {
     width: 40px;
