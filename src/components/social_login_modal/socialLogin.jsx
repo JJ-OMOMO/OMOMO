@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import roulette_bg from "../../images/roulette_bg.png";
 
 const SocialLogin = ({ closeModal, authService }) => {
   const history = useHistory();
@@ -16,9 +17,7 @@ const SocialLogin = ({ closeModal, authService }) => {
     authService //
       .login(event.currentTarget.textContent)
       // .then((data) => goToMain(data.user.uid));
-      .then((data) =>
-        localStorage.setItem('uid', data.user.uid)
-      )
+      .then((data) => localStorage.setItem("uid", data.user.uid))
       .then(() => history.push("/"));
   };
 
@@ -32,7 +31,9 @@ const SocialLogin = ({ closeModal, authService }) => {
   return (
     <ModalBackground>
       <LoginModal>
-        <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
+        <ExitButton onClick={() => closeModal(false)}>
+          <i className="fas fa-times"></i>
+        </ExitButton>
         <GoogleLogin onClick={onLogin}>Google</GoogleLogin>
         <GithubLogin onClick={onLogin}>Github</GithubLogin>
       </LoginModal>
@@ -47,7 +48,8 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
 
 const LoginModal = styled.div`
@@ -56,37 +58,56 @@ const LoginModal = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 500px;
-  background-color: white;
+  width: 550px;
+  height: 550px;
+  background-image: url(${roulette_bg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  // background-color: #ff2132;
 `;
 
-const ExitButton = styled.button`
+const ExitButton = styled.div`
+  color: white;
+  font-size: 3rem;
+  font-family: "CookieRun-Regular";
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+  border: 1px solid transparent;
 `;
 
 const GoogleLogin = styled.button`
-  width: 50%;
-  height: 50px;
-  font-size: 30px;
+  color: white;
+  font-family: "CookieRun-Regular";
+  width: 40%;
+  height: 55px;
+  font-size: 2.3rem;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ff2132;
   cursor: pointer;
+  border: 2px solid #ff2132;
+  // border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background-color: #ff8da8;
 `;
 
 const GithubLogin = styled.button`
-  width: 50%;
-  height: 50px;
-  font-size: 30px;
+  color: white;
+  font-family: "CookieRun-Regular";
+  width: 40%;
+  height: 55px;
+  font-size: 2.3rem;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ff2132;
   cursor: pointer;
   margin-top: 30px;
+  // border: 1px solid transparent;
+  border: 2px solid #ff2132;
+  border-radius: 0.5rem;
+  background-color: #ff8da8;
 `;
 
-const NaverLogin = styled.button`
-  width: 50%;
-  height: 50px;
-  font-size: 30px;
-  margin-top: 30px;
-`;
 export default SocialLogin;
