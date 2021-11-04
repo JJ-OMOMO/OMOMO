@@ -42,6 +42,7 @@ const SocialLogin = ({ closeModal, authService }) => {
 };
 
 const ModalBackground = styled.div`
+  max-width: 1600px;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -58,12 +59,11 @@ const LoginModal = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 550px;
-  height: 550px;
+  width: 34.375rem;
+  height: 34.375rem;
   background-image: url(${roulette_bg});
   background-size: cover;
   background-repeat: no-repeat;
-  // background-color: #ff2132;
 `;
 
 const ExitButton = styled.div`

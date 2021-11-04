@@ -37,7 +37,10 @@ const Mainpage = ({ authService }) => {
   };
 
   const create = () => {
-    data.length === 8 ? alert("stop") : setData([...data, { option: test }]);
+    data.length === 8
+      ? alert("최대 8개까지 설정가능합니다.")
+      : setData([...data, { option: test }]);
+    setTest("");
   };
   // console.log("MAINDATA", data);
   return (
@@ -62,6 +65,7 @@ const Mainpage = ({ authService }) => {
           />
           <AddItem>
             <input
+              value={test}
               onChange={(e) => setTest(e.target.value)}
               placeholder="OMOMO"
             ></input>
@@ -78,7 +82,7 @@ const Mainpage = ({ authService }) => {
               <img src={avatar1} alt="avatar1" width="100%" height="100%" />
             </Avatar>
             <DescriptionBubbleLeft>
-              오늘은 모하지? <br />
+              <BubbleTitle color="#ff2132"> 오늘은 모하지? </BubbleTitle>
               공부도 해야되고, 운동도 해야되는데... <br />
               공부는 뭘 하지? 운동은 또 뭘 하고? <br />
               나는 매번 뭐할지 고민만 하다 시간이 다 가.
@@ -86,7 +90,7 @@ const Mainpage = ({ authService }) => {
           </DescriptionWrapper>
           <DescriptionWrapper>
             <DescriptionBubbleRight>
-              오늘은 모먹지? <br />
+              <BubbleTitle color="#4b39b5">오늘은 모먹지? </BubbleTitle>
               피자? 햄버거? 치킨? 쌀국수? <br />
               메뉴 정하는 건 너무 어려워. 누가 좀 정해줬으면~
             </DescriptionBubbleRight>
@@ -99,14 +103,14 @@ const Mainpage = ({ authService }) => {
               <img src={avatar3} alt="avatar3" width="100%" height="100%" />
             </Avatar>
             <DescriptionBubbleLeft>
-              이번 주말에 어디갈까? <br />
+              <BubbleTitle color="#ffb010">이번 주말에 어디갈까? </BubbleTitle>
               부산? 경주? 전주? 제주도? <br />
               여행지는 왜 이리 많은지...
             </DescriptionBubbleLeft>
           </DescriptionWrapper>
           <DescriptionWrapper>
             <DescriptionBubbleRight>
-              무슨 게임하고 놀까? <br />
+              <BubbleTitle color="#24b29f">무슨 게임하고 놀까? </BubbleTitle>
               동물의 숲? 심즈? 어몽어스?
               <br />
               아님 요즘 핫하다는 엑시인피니티? 선택이 어려워~
@@ -134,6 +138,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #ffc6a4;
+  @media screen and (max-width: 768px) {
+    height: 100%;
+  }
 `;
 
 const Container = styled.div`
@@ -154,7 +161,7 @@ const TrialRoulette = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 45%;
+  flex-basis: 50%;
   padding-top: 10px;
   background-color: #f88f70;
 `;
@@ -162,6 +169,11 @@ const TrialRoulette = styled.div`
 const TrialRouletteIntro = styled.div`
   font-family: "CookieRun-Regular";
   padding-bottom: 20px;
+  @media screen and (max-width: 768px) {
+    font-size: 1.8rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
 `;
 
 const AddItem = styled.div`
@@ -180,6 +192,11 @@ const AddItem = styled.div`
     r &::placeholder {
       color: #a0958a;
     }
+    @media screen and (max-width: 768px) {
+      margin-top: -0.8rem;
+      height: 30px;
+      font-size: 1.2rem;
+    }
   }
   & > button {
     width: 40px;
@@ -189,6 +206,12 @@ const AddItem = styled.div`
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: #fdfae6;
+    @media screen and (max-width: 768px) {
+      margin-top: -0.8rem;
+      width: 50px;
+      height: 30px;
+      font-size: 1.2rem;
+    }
   }
 `;
 
@@ -207,6 +230,10 @@ const Bottom = styled.div`
     background-color: #fdfae6;
     margin: 0 10px 10px 0;
   }
+  @media screen and (max-width: 768px) {
+    padding-top: -1.2rem;
+    padding-bottom: 0.8rem;
+  }
 `;
 
 const RouletteDescription = styled.div`
@@ -214,10 +241,11 @@ const RouletteDescription = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 45%;
+  flex-basis: 50%;
+  overflow: hidden;
   background-color: #bb5b3f;
   @media screen and (max-width: 768px) {
-    padding-top: 1rem;
+    padding-top: 1.7rem;
   }
 `;
 
@@ -238,14 +266,14 @@ const DescriptionWrapper = styled.div`
 `;
 
 const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   background-color: #fdfae6;
   border-radius: 50%;
   margin-right: 10px;
   @media screen and (max-width: 768px) {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
   }
 `;
 const DescriptionBubbleLeft = styled.div`
@@ -257,11 +285,12 @@ const DescriptionBubbleLeft = styled.div`
   font-family: "GowunDodum-Regular";
   padding-left: 7px;
   position: relative;
-  width: 380px;
+  width: 23.75rem;
   height: auto;
   background-color: #fdfae6;
   border-radius: 4px;
   margin-left: 20px;
+  white-space: nowrap;
   &:after {
     content: "";
     position: absolute;
@@ -277,9 +306,14 @@ const DescriptionBubbleLeft = styled.div`
     margin-left: -20px;
   }
   @media screen and (max-width: 768px) {
-    width: 305px;
+    width: 21rem;
     height: auto;
   }
+`;
+
+const BubbleTitle = styled.div`
+  color: ${(props) => props.color};
+  font-weight: bold;
 `;
 
 const DescriptionBubbleRight = styled.div`
@@ -296,6 +330,7 @@ const DescriptionBubbleRight = styled.div`
   background-color: #fdfae6;
   border-radius: 4px;
   margin-right: 27px;
+  white-space: nowrap;
   &:after {
     content: "";
     position: absolute;
@@ -311,7 +346,7 @@ const DescriptionBubbleRight = styled.div`
     margin-right: -20px;
   }
   @media screen and (max-width: 768px) {
-    width: 305px;
+    width: 24rem;
     height: auto;
   }
 `;
