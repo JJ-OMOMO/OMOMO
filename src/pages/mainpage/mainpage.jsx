@@ -408,7 +408,7 @@ const DescriptionBubbleRight = styled.div`
   }
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
-    width: 30.5rem;
+    width: 31rem;
     height: auto;
   }
   @media screen and (max-width: 414px) {
