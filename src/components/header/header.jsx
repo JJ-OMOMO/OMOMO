@@ -63,7 +63,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
   @media screen and (max-width: 414px) {
     height: 60px;
-    padding-top: 2rem;
   }
 `;
 
@@ -122,7 +121,7 @@ const HeaderMyPage = styled.button`
   font-size: 1.25rem;
   font-family: "CookieRun-Regular";
   height: 40px;
-  margin-left: 10px;
+  margin-left: 0.625rem;
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -132,7 +131,7 @@ const HeaderMyPage = styled.button`
   }
   @media screen and (max-width: 414px) {
     height: 30px;
-    margin-left: 5px;
+    margin-right: 2px;
   }
 `;
 export default Header;

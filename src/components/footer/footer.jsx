@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   height: 100px;
   background-color: #2f4858;
   @media screen and (max-width: 768px) {
-    padding: 0rem 0rem;
+    height: 80px;
   }
   @media screen and (max-width: 414px) {
     height: 55px;
@@ -51,7 +51,7 @@ const FooterTitle = styled.div`
   font-family: "CookieRun-Regular";
   color: #f7fa1b;
   @media screen and (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 `;
 const ContentWrapper = styled.div`
@@ -64,7 +64,7 @@ const FooterContent = styled.div`
   font-family: "CookieRun-Regular";
   color: #f7fa1b;
   @media screen and (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -82,7 +82,7 @@ const ContactRights = styled.div`
   font-family: "GowunDodum-Regular";
   color: #f7fa1b;
   @media screen and (max-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `;
 

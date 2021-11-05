@@ -263,7 +263,7 @@ const RouletteDescriptionIntro = styled.div`
   font-family: "CookieRun-Regular";
   padding-top: 1.063rem;
   @media screen and (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
   }
@@ -286,8 +286,8 @@ const Avatar = styled.div`
   border-radius: 50%;
   margin-right: 10px;
   @media screen and (max-width: 768px) {
-    width: 5rem;
-    height: 5rem;
+    width: 8rem;
+    height: 8rem;
   }
   @media screen and (max-width: 414px) {
     width: 15rem;
@@ -338,7 +338,8 @@ const DescriptionBubbleLeft = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    width: 21rem;
+    font-size: 1.5rem;
+    width: 27rem;
     height: auto;
     padding: 0.5rem 0.8rem;
   }
@@ -399,7 +400,8 @@ const DescriptionBubbleRight = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    width: 24rem;
+    font-size: 1.5rem;
+    width: 30.5rem;
     height: auto;
     padding: 0.5rem 0.8rem;
   }
