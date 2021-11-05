@@ -301,7 +301,7 @@ const DescriptionBubbleLeft = styled.div`
   color: black;
   font-size: 1.125rem;
   font-family: "GowunDodum-Regular";
-  padding-left: 7px;
+  padding: 0.5rem 0.8rem;
   position: relative;
   width: 23.75rem;
   height: auto;
@@ -341,12 +341,10 @@ const DescriptionBubbleLeft = styled.div`
     font-size: 1.5rem;
     width: 27rem;
     height: auto;
-    padding: 0.5rem 0.8rem;
   }
   @media screen and (max-width: 414px) {
     width: 50rem;
     height: auto;
-    padding: 0.8rem 1rem;
     margin-left: 5px;
   }
 `;
@@ -363,7 +361,7 @@ const DescriptionBubbleRight = styled.div`
   color: black;
   font-size: 1.125rem;
   font-family: "GowunDodum-Regular";
-  padding-left: 7px;
+  padding: 0.5rem 0.8rem;
   position: relative;
   width: 380px;
   height: auto;
@@ -403,12 +401,10 @@ const DescriptionBubbleRight = styled.div`
     font-size: 1.5rem;
     width: 30.5rem;
     height: auto;
-    padding: 0.5rem 0.8rem;
   }
   @media screen and (max-width: 414px) {
     width: 51rem;
     height: auto;
-    padding: 0.8rem 1rem;
     margin-right: 13px;
   }
 `;
