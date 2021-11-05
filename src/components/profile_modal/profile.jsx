@@ -87,6 +87,10 @@ const ModalContainer = styled.div`
     width: 55rem;
     height: 55rem;
   }
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    height: 100%;
+      }
 `;
 
 const BackButton = styled.div`
@@ -98,6 +102,9 @@ const BackButton = styled.div`
   -webkit-text-stroke-color: #006e5e;
   font-size: 2.5rem;
   cursor: pointer;
+  @media screen and (max-width: 414px) {
+    font-size: 5rem;
+      }
 `;
 
 const Profile = styled.div`
@@ -116,6 +123,9 @@ const Profile = styled.div`
     color: white;
     font-family: "CookieRun-Regular";
     background-color: #006e5e;
+    @media screen and (max-width: 414px) {
+    font-size: 5rem;
+    }
   }
 `;
 
@@ -154,6 +164,11 @@ const SaveButton = styled.button`
   margin-top: 30px;
   background-color: #006e5e;
   cursor: pointer;
+  @media screen and (max-width: 414px) {
+    width: 140px;
+    height: 10rem;
+    font-size: 5rem;
+    }
 `;
 
 export default ProfileModal;
