@@ -174,6 +174,11 @@ const TrialRouletteIntro = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 1rem;
   }
+  @media screen and (max-width: 414px) {
+    font-size: 4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
 `;
 
 const AddItem = styled.div`
@@ -247,6 +252,10 @@ const RouletteDescription = styled.div`
   @media screen and (max-width: 768px) {
     padding-top: 1.7rem;
   }
+  @media screen and (max-width: 414px) {
+    padding-top: 6rem;
+    padding-bottom: 5rem;
+  }
 `;
 
 const RouletteDescriptionIntro = styled.div`
@@ -257,6 +266,11 @@ const RouletteDescriptionIntro = styled.div`
     font-size: 1.8rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+  }
+  @media screen and (max-width: 414px) {
+    font-size: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
   }
 `;
 
@@ -274,6 +288,10 @@ const Avatar = styled.div`
   @media screen and (max-width: 768px) {
     width: 5rem;
     height: 5rem;
+  }
+  @media screen and (max-width: 414px) {
+    width: 15rem;
+    height: 15rem;
   }
 `;
 const DescriptionBubbleLeft = styled.div`
@@ -304,10 +322,31 @@ const DescriptionBubbleLeft = styled.div`
     border-bottom: 0;
     margin-top: -10px;
     margin-left: -20px;
+    @media screen and (max-width: 414px) {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-right-color: #fdfae6;
+      border-left: 0;
+      border-bottom: 0;
+      margin-top: -10px;
+      margin-left: -10px;
+    }
   }
   @media screen and (max-width: 768px) {
     width: 21rem;
     height: auto;
+    padding: 0.5rem 0.8rem;
+  }
+  @media screen and (max-width: 414px) {
+    width: 50rem;
+    height: auto;
+    padding: 0.8rem 1rem;
+    margin-left: 5px;
   }
 `;
 
@@ -344,10 +383,31 @@ const DescriptionBubbleRight = styled.div`
     border-top: 0;
     margin-top: -10px;
     margin-right: -20px;
+    @media screen and (max-width: 414px) {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-left-color: #fdfae6;
+      border-right: 0;
+      border-top: 0;
+      margin-top: -10px;
+      margin-right: -10px;
+    }
   }
   @media screen and (max-width: 768px) {
     width: 24rem;
     height: auto;
+    padding: 0.5rem 0.8rem;
+  }
+  @media screen and (max-width: 414px) {
+    width: 51rem;
+    height: auto;
+    padding: 0.8rem 1rem;
+    margin-right: 13px;
   }
 `;
 

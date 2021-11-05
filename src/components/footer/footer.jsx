@@ -39,7 +39,10 @@ const Wrapper = styled.div`
   height: 100px;
   background-color: #2f4858;
   @media screen and (max-width: 768px) {
-    padding: 0.3rem 0rem;
+    padding: 0rem 0rem;
+  }
+  @media screen and (max-width: 414px) {
+    height: 55px;
   }
 `;
 
