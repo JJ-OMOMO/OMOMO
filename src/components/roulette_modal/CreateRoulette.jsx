@@ -139,7 +139,8 @@ const ModalBackground = styled.div`
       z-index: 1000;
       background-color: rgba(0, 0, 0, 0.8);
       @media screen and (max-width: 414px) {
-        height: 130%;
+        position: absolute;
+        height: 180rem;
       }
       `;
 
@@ -151,15 +152,15 @@ const RouletteModalWrapper = styled.div`
       background-color:rgb(250,250,231);
       border-radius: 1rem;
       font-family: "CookieRun-Regular";
-      width: 80%;
-      height: 90%;
+      width: 80rem;
+      height: 60rem;
       @media only screen and (max-width: 768px) {
       width: 55rem;
       height: 50rem;
     }
       @media only screen and (max-width: 414px) {
       width: 100%;
-      height: 150rem;
+      height: 180rem;
     }
     `;
 
@@ -172,14 +173,16 @@ const RouletteHeader = styled.header`
       width: 100%;
       height: 10%;
   & > span {
-        padding-top: 1rem;
+      padding-top: 1rem;
       font-size: 4rem;
       font-weight: 700;
       color: #FFC770;
   }
   @media only screen and (max-width: 414px) {
-      margin-top: 3%;
-      height: 7%;
+    height: 20rem;
+    & > span {
+      font-size: 10rem;
+      }
     }
       `;
 const ExitButton = styled.button`
@@ -197,6 +200,9 @@ const ExitButton = styled.button`
         transform: scale(1.2);
       color: #F88F70;
     }
+    @media only screen and (max-width: 414px) {
+      font-size: 4rem;
+    }
       `;
 
 const RouletteModalBody = styled.div`
@@ -210,7 +216,7 @@ const RouletteModalBody = styled.div`
       border-bottom: 5px solid #FFB896;
       @media screen and (max-width: 414px) {
         flex-direction: column-reverse;
-        height: 80%;
+        height: 140rem;
         border: none;
       }
       `;
@@ -238,7 +244,7 @@ const LeftSection = styled.div`
   }
   @media screen and (max-width: 414px) {
         width: 100%;
-        height: 75%;
+        height: 70%;
         border: none;
         & > :nth-child(1) {
         width: 80vw;
@@ -284,11 +290,11 @@ const AddItem = styled.div`
     margin: 2rem 0;
       & > input {
         width: 45rem;
-        height: 6rem;
+        height: 8rem;
       }
       & > button {
         width: 13rem;
-        height: 6rem;
+        height: 8rem;
       }
     }
   `;
@@ -298,8 +304,9 @@ const Bottom = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-  & > button {
-      width: 6rem;
+& > button {
+      width: 17rem;
+      height: 3rem;
       margin: 0 10px 10px 0;
       border: none;
       font-size: 1rem;
@@ -307,16 +314,17 @@ const Bottom = styled.div`
       color: #FCFAE8;
       font-family: "CookieRun-Regular";
       background: #FFC770;
-      border-radius: 5px;
+      border-radius: 7px;
       cursor: pointer;
       :hover {
         transform: scale(1.1);
       background:#F88F70;
     }
     @media screen and (max-width: 414px) { 
-     width: 72vw;
-     height: 4rem;
+     width: 75vw;
+     height: 8rem;
      margin: 0 auto;
+     font-size: 3.5rem;
     }
   }
   `;
@@ -330,7 +338,7 @@ const RightSection = styled.div`
       height: 100%;
       @media screen and (max-width: 414px) { 
         width: 100%;
-        height: 25%;
+        height: 30%;
       }
       `;
 
@@ -351,8 +359,9 @@ const RouletteName = styled.input`
   }
   @media screen and (max-width: 414px) { 
         width: 80vw;
-        height: 6rem;
-        font-size: 5rem;
+        height: 10rem;
+        font-size: 5rem;     
+        margin-botoom: 2rem;
       }
       `;
 const RouletteTime = styled.div`
@@ -367,7 +376,7 @@ const RouletteTime = styled.div`
       font-family: "CookieRun-Regular";
       @media screen and (max-width: 414px) { 
         width: 80vw;
-        height: 6rem;
+        height: 8rem;
       }
   & > span {
         display: flex;
@@ -387,6 +396,7 @@ const RouletteTime = styled.div`
       background-color: transparent;
       @media screen and (max-width: 414px) { 
         width: 80%;
+        height: 10rem;
         font-size: 5rem;
       }
   }
@@ -395,9 +405,7 @@ const RouletteTime = styled.div`
       :hover {
         transform: scale(1.2);
     }
-    
 }
-
       `;
 
 const RoultteButton = styled.button`
@@ -417,8 +425,9 @@ const RoultteButton = styled.button`
   }
   @media screen and (max-width: 414px) {
         width: 100%;
-        height: 10%;
-        font-size: 6rem;
+        height: 20rem;
+        font-size: 8rem;
+        margin-bottom: 0;
     }
       `;
 

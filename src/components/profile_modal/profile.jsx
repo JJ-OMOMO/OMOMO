@@ -71,6 +71,10 @@ const ModalBackground = styled.div`
   background-color: #ffff00f1;
   z-index: 6;
   background-color: rgba(0, 0, 0, 0.8);
+  @media screen and (max-width: 414px) {
+    position: absolute;
+    height: 180rem;
+      };
 `;
 
 const ModalContainer = styled.div`
@@ -89,7 +93,7 @@ const ModalContainer = styled.div`
   }
   @media screen and (max-width: 414px) {
     width: 100%;
-    height: 100%;
+    height: 180rem;
       }
 `;
 
@@ -123,20 +127,18 @@ const Profile = styled.div`
     color: white;
     font-family: "CookieRun-Regular";
     background-color: #006e5e;
-    @media screen and (max-width: 414px) {
-    font-size: 5rem;
+  }
+  @media screen and (max-width: 414px) {
+    & > input {
+      font-size: 5rem;
     }
   }
 `;
 
 const CharacterList = styled.div`
-  /* display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(5, minmax(100px, 1fr)); */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* text-align: center; */
   width: 95%;
   height: 25rem;
   background-color: #f2fedc;
@@ -147,9 +149,15 @@ const CharacterList = styled.div`
   & > span {
     width: 10rem;
     height: 10rem;
-    /* border: 1px solid blue; */
     cursor: pointer;
     margin: 10px;
+  }
+  @media screen and (max-width: 414px) {
+    height: 30rem;
+      & > span {
+      width: 20rem;
+      height: 20rem;
+    }
   }
 `;
 
@@ -165,7 +173,7 @@ const SaveButton = styled.button`
   background-color: #006e5e;
   cursor: pointer;
   @media screen and (max-width: 414px) {
-    width: 140px;
+    width: 180px;
     height: 10rem;
     font-size: 5rem;
     }
