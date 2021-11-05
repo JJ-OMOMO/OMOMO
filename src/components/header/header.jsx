@@ -37,7 +37,10 @@ const Header = ({ authService }) => {
           )}
           {localStorage.uid ? (
             <HeaderMyPage>
-              <Link to="/mypage" style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <Link
+                to="/mypage"
+                style={{ textDecoration: "inherit", color: "inherit" }}
+              >
                 MyPage
               </Link>
             </HeaderMyPage>
@@ -57,11 +60,14 @@ const Wrapper = styled.div`
   height: 100px;
   width: 100%;
   max-width: 1600px;
-  margin:0 auto;
+  margin: 0 auto;
+  @media screen and (max-width: 414px) {
+    height: 60px;
+  }
 `;
 
 const HeaderLogout = styled.button`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "CookieRun-Regular";
   height: 40px;
   cursor: pointer;
@@ -70,6 +76,9 @@ const HeaderLogout = styled.button`
   background-color: #fdfae6;
   &:hover {
     background-color: #bb5b3f;
+  }
+  @media screen and (max-width: 414px) {
+    height: 30px;
   }
 `;
 
@@ -83,7 +92,7 @@ const HeaderBox = styled.div`
 `;
 const HeaderTitle = styled.span`
   color: #f7fa1b;
-  font-size: 30px;
+  font-size: 1.875rem;
   display: flex;
   justify-content: center;
 `;
@@ -93,7 +102,7 @@ const LoginMyPage = styled.div`
   right: 0px;
 `;
 const HeaderLogin = styled.button`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "CookieRun-Regular";
   height: 40px;
   cursor: pointer;
@@ -103,19 +112,26 @@ const HeaderLogin = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
+  @media screen and (max-width: 414px) {
+    height: 30px;
+  }
 `;
 
 const HeaderMyPage = styled.button`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "CookieRun-Regular";
   height: 40px;
-  margin-left: 10px;
+  margin-left: 0.625rem;
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: 4px;
   background-color: #fdfae6;
   &:hover {
     background-color: #bb5b3f;
+  }
+  @media screen and (max-width: 414px) {
+    height: 30px;
+    margin-right: 2px;
   }
 `;
 export default Header;

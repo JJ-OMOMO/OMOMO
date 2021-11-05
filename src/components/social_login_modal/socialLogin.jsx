@@ -42,6 +42,7 @@ const SocialLogin = ({ closeModal, authService }) => {
 };
 
 const ModalBackground = styled.div`
+  max-width: 1600px;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -58,12 +59,15 @@ const LoginModal = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 550px;
-  height: 550px;
+  width: 34.375rem;
+  height: 34.375rem;
   background-image: url(${roulette_bg});
   background-size: cover;
   background-repeat: no-repeat;
-  // background-color: #ff2132;
+  @media screen and (max-width: 414px) {
+    width: 50rem;
+    height: 50rem;
+  }
 `;
 
 const ExitButton = styled.div`
@@ -83,31 +87,45 @@ const GoogleLogin = styled.button`
   color: white;
   font-family: "CookieRun-Regular";
   width: 40%;
-  height: 55px;
+  height: 3.438rem;
   font-size: 2.3rem;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #ff2132;
   cursor: pointer;
   border: 2px solid #ff2132;
-  // border: 1px solid transparent;
   border-radius: 0.5rem;
   background-color: #ff8da8;
+  @media screen and (max-width: 414px) {
+    font-size: 3rem;
+    width: 30%;
+    height: 4.5rem;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ff2132;
+    border: 1px solid #ff2132;
+  }
 `;
 
 const GithubLogin = styled.button`
   color: white;
   font-family: "CookieRun-Regular";
   width: 40%;
-  height: 55px;
+  height: 3.438rem;
   font-size: 2.3rem;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #ff2132;
   cursor: pointer;
-  margin-top: 30px;
-  // border: 1px solid transparent;
+  margin-top: 1.875rem;
   border: 2px solid #ff2132;
   border-radius: 0.5rem;
   background-color: #ff8da8;
+  @media screen and (max-width: 414px) {
+    font-size: 3rem;
+    width: 30%;
+    height: 4.5rem;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ff2132;
+    border: 1px solid #ff2132;
+  }
 `;
 
 export default SocialLogin;
