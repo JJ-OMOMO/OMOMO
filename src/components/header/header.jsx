@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   display: flex;
   height: 100px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1800px;
   margin: 0 auto;
   @media screen and (max-width: 414px) {
     height: 60px;
@@ -99,7 +99,10 @@ const HeaderTitle = styled.span`
 
 const LoginMyPage = styled.div`
   position: absolute;
-  right: 0px;
+  right: 100px;
+  @media screen and (max-width: 1600px) {
+    right: 0px;
+  }
 `;
 const HeaderLogin = styled.button`
   font-size: 1.25rem;

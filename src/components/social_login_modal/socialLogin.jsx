@@ -42,7 +42,6 @@ const SocialLogin = ({ closeModal, authService }) => {
 };
 
 const ModalBackground = styled.div`
-  max-width: 1600px;
   width: 100%;
   height: 100%;
   position: fixed;
