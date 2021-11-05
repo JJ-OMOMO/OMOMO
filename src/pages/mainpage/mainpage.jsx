@@ -138,6 +138,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #ffc6a4;
+  @media screen and (max-width: 1024px) {
+    height: 100%;
+  }
   @media screen and (max-width: 768px) {
     height: 100%;
   }
@@ -249,6 +252,8 @@ const RouletteDescription = styled.div`
   flex-basis: 50%;
   overflow: hidden;
   background-color: #bb5b3f;
+  padding-top: 0.625rem;
+  padding-bottom: 0.3rem;
   @media screen and (max-width: 768px) {
     padding-top: 1.7rem;
   }
@@ -261,7 +266,7 @@ const RouletteDescription = styled.div`
 const RouletteDescriptionIntro = styled.div`
   color: #fdfae6;
   font-family: "CookieRun-Regular";
-  padding-top: 1.063rem;
+  padding: 0rem 1.063rem;
   @media screen and (max-width: 768px) {
     font-size: 1.9rem;
     padding-top: 0.5rem;
@@ -276,7 +281,9 @@ const RouletteDescriptionIntro = styled.div`
 
 const DescriptionWrapper = styled.div`
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
+  justify-content: center;
+  width: 100%;
 `;
 
 const Avatar = styled.div`
@@ -303,12 +310,13 @@ const DescriptionBubbleLeft = styled.div`
   font-family: "GowunDodum-Regular";
   padding: 0.5rem 0.8rem;
   position: relative;
-  width: 23.75rem;
+  // width: 23.75rem;
+  width: 50%;
   height: auto;
   background-color: #fdfae6;
   border-radius: 4px;
   margin-left: 20px;
-  white-space: nowrap;
+  // white-space: nowrap;
   &:after {
     content: "";
     position: absolute;
@@ -363,12 +371,13 @@ const DescriptionBubbleRight = styled.div`
   font-family: "GowunDodum-Regular";
   padding: 0.5rem 0.8rem;
   position: relative;
-  width: 380px;
+  // width: 380px;
+  width: 50%;
   height: auto;
   background-color: #fdfae6;
   border-radius: 4px;
   margin-right: 27px;
-  white-space: nowrap;
+  // white-space: nowrap;
   &:after {
     content: "";
     position: absolute;
