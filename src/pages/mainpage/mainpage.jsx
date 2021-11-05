@@ -354,6 +354,7 @@ const DescriptionBubbleLeft = styled.div`
     width: 50rem;
     height: auto;
     margin-left: 5px;
+    margin-top: 3px;
   }
 `;
 
@@ -412,8 +413,9 @@ const DescriptionBubbleRight = styled.div`
     height: auto;
   }
   @media screen and (max-width: 414px) {
-    width: 51rem;
+    width: 52rem;
     height: auto;
+    margin-top: 3px;
     margin-right: 13px;
   }
 `;
