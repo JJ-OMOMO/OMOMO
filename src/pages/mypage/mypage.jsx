@@ -20,10 +20,13 @@ const Mypage = () => {
   const [todo, setTodo] = useState([]);
 
   useEffect(async () => {
+    console.log('useEffect')
     await getRoulette();
     await getProfile();
     await InitialSetProfile();
   }, []);
+
+
 
   const getProfile = async () => {
     const tempNick = [];
@@ -60,7 +63,7 @@ const Mypage = () => {
     // TO-DO list 목록 보기
     result.map((e) => {
       const result = JSON.parse(localStorage.getItem(e.id));
-      result !== null ? arr.push(result) : console.log("패스");
+      result !== null && arr.push(result)
     });
     setTodo(arr);
     setData(result);
@@ -90,7 +93,7 @@ const Mypage = () => {
     if (result) {
       alert("수고하셨어요! 느므 멋져요!");
       localStorage.removeItem(id);
-      return await window.location.reload();
+      return getRoulette();
     } else {
       return alert("조금만 힘내서 마무리 해봐요!");
     }
@@ -108,9 +111,9 @@ const Mypage = () => {
           closeModal={setModifyProfile}
         />
       )}
-      {roulette && <CreateRoulette closeModal={setRoulette} />}
+      {roulette && <CreateRoulette closeModal={setRoulette} getRoulette={getRoulette} />}
       {rouletteList && (
-        <GetRoulette rouletteData={onClickData} closeModal={setRouletteList} />
+        <GetRoulette rouletteData={onClickData} closeModal={setRouletteList} getRoulette={getRoulette} />
       )}
       <Container>
         <MainSection>
@@ -187,12 +190,12 @@ const Mypage = () => {
                 }}
               >
               </div>
-              룰렛 생성하기
+              룰렛 생성
             </div>
             <ul>
               {data.map((data, index) => (
                 <li key={index} onClick={() => onClickRoulette(index)}>
-                  {data.rouletteName}
+                  <div>{data.rouletteName}</div>
                   <Wheel
                     mustSpin={1}
                     prizeNumber={3}
@@ -234,7 +237,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #FFC6A4;
-  overflow: hidden;
+  @media screen and (max-width: 414px) {
+    height: 100%;
+  }
+  
 `;
 
 const Container = styled.div`
@@ -245,20 +251,27 @@ const Container = styled.div`
   align-items: center;
   font-size: 30px;
   width: 100%;
-  height: 90vh;
   margin: 0 auto;
   background-color: #BB5B3F;
   font-family: "CookieRun-Regular";
+  @media screen and (max-width: 414px) {
+    flex-direction: column; 
+    /* height: 92%; */
+  }
 `;
 
 
 const MainSection = styled.div`
   display: flex;
-  height: 37vh;
+  height: 32vh;
   width: 80%;
   overflow: hidden;
   margin-bottom: 3vh;
   margin-top: 5vh;
+  @media screen and (max-width: 414px) {
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 const Profile = styled.div`
   display: flex;
@@ -274,6 +287,7 @@ const Profile = styled.div`
     height: 30px;
     width: 130px;
     border: none;
+    margin-top: 5px;
     border-radius: 12px;
     font-family: "CookieRun-Regular";
     color: rgb(250,250,229);
@@ -283,6 +297,7 @@ const Profile = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
   }
   & > div > button {
     cursor: pointer;
@@ -295,6 +310,22 @@ const Profile = styled.div`
     font-family: "CookieRun-Regular";
     &:hover {
       transform: scale(1.05);
+    }
+  }
+  @media screen and (max-width: 414px) {
+    margin-bottom: 5rem;
+    padding: 3rem 0;
+    & > input {
+    height: 5rem;
+    width: 20rem;
+    }
+    & > div {
+      font-size: 4rem;
+    }
+    & > div > button {
+      cursor: pointer;
+      width: 10rem;
+      height: 5rem;
     }
   }
 `;
@@ -356,13 +387,18 @@ const TodoList = styled.div`
       }
     }
   }
+  @media screen and (max-width: 414px) {
+    font-size: 5rem;
+    padding-bottom: 2rem;
+  }
 `;
+
 
 const BottomSection = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 53vh;
+  height: 47vh;
   margin-bottom: 2vh;
 `;
 
@@ -384,6 +420,12 @@ const RouletteList = styled.div`
     justify-content: center;
     flex-direction: column;
     font-size: 1rem;
+    @media screen and (max-width: 414px) {
+      margin-left: 5rem; 
+        & > div {
+        height: 25%;
+        }
+      }
       & > div {
       display: flex;
       align-items: center;
@@ -403,13 +445,12 @@ const RouletteList = styled.div`
   & > ul {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(4, minmax(8rem, 1fr));
+    grid-template-columns: repeat(4, minmax(2rem, 1fr));
     height: 100%;
     width: 100%;
     align-items: center;
     list-style: none;
     overflow: hidden;
-
     & > li {
     padding-bottom: 1.5rem;
     position: relative;
@@ -422,19 +463,24 @@ const RouletteList = styled.div`
     &:hover {
       transform: scale(1.05);
     }
-      & > :nth-child(1) {
+      & > div {
+        width: 100%;
+        height: 2rem;
+        overflow: hidden;
+      }
+      & > :nth-child(2) {
         width: 100%;
         height: 100%;
-
         & > :nth-child(2) {
-          position: absolute;
-          z-index: 5;
-          width: 25%;
-          right: 20px;
-          top: 8px;
-          content: url(${Share}); 
+          display: none;
         }
       }
+    }
+    @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(3, minmax(2rem, 1fr));
+    }
+    @media screen and (max-width: 414px) {
+    grid-template-columns: repeat(2, minmax(2rem, 1fr));
     }
   }
 `;

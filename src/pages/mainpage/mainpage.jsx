@@ -127,7 +127,7 @@ const Mainpage = ({ authService }) => {
         </RouletteDescription>
       </Container>
       <Footer />
-    </Wrapper>
+    </Wrapper >
   );
 };
 
