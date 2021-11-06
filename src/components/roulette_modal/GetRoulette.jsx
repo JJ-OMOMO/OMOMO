@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import { dbService } from "../../service/firebase";
-import Share from "../../images/share.png"
+import Share from "../../images/share.png";
 
 const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [data, setData] = useState([]);
   const [edit, setEdit] = useState(false);
-  const [newRouletteName, setNewRouletteName] = useState(rouletteData.rouletteName);
+  const [newRouletteName, setNewRouletteName] = useState(
+    rouletteData.rouletteName
+  );
   const [newSartTime, setNewSartTime] = useState(rouletteData.startTime);
   const [newEndTime, setNewEndTime] = useState(rouletteData.endTime);
   const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
@@ -68,7 +70,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
-  }
+  };
 
   return (
     <ModalBackground>
@@ -87,7 +89,15 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               rouletteData={rouletteData}
               prizeNumber={prizeNumber}
               data={data.length === 0 ? rouletteData.optionName : data}
-              backgroundColors={["#F7FA1B", "#82E35B", "#00C184", "#009993", "#009557", "#00B248", "#4ECD35"]}
+              backgroundColors={[
+                "#F7FA1B",
+                "#82E35B",
+                "#00C184",
+                "#009993",
+                "#009557",
+                "#00B248",
+                "#4ECD35",
+              ]}
               textColors={["black"]}
               outerBorderColor={"#1D1C0C"}
               outerBorderWidth={5}
@@ -151,7 +161,8 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
                   value={rouletteData.startTime}
                   readOnly
                   type="time"
-                  placeholder="시작 시간" />
+                  placeholder="시작 시간"
+                />
               </RouletteTime>
             )}
             {edit ? (
@@ -171,7 +182,8 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
                   value={rouletteData.endTime}
                   readOnly
                   type="time"
-                  placeholder="끝 시간" />
+                  placeholder="끝 시간"
+                />
               </RouletteTime>
             )}
           </RightSection>
@@ -189,103 +201,101 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
           )}
         </RouletteButtonWrapper>
       </RouletteModalWrapper>
-    </ModalBackground >
+    </ModalBackground>
   );
 };
 
-
 const ModalBackground = styled.div`
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 1000;
-      background-color: rgba(0, 0, 0, 0.8);
-      @media screen and (max-width: 414px) {
-        position: absolute;
-        height: 180rem;
-      }
-      `;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  @media screen and (max-width: 414px) {
+    position: absolute;
+    height: 180rem;
+  }
+`;
 
 const RouletteModalWrapper = styled.div`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color:rgb(250,250,231);
-      border-radius: 1rem;
-      font-family: "CookieRun-Regular";
-      width: 80rem;
-      height: 60rem;
-      @media only screen and (max-width: 768px) {
-      width: 55rem;
-      height: 50rem;
-    }
-      @media only screen and (max-width: 414px) {
-      width: 100%;
-      height: 180rem;
-    }
-    `;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(250, 250, 231);
+  border-radius: 1rem;
+  font-family: "CookieRun-Regular";
+  width: 80rem;
+  height: 60rem;
+  @media only screen and (max-width: 768px) {
+    width: 55rem;
+    height: 50rem;
+  }
+  @media only screen and (max-width: 414px) {
+    width: 100%;
+    height: 180rem;
+  }
+`;
 
 const RouletteHeader = styled.header`
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 10%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
   & > span {
-      padding-top: 1rem;
-      font-size: 4rem;
-      font-weight: 700;
-      color: #FFC770;
+    padding-top: 1rem;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ffc770;
   }
   @media only screen and (max-width: 414px) {
     height: 20rem;
     & > span {
       font-size: 10rem;
-      }
     }
-      `;
+  }
+`;
 const ExitButton = styled.button`
-      position: absolute;
-      top: 20%;
-      right: 2%;
-      font-size: 2rem;
-      font-weight: xx-large;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #FFC770;
-      font-family: "CookieRun-Regular";
-      :hover {
-        transform: scale(1.2);
-      color: #F88F70;
-    }
-    @media only screen and (max-width: 414px) {
-      font-size: 4rem;
-    }
-      `;
+  position: absolute;
+  top: 20%;
+  right: 2%;
+  font-size: 2rem;
+  font-weight: xx-large;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #ffc770;
+  font-family: "CookieRun-Regular";
+  :hover {
+    transform: scale(1.2);
+    color: #f88f70;
+  }
+  @media only screen and (max-width: 414px) {
+    font-size: 4rem;
+  }
+`;
 
 const RouletteModalBody = styled.div`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 70vh;
-      margin: 1% 0;
-      border-top: 5px solid #FFB896;
-      border-bottom: 5px solid #FFB896;
-      @media screen and (max-width: 414px) {
-        flex-direction: column-reverse;
-        height: 140rem;
-        border: none;
-      }
-      `;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  margin: 1% 0;
+  border-top: 5px solid #ffb896;
+  border-bottom: 5px solid #ffb896;
+  @media screen and (max-width: 414px) {
+    flex-direction: column-reverse;
+    height: 140rem;
+    border: none;
+  }
+`;
 
 const LeftSection = styled.div`
   display: flex;
@@ -295,214 +305,215 @@ const LeftSection = styled.div`
   position: relative;
   width: 50%;
   height: 100%;
-  border-right: 5px solid #FFB896;
+  border-right: 5px solid #ffb896;
   & > :nth-child(1) {
-        width: 40vw;
-        height: 40vw;
-        & > :nth-child(2) {
-          position: absolute;
-          z-index: 5;
-          width: 17%;
-          right: 6px;
-          top: 30px;
-          content: url(${Share}); 
-        }
+    width: 40vw;
+    height: 40vw;
+    & > :nth-child(2) {
+      position: absolute;
+      z-index: 5;
+      width: 17%;
+      right: 6px;
+      top: 30px;
+      content: url(${Share});
+    }
   }
   @media screen and (max-width: 414px) {
-        width: 100%;
-        height: 70%;
-        border: none;
-        & > :nth-child(1) {
-        width: 80vw;
-        height: 80vw;
-      }
+    width: 100%;
+    height: 70%;
+    border: none;
+    & > :nth-child(1) {
+      width: 80vw;
+      height: 80vw;
     }
+  }
 `;
 
 const AddItem = styled.div`
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & > input {
-        color: #FCFAE8;
-      text-align: center;
-      background: #FFC770;
-      border-radius: 1rem;
-      border:none;
-      margin-right: 10px;
-      height: 2.5rem;
-      width: 15rem;
-      font-family: "CookieRun-Regular";
-      &::placeholder {
-        color: #a0958a;
+    color: #fcfae8;
+    text-align: center;
+    background: #ffc770;
+    border-radius: 1rem;
+    border: none;
+    margin-right: 10px;
+    height: 2.5rem;
+    width: 15rem;
+    font-family: "CookieRun-Regular";
+    &::placeholder {
+      color: #a0958a;
     }
   }
   & > button {
-        width: 3.3rem;
-      height: 2rem;
-      font-family: "CookieRun-Regular";
-      border: none;
-      background: #FFC770;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #FCFAE8;
-      :hover {
-        transform: scale(1.2);
-      background: #F88F70;
+    width: 3.3rem;
+    height: 2rem;
+    font-family: "CookieRun-Regular";
+    border: none;
+    background: #ffc770;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fcfae8;
+    :hover {
+      transform: scale(1.2);
+      background: #f88f70;
     }
   }
-  @media screen and (max-width: 414px) { 
+  @media screen and (max-width: 414px) {
     margin: 2rem 0;
-      & > input {
-        width: 45rem;
-        height: 8rem;
-      }
-      & > button {
-        width: 13rem;
-        height: 8rem;
-      }
+    & > input {
+      width: 45rem;
+      height: 8rem;
     }
-  `;
+    & > button {
+      width: 13rem;
+      height: 8rem;
+    }
+  }
+`;
 
 const Bottom = styled.div`
-      margin-top: 0.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & > button {
-      width: 17rem;
-      height: 3rem;
-      margin: 0 10px 10px 0;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #FCFAE8;
-      font-family: "CookieRun-Regular";
-      background: #FFC770;
-      border-radius: 7px;
-      cursor: pointer;
-      :hover {
-        transform: scale(1.1);
-      background:#F88F70;
+    width: 17rem;
+    height: 3rem;
+    margin: 0 10px 10px 0;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fcfae8;
+    font-family: "CookieRun-Regular";
+    background: #ffc770;
+    border-radius: 7px;
+    cursor: pointer;
+    :hover {
+      transform: scale(1.1);
+      background: #f88f70;
     }
-    @media screen and (max-width: 414px) { 
-     width: 75vw;
-     height: 8rem;
-     margin: 0 auto;
-     font-size: 3.5rem;
+    @media screen and (max-width: 414px) {
+      width: 75vw;
+      height: 8rem;
+      margin: 0 auto;
+      font-size: 3.5rem;
     }
   }
-  `;
+`;
 
 const RightSection = styled.div`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 50%;
-      height: 100%;
-      @media screen and (max-width: 414px) { 
-        width: 100%;
-        height: 30%;
-      }
-      `;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    height: 30%;
+  }
+`;
 
 const RouletteName = styled.input`
-      width: 20rem;
-      height: 4rem;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      background: #FFC770;
-      border: none;
-      color: #FCFAE8;
-      border-radius: 1rem;
-      font-family: "CookieRun-Regular";
-      font-weight: 800;
-      &::placeholder {
-        color: #a0958a;
+  width: 20rem;
+  height: 4rem;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: #ffc770;
+  border: none;
+  color: #fcfae8;
+  border-radius: 1rem;
+  font-family: "CookieRun-Regular";
+  font-weight: 800;
+  &::placeholder {
+    color: #a0958a;
   }
-  @media screen and (max-width: 414px) { 
-        width: 80vw;
-        height: 10rem;
-        font-size: 5rem;     
-        margin-botoom: 2rem;
-      }
-      `;
+  @media screen and (max-width: 414px) {
+    width: 80vw;
+    height: 10rem;
+    font-size: 5rem;
+    margin-botoom: 2rem;
+  }
+`;
 const RouletteTime = styled.div`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 20rem;
-      height: 3rem;
-      margin-bottom: 1rem;
-      background: #FFC770;
-      border-radius: 1rem;
-      font-family: "CookieRun-Regular";
-      @media screen and (max-width: 414px) { 
-        width: 80vw;
-        height: 8rem;
-      }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  background: #ffc770;
+  border-radius: 1rem;
+  font-family: "CookieRun-Regular";
+  @media screen and (max-width: 414px) {
+    width: 80vw;
+    height: 8rem;
+  }
   & > span {
-        display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30%;
-      font-size: 1rem;
-      color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    font-size: 1rem;
+    color: black;
   }
   & > input {
-        font-family: "CookieRun-Regular";
-      width: 60%;
-      color: #FCFAE8;
-      text-align: center;
-      font-size: 1.5rem;
-      border: none;
-      background-color: transparent;
-      @media screen and (max-width: 414px) { 
-        width: 80%;
-        height: 10rem;
-        font-size: 5rem;
-      }
-  }
-  & > input[type=time]::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-      :hover {
-        transform: scale(1.2);
+    font-family: "CookieRun-Regular";
+    width: 60%;
+    color: #fcfae8;
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+    @media screen and (max-width: 414px) {
+      width: 80%;
+      height: 10rem;
+      font-size: 5rem;
     }
-}
-      `;
+  }
+  & > input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    :hover {
+      transform: scale(1.2);
+    }
+  }
+`;
 const RouletteButtonWrapper = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-@media screen and (max-width: 414px) {
-  width: 100%;
-  height: 18rem;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    height: 18rem;
+  }
 `;
 const RoultteButton = styled.button`
-  margin:0 0.5rem 1rem 0.5rem;
+  font-family: "CookieRun-Regular";
+  margin: 0 0.5rem 1rem 0.5rem;
   width: 120px;
   height: 45px;
   font-size: 1.5rem;
   font-weight: 700;
   cursor: pointer;
-  background: #FFC770;
+  background: #ffc770;
   border: none;
   border-radius: 5px;
-  color: #FCFAE8;
+  color: #fcfae8;
   &:hover {
-   transform: scale(1.1);
-    background-color: #F88F70;
+    transform: scale(1.1);
+    background-color: #f88f70;
   }
   @media screen and (max-width: 414px) {
-        font-size: 3.5rem;
-        width: 100%;
-        height: 100%;
-        margin:0 0.5rem 0 0.5rem;
-    }
+    font-size: 3.5rem;
+    width: 100%;
+    height: 100%;
+    margin: 0 0.5rem 0 0.5rem;
+  }
 `;
 
 export default GetRoulette;
