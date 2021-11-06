@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import { dbService } from "../../service/firebase";
 import Share from "../../images/share.png";
+import Swal from "sweetalert2";
 
 const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const [mustSpin, setMustSpin] = useState(false);
@@ -17,12 +18,23 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
 
   const onDelete = async () => {
-    const ok = window.confirm("룰렛을 삭제하시겠습니까?");
-    if (ok) {
+    // const ok = window.confirm("룰렛을 삭제하시겠습니까?");
+    const ok = Swal.fire({
+      text: "룰렛을 삭제하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#463400",
+      cancelButtonColor: "#BF5847",
+      confirmButtonText: "네",
+      background: "#FEDB41",
+      backdrop: "rgba(0,0,0,0.8)",
+    });
+    if ((await ok).isConfirmed) {
       const docId = rouletteData.id;
       await dbService.doc(`roulettes/${docId}`).delete();
       await getRoulette();
       await closeModal(false);
+      await window.location.reload();
     }
   };
 
@@ -61,9 +73,25 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   };
 
   const create = () => {
+    // data.length === 0
+    // ? Swal.fire({
+    //     text: "내용을 입력해주세요",
+    //     background: "#FEDB41",
+    //     backdrop: "rgba(0,0,0,0.8)",
+    //     confirmButtonColor: "#463400",
+    //     icon: "info",
+    //   })
     data.length === 8
-      ? alert("stop")
+      ? Swal.fire({
+          text: "최대 8개까지 설정가능합니다.",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
       : setData([...data, { option: newOptionName }]);
+
+    // setNewOptionName("");
   };
 
   const handleSpinClick = async () => {
@@ -112,6 +140,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
             {edit && (
               <AddItem>
                 <input
+                  // value={newOptionName}
                   onChange={(e) => setNewOptionName(e.target.value)}
                 ></input>
                 <button onClick={() => create()}>추가</button>
