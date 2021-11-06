@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { dbService } from "../../service/firebase";
 import Wheel from "../roulette_wheel/roulette_wheel";
@@ -10,6 +10,7 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   const [endTime, setEndTime] = useState("");
   const [data, setData] = useState([]);
   const [temp, setTemp] = useState("");
+  const ModalBack = useRef(null);
 
   const initialData = [
     { option: "가" },
@@ -59,16 +60,11 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   };
 
   const onClickCloseModal = (e) => {
-    // if (e.target.className === "modal-container") {
-    //   console.log('확인')
-    // } else {
-    //   console.log('실패')
-    // }
-    // console.log(e.target.className)
-  }
+    e.target === ModalBack.current && closeModal(false)
+  };
 
   return (
-    <ModalBackground className="modal-container" onClick={onClickCloseModal}>
+    <ModalBackground ref={ModalBack} onClick={(e) => onClickCloseModal(e)}>
       <RouletteModalWrapper>
         <RouletteHeader>
           <span>Roulette</span>
@@ -140,7 +136,7 @@ const ModalBackground = styled.div`
       background-color: rgba(0, 0, 0, 0.8);
       @media screen and (max-width: 414px) {
         position: absolute;
-        height: 180rem;
+        height: 100%;
       }
       `;
 

@@ -14,52 +14,56 @@ const Header = ({ authService }) => {
     history.push("/");
   };
   return (
-    <Wrapper>
+    <Backgrond>
       {openModal && (
         <SocialLogin authService={authService} closeModal={setOpenModal} />
       )}
-      <HeaderBox>
-        <HeaderTitle>
-          <Link to="/">
-            <img
-              src={omomo_title}
-              alt="header_title"
-              width="200px"
-              height="50px"
-            />
-          </Link>
-        </HeaderTitle>
-        <LoginMyPage>
-          {localStorage.uid ? (
-            <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
-          ) : (
-            <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
-          )}
-          {localStorage.uid ? (
-            <HeaderMyPage>
-              <Link
-                to="/mypage"
-                style={{ textDecoration: "inherit", color: "inherit" }}
-              >
+      <Wrapper>
+        <HeaderBox>
+          <HeaderTitle>
+            <Link to="/">
+              <img
+                src={omomo_title}
+                alt="header_title"
+                width="200px"
+                height="50px"
+              />
+            </Link>
+          </HeaderTitle>
+          <LoginMyPage>
+            {localStorage.uid ? (
+              <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
+            ) : (
+              <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+            )}
+            {localStorage.uid ? (
+              <HeaderMyPage>
+                <Link
+                  to="/mypage"
+                  style={{ textDecoration: "inherit", color: "inherit" }}
+                >
+                  MyPage
+                </Link>
+              </HeaderMyPage>
+            ) : (
+              <HeaderMyPage onClick={() => alert("로그인 먼저 해주세요")}>
                 MyPage
-              </Link>
-            </HeaderMyPage>
-          ) : (
-            <HeaderMyPage onClick={() => alert("로그인 먼저 해주세요")}>
-              MyPage
-            </HeaderMyPage>
-          )}
-        </LoginMyPage>
-      </HeaderBox>
-    </Wrapper>
+              </HeaderMyPage>
+            )}
+          </LoginMyPage>
+        </HeaderBox>
+      </Wrapper>
+    </Backgrond>
   );
 };
+const Backgrond = styled.div`
+  width: 100%;
+`
 
 const Wrapper = styled.div`
   display: flex;
   height: 100px;
-  width: 100%;
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto;
   @media screen and (max-width: 414px) {
     height: 60px;
@@ -99,10 +103,7 @@ const HeaderTitle = styled.span`
 
 const LoginMyPage = styled.div`
   position: absolute;
-  right: 100px;
-  @media screen and (max-width: 1600px) {
-    right: 0px;
-  }
+  right: 0;
 `;
 const HeaderLogin = styled.button`
   font-size: 1.25rem;

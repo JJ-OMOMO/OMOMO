@@ -3,6 +3,7 @@ import { Wheel } from 'react-custom-roulette'
 
 
 export default ({
+    getRoulette,
     closeModal,
     mustSpin,
     setMustSpin,
@@ -49,8 +50,9 @@ export default ({
                         result.optionName = data[prizeNumber].option;
                         localStorage.setItem(result.id, JSON.stringify(result));
                         await closeModal(false);
-                        await window.location.reload();
-                    }}
+                        await getRoulette();
+                    }
+            }
         />
     </>
 )

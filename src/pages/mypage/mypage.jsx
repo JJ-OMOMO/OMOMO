@@ -25,20 +25,15 @@ const Mypage = () => {
     await InitialSetProfile();
   }, []);
 
-
-
   const getProfile = async () => {
-    const tempNick = [];
-    const tempChar = [];
     const snapshot = await dbService
       .collection("profile")
       .where("userId", "==", localStorage.uid)
       .get();
     snapshot.forEach((doc) => {
-      tempNick.push(doc.data().nickname);
-      tempChar.push(doc.data().character);
+      setNickname(() => doc.data().nickname);
+      setCharacter(() => doc.data().character);
     });
-    return setCharacter(tempChar), setNickname(tempNick);
   };
 
   const getRoulette = async () => {
@@ -237,9 +232,8 @@ const Wrapper = styled.div`
   justify-content: center;
   background-color: #FFC6A4;
   @media screen and (max-width: 414px) {
-    height: 100%;
+    height: 120vh;
   }
-  
 `;
 
 const Container = styled.div`
@@ -255,7 +249,7 @@ const Container = styled.div`
   font-family: "CookieRun-Regular";
   @media screen and (max-width: 414px) {
     flex-direction: column; 
-    /* height: 92%; */
+    height: 110vh;
   }
 `;
 
@@ -389,6 +383,7 @@ const TodoList = styled.div`
   @media screen and (max-width: 414px) {
     font-size: 5rem;
     padding-bottom: 2rem;
+    height: 40vh;
   }
 `;
 
@@ -399,6 +394,16 @@ const BottomSection = styled.div`
   width: 100%;
   height: 47vh;
   margin-bottom: 2vh;
+  @media screen and (max-width: 414px) {
+    height: 60vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+      scrollbar-width: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const RouletteList = styled.div`

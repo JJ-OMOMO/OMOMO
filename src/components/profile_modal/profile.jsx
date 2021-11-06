@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components"
 import CUTE from "../../images/cuteIcon.png";
 import Github from "../../images/github.png";
@@ -10,6 +10,8 @@ import { dbService } from "../../service/firebase";
 const ProfileIMG = [CUTE, Github, Boy, Girl, Mario];
 
 const ProfileModal = ({ closeModal, Nick, setNick, Char, setChar }) => {
+  const ModalBack = useRef(null);
+
   const setProfile = async () => {
     const citiesRef = dbService.collection("profile");
     await citiesRef
@@ -23,8 +25,12 @@ const ProfileModal = ({ closeModal, Nick, setNick, Char, setChar }) => {
       .then(() => closeModal(false));
   };
 
+  const onClickCloseModal = (e) => {
+    e.target === ModalBack.current && closeModal(false);
+  };
+
   return (
-    <ModalBackground>
+    <ModalBackground ref={ModalBack} onClick={(e) => onClickCloseModal(e)}>
       <ModalContainer>
         <BackButton onClick={() => closeModal(false)}>
           <i className="fas fa-chevron-left"></i>
@@ -37,7 +43,7 @@ const ProfileModal = ({ closeModal, Nick, setNick, Char, setChar }) => {
           )}
           <input
             tpye="text"
-            value={Nick}
+            defaultValue={Nick || ''}
             onChange={(e) => setNick(e.target.value)}
           ></input>
         </Profile>

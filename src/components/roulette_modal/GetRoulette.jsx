@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import { dbService } from "../../service/firebase";
@@ -13,6 +13,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const [newSartTime, setNewSartTime] = useState(rouletteData.startTime);
   const [newEndTime, setNewEndTime] = useState(rouletteData.endTime);
   const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
+  const ModalBack = useRef(null);
 
   const onDelete = async () => {
     const ok = window.confirm("룰렛을 삭제하시겠습니까?");
@@ -70,8 +71,12 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
     setMustSpin(true);
   }
 
+  const onClickCloseModal = (e) => {
+    e.target === ModalBack.current && closeModal(false)
+  };
+
   return (
-    <ModalBackground>
+    <ModalBackground ref={ModalBack} onClick={(e) => onClickCloseModal(e)}>
       <RouletteModalWrapper>
         <RouletteHeader>
           <span>Roulette</span>
@@ -80,6 +85,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
         <RouletteModalBody>
           <LeftSection>
             <Wheel
+              getRoulette={getRoulette}
               closeModal={closeModal}
               onSubmit={onSubmit}
               mustSpin={mustSpin}
@@ -138,7 +144,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>Start Time</span>
                 <input
-                  defaultValue={newSartTime}
+                  defaultValue={newSartTime || ''}
                   onChange={(e) => setNewSartTime(e.target.value)}
                   type="time"
                   placeholder="시작 시간"
@@ -158,7 +164,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>End Time</span>
                 <input
-                  defaultValue={newEndTime}
+                  defaultValue={newEndTime || ''}
                   onChange={(e) => setNewEndTime(e.target.value)}
                   type="time"
                   placeholder="끝 시간"
