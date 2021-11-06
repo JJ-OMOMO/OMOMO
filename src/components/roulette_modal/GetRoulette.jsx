@@ -26,6 +26,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
       confirmButtonColor: "#463400",
       cancelButtonColor: "#BF5847",
       confirmButtonText: "네",
+      cancelButtonText: "아니오",
       background: "#FEDB41",
       backdrop: "rgba(0,0,0,0.8)",
     });
@@ -83,12 +84,12 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
     //   })
     data.length === 8
       ? Swal.fire({
-        text: "최대 8개까지 설정가능합니다.",
-        background: "#FEDB41",
-        backdrop: "rgba(0,0,0,0.8)",
-        confirmButtonColor: "#463400",
-        icon: "info",
-      })
+          text: "최대 8개까지 설정가능합니다.",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
       : setData([...data, { option: newOptionName }]);
   };
 
@@ -99,7 +100,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   };
 
   const onClickCloseModal = (e) => {
-    e.target === ModalBack.current && closeModal(false)
+    e.target === ModalBack.current && closeModal(false);
   };
 
   return (
@@ -162,14 +163,14 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
           <RightSection onSubmit={onSubmit}>
             {edit ? (
               <RouletteName
-                defaultValue={newRouletteName || ''}
+                defaultValue={newRouletteName || ""}
                 onChange={onChange}
                 type="text"
                 placeholder="룰렛 네임"
               ></RouletteName>
             ) : (
               <RouletteName
-                defaultValue={rouletteData.rouletteName || ''}
+                defaultValue={rouletteData.rouletteName || ""}
                 readOnly
                 type="text"
                 placeholder="룰렛 네임"
@@ -180,7 +181,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>Start Time</span>
                 <input
-                  defaultValue={newSartTime || ''}
+                  defaultValue={newSartTime || ""}
                   onChange={(e) => setNewSartTime(e.target.value)}
                   type="time"
                   placeholder="시작 시간"
@@ -190,7 +191,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>Start Time</span>
                 <input
-                  defaultValue={rouletteData.startTime || ''}
+                  defaultValue={rouletteData.startTime || ""}
                   readOnly
                   type="time"
                   placeholder="시작 시간"
@@ -201,7 +202,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>End Time</span>
                 <input
-                  defaultValue={newEndTime || ''}
+                  defaultValue={newEndTime || ""}
                   onChange={(e) => setNewEndTime(e.target.value)}
                   type="time"
                   placeholder="끝 시간"
@@ -211,7 +212,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>End Time</span>
                 <input
-                  defaultValue={rouletteData.endTime || ''}
+                  defaultValue={rouletteData.endTime || ""}
                   readOnly
                   type="time"
                   placeholder="끝 시간"
