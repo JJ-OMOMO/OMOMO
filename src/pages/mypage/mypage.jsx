@@ -20,7 +20,6 @@ const Mypage = () => {
   const [todo, setTodo] = useState([]);
 
   useEffect(async () => {
-    console.log('useEffect')
     await getRoulette();
     await getProfile();
     await InitialSetProfile();

@@ -8,6 +8,7 @@ import avatar1 from "../../images/avatar1.png";
 import avatar2 from "../../images/avatar2.png";
 import avatar3 from "../../images/avatar3.png";
 import avatar4 from "../../images/avatar4.png";
+import RedShare from "../../images/red-share.png";
 
 const initialData = [
   { option: "모" },
@@ -167,11 +168,19 @@ const TrialRoulette = styled.div`
   flex-basis: 50%;
   padding-top: 10px;
   background-color: #f88f70;
+  & > :nth-child(2) > :nth-child(2) {
+    content: url(${RedShare});
+    z-index: 5;
+    width: 17%;
+    right: 6px;
+    top: 30px;
+  }
 `;
 
 const TrialRouletteIntro = styled.div`
   font-family: "CookieRun-Regular";
   padding-bottom: 20px;
+
   @media screen and (max-width: 768px) {
     font-size: 1.8rem;
     padding-top: 0.5rem;
