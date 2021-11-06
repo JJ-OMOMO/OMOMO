@@ -1,32 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import roulette_bg from "../../images/roulette_bg.png";
 
 const SocialLogin = ({ closeModal, authService }) => {
   const history = useHistory();
-  // const goToMain = (userId) => {
-  //   history.push({
-  //     pathname: "/",
-  //     state: { id: userId },
-  //   });
-  // };
-
   const onLogin = (event) => {
     closeModal(false);
     authService //
       .login(event.currentTarget.textContent)
-      // .then((data) => goToMain(data.user.uid));
       .then((data) => localStorage.setItem("uid", data.user.uid))
       .then(() => history.push("/"));
   };
-
-  // useEffect(() => {
-  //   authService //
-  //     .onAuthChange((user) => {
-  //       user && goToMain(user.uid);
-  //     });
-  // });
 
   return (
     <ModalBackground>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
 import CreateRoulette from "../../components/roulette_modal/CreateRoulette";
@@ -7,7 +7,6 @@ import { dbService } from "../../service/firebase";
 import GetRoulette from "../../components/roulette_modal/GetRoulette";
 import { Wheel } from "react-custom-roulette";
 import Roulette from "../../images/roulette.png";
-import Share from "../../images/share.png";
 
 const Mypage = () => {
   const [modifyProfile, setModifyProfile] = useState(false);
@@ -19,10 +18,10 @@ const Mypage = () => {
   const [nickname, setNickname] = useState("");
   const [todo, setTodo] = useState([]);
 
-  useEffect(async () => {
-    await getRoulette();
-    await getProfile();
-    await InitialSetProfile();
+  useEffect(() => {
+    getRoulette();
+    getProfile();
+    InitialSetProfile();
   }, []);
 
   const getProfile = async () => {
@@ -57,7 +56,7 @@ const Mypage = () => {
     // TO-DO list 목록 보기
     result.map((e) => {
       const result = JSON.parse(localStorage.getItem(e.id));
-      result !== null && arr.push(result)
+      return result !== null && arr.push(result)
     });
     setTodo(arr);
     setData(result);

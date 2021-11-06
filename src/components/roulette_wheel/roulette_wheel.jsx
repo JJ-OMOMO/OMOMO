@@ -1,7 +1,6 @@
 import React from 'react'
 import { Wheel } from 'react-custom-roulette'
 
-
 export default ({
     getRoulette,
     closeModal,
@@ -55,4 +54,4 @@ export default ({
             }
         />
     </>
-)
+);
