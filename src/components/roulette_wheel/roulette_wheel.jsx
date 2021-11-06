@@ -1,5 +1,6 @@
-import React from 'react'
-import { Wheel } from 'react-custom-roulette'
+import React from "react";
+import { Wheel } from "react-custom-roulette";
+import Swal from "sweetalert2";
 
 export default ({
     getRoulette,
@@ -19,7 +20,7 @@ export default ({
     innerBorderWidth,
     radiusLineColor,
     radiusLineWidth,
-    textDistance
+    textDistance,
 }) => (
     <>
         <Wheel
@@ -38,14 +39,19 @@ export default ({
             radiusLineWidth={radiusLineWidth}
             textDistance={textDistance}
             onStopSpinning={
-                !setMustSpin ?
-                    () => {
-                        return alert(data[prizeNumber].option)
+                !setMustSpin
+                    ? () => {
+                        return Swal.fire({
+                            text: `오늘은 '${data[prizeNumber].option}'!`,
+                            background: "#FEDB41",
+                            backdrop: "rgba(0,0,0,0.8)",
+                            confirmButtonColor: "#463400",
+                            icon: "success",
+                        });
                     }
-                    :
-                    async () => {
+                    : async () => {
                         setMustSpin(false);
-                        const result = { ...rouletteData }
+                        const result = { ...rouletteData };
                         result.optionName = data[prizeNumber].option;
                         localStorage.setItem(result.id, JSON.stringify(result));
                         await closeModal(false);

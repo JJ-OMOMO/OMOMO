@@ -9,6 +9,7 @@ import avatar2 from "../../images/avatar2.png";
 import avatar3 from "../../images/avatar3.png";
 import avatar4 from "../../images/avatar4.png";
 import RedShare from "../../images/red-share.png";
+import Swal from "sweetalert2";
 
 const initialData = [
   { option: "모" },
@@ -38,8 +39,22 @@ const Mainpage = ({ authService }) => {
   };
 
   const create = () => {
-    data.length === 8
-      ? alert("최대 8개까지 설정가능합니다.")
+    !test
+      ? Swal.fire({
+          text: "내용을 입력해주세요",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
+      : data.length === 8
+      ? Swal.fire({
+          text: "최대 8개까지 설정가능합니다.",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
       : setData([...data, { option: test }]);
     setTest("");
   };
@@ -128,7 +143,7 @@ const Mainpage = ({ authService }) => {
         </RouletteDescription>
       </Container>
       <Footer />
-    </Wrapper >
+    </Wrapper>
   );
 };
 

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import roulette_bg from "../../images/roulette_bg.png";
 
 const SocialLogin = ({ closeModal, authService }) => {
   const history = useHistory();
+  const ModalBack = useRef(null);
+
   const onLogin = (event) => {
     closeModal(false);
     authService //
@@ -12,9 +14,12 @@ const SocialLogin = ({ closeModal, authService }) => {
       .then((data) => localStorage.setItem("uid", data.user.uid))
       .then(() => history.push("/"));
   };
+  const onClickCloseModal = (e) => {
+    e.target === ModalBack.current && closeModal(false)
+  };
 
   return (
-    <ModalBackground>
+    <ModalBackground ref={ModalBack} onClick={(e) => onClickCloseModal(e)}>
       <LoginModal>
         <ExitButton onClick={() => closeModal(false)}>
           <i className="fas fa-times"></i>

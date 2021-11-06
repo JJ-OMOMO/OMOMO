@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { dbService } from "../../service/firebase";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import Share from "../../images/share.png";
+import Swal from "sweetalert2";
 
 const CreateRoulette = ({ closeModal, getRoulette }) => {
   const [rouletteName, setRouletteName] = useState("");
@@ -28,9 +29,21 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   const create = async () => {
     console.log("create");
     !temp
-      ? alert("내용을 입력해주세요.")
+      ? Swal.fire({
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : data.length === 8
-        ? alert("최대 8개까지 설정가능합니다.")
+        ? Swal.fire({
+          text: "최대 8개까지 설정가능합니다.",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
         : setData([...data, { option: temp }]);
     console.log(data);
     await setTemp("");
@@ -38,7 +51,13 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
 
   const CheckSubmit = () => {
     !rouletteName || !data || !startTime || !endTime
-      ? alert("내용을 입력해주세요")
+      ? Swal.fire({
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : onSubmit();
     getRoulette();
   };
