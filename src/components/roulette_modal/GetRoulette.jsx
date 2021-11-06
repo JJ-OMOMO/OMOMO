@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import { dbService } from "../../service/firebase";
@@ -16,9 +16,9 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const [newSartTime, setNewSartTime] = useState(rouletteData.startTime);
   const [newEndTime, setNewEndTime] = useState(rouletteData.endTime);
   const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
+  const ModalBack = useRef(null);
 
   const onDelete = async () => {
-    // const ok = window.confirm("룰렛을 삭제하시겠습니까?");
     const ok = Swal.fire({
       text: "룰렛을 삭제하시겠습니까?",
       icon: "warning",
@@ -83,15 +83,13 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
     //   })
     data.length === 8
       ? Swal.fire({
-          text: "최대 8개까지 설정가능합니다.",
-          background: "#FEDB41",
-          backdrop: "rgba(0,0,0,0.8)",
-          confirmButtonColor: "#463400",
-          icon: "info",
-        })
+        text: "최대 8개까지 설정가능합니다.",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : setData([...data, { option: newOptionName }]);
-
-    // setNewOptionName("");
   };
 
   const handleSpinClick = async () => {
@@ -100,8 +98,12 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
     setMustSpin(true);
   };
 
+  const onClickCloseModal = (e) => {
+    e.target === ModalBack.current && closeModal(false)
+  };
+
   return (
-    <ModalBackground>
+    <ModalBackground ref={ModalBack} onClick={(e) => onClickCloseModal(e)}>
       <RouletteModalWrapper>
         <RouletteHeader>
           <span>Roulette</span>
@@ -110,6 +112,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
         <RouletteModalBody>
           <LeftSection>
             <Wheel
+              getRoulette={getRoulette}
               closeModal={closeModal}
               onSubmit={onSubmit}
               mustSpin={mustSpin}
@@ -159,14 +162,14 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
           <RightSection onSubmit={onSubmit}>
             {edit ? (
               <RouletteName
-                defaultValue={newRouletteName}
+                defaultValue={newRouletteName || ''}
                 onChange={onChange}
                 type="text"
                 placeholder="룰렛 네임"
               ></RouletteName>
             ) : (
               <RouletteName
-                value={rouletteData.rouletteName}
+                defaultValue={rouletteData.rouletteName || ''}
                 readOnly
                 type="text"
                 placeholder="룰렛 네임"
@@ -177,7 +180,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>Start Time</span>
                 <input
-                  defaultValue={newSartTime}
+                  defaultValue={newSartTime || ''}
                   onChange={(e) => setNewSartTime(e.target.value)}
                   type="time"
                   placeholder="시작 시간"
@@ -187,7 +190,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>Start Time</span>
                 <input
-                  value={rouletteData.startTime}
+                  defaultValue={rouletteData.startTime || ''}
                   readOnly
                   type="time"
                   placeholder="시작 시간"
@@ -198,7 +201,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>End Time</span>
                 <input
-                  defaultValue={newEndTime}
+                  defaultValue={newEndTime || ''}
                   onChange={(e) => setNewEndTime(e.target.value)}
                   type="time"
                   placeholder="끝 시간"
@@ -208,7 +211,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
               <RouletteTime>
                 <span>End Time</span>
                 <input
-                  value={rouletteData.endTime}
+                  defaultValue={rouletteData.endTime || ''}
                   readOnly
                   type="time"
                   placeholder="끝 시간"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/header/header";
 import CreateRoulette from "../../components/roulette_modal/CreateRoulette";
@@ -7,7 +7,6 @@ import { dbService } from "../../service/firebase";
 import GetRoulette from "../../components/roulette_modal/GetRoulette";
 import { Wheel } from "react-custom-roulette";
 import Roulette from "../../images/roulette.png";
-import Share from "../../images/share.png";
 import Swal from "sweetalert2";
 
 const Mypage = () => {
@@ -20,24 +19,21 @@ const Mypage = () => {
   const [nickname, setNickname] = useState("");
   const [todo, setTodo] = useState([]);
 
-  useEffect(async () => {
-    await getRoulette();
-    await getProfile();
-    await InitialSetProfile();
+  useEffect(() => {
+    getRoulette();
+    getProfile();
+    InitialSetProfile();
   }, []);
 
   const getProfile = async () => {
-    const tempNick = [];
-    const tempChar = [];
     const snapshot = await dbService
       .collection("profile")
       .where("userId", "==", localStorage.uid)
       .get();
     snapshot.forEach((doc) => {
-      tempNick.push(doc.data().nickname);
-      tempChar.push(doc.data().character);
+      setNickname(() => doc.data().nickname);
+      setCharacter(() => doc.data().character);
     });
-    return setCharacter(tempChar), setNickname(tempNick);
   };
 
   const getRoulette = async () => {
@@ -61,7 +57,7 @@ const Mypage = () => {
     // TO-DO list 목록 보기
     result.map((e) => {
       const result = JSON.parse(localStorage.getItem(e.id));
-      result !== null && arr.push(result);
+      return result !== null && arr.push(result)
     });
     setTodo(arr);
     setData(result);
@@ -273,7 +269,7 @@ const Wrapper = styled.div`
   justify-content: center;
   background-color: #ffc6a4;
   @media screen and (max-width: 414px) {
-    height: 100%;
+    height: 120vh;
   }
 `;
 
@@ -289,8 +285,8 @@ const Container = styled.div`
   background-color: #bb5b3f;
   font-family: "CookieRun-Regular";
   @media screen and (max-width: 414px) {
-    flex-direction: column;
-    /* height: 92%; */
+    flex-direction: column; 
+    height: 110vh;
   }
 `;
 
@@ -423,6 +419,7 @@ const TodoList = styled.div`
   @media screen and (max-width: 414px) {
     font-size: 5rem;
     padding-bottom: 2rem;
+    height: 40vh;
   }
 `;
 
@@ -432,6 +429,16 @@ const BottomSection = styled.div`
   width: 100%;
   height: 47vh;
   margin-bottom: 2vh;
+  @media screen and (max-width: 414px) {
+    height: 60vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+      scrollbar-width: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const RouletteList = styled.div`

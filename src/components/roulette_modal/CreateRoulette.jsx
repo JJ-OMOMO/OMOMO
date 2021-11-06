@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { dbService } from "../../service/firebase";
 import Wheel from "../roulette_wheel/roulette_wheel";
@@ -11,6 +11,7 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   const [endTime, setEndTime] = useState("");
   const [data, setData] = useState([]);
   const [temp, setTemp] = useState("");
+  const ModalBack = useRef(null);
 
   const initialData = [
     { option: "가" },
@@ -29,21 +30,21 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
     console.log("create");
     !temp
       ? Swal.fire({
-          text: "내용을 입력해주세요",
-          background: "#FEDB41",
-          backdrop: "rgba(0,0,0,0.8)",
-          confirmButtonColor: "#463400",
-          icon: "info",
-        })
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : data.length === 8
-      ? Swal.fire({
+        ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
           backdrop: "rgba(0,0,0,0.8)",
           confirmButtonColor: "#463400",
           icon: "info",
         })
-      : setData([...data, { option: temp }]);
+        : setData([...data, { option: temp }]);
     console.log(data);
     await setTemp("");
   };
@@ -51,12 +52,12 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   const CheckSubmit = () => {
     !rouletteName || !data || !startTime || !endTime
       ? Swal.fire({
-          text: "내용을 입력해주세요",
-          background: "#FEDB41",
-          backdrop: "rgba(0,0,0,0.8)",
-          confirmButtonColor: "#463400",
-          icon: "info",
-        })
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : onSubmit();
     getRoulette();
   };
@@ -80,16 +81,11 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   };
 
   const onClickCloseModal = (e) => {
-    // if (e.target.className === "modal-container") {
-    //   console.log('확인')
-    // } else {
-    //   console.log('실패')
-    // }
-    // console.log(e.target.className)
+    e.target === ModalBack.current && closeModal(false)
   };
 
   return (
-    <ModalBackground className="modal-container" onClick={onClickCloseModal}>
+    <ModalBackground ref={ModalBack} onClick={(e) => onClickCloseModal(e)}>
       <RouletteModalWrapper>
         <RouletteHeader>
           <span>Roulette</span>
@@ -164,20 +160,20 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
 };
 
 const ModalBackground = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.8);
-  @media screen and (max-width: 414px) {
-    position: absolute;
-    height: 180rem;
-  }
-`;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.8);
+      @media screen and (max-width: 414px) {
+        position: absolute;
+        height: 100%;
+      }
+      `;
 
 const RouletteModalWrapper = styled.div`
   display: flex;

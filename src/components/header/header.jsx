@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import SocialLogin from "../social_login_modal/socialLogin";
 import omomo_title from "../../images/omomo_title.png";
 import Swal from "sweetalert2";
-import OMO from "../../images/OMO.png";
 
 const Header = ({ authService }) => {
   const history = useHistory();
@@ -16,62 +15,66 @@ const Header = ({ authService }) => {
     history.push("/");
   };
   return (
-    <Wrapper>
+    <Backgrond>
       {openModal && (
         <SocialLogin authService={authService} closeModal={setOpenModal} />
       )}
-      <HeaderBox>
-        <HeaderTitle>
-          <Link to="/">
-            <img
-              src={omomo_title}
-              alt="header_title"
-              width="200px"
-              height="50px"
-            />
-          </Link>
-        </HeaderTitle>
-        <LoginMyPage>
-          {localStorage.uid ? (
-            <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
-          ) : (
-            <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
-          )}
-          {localStorage.uid ? (
-            <HeaderMyPage>
-              <Link
-                to="/mypage"
-                style={{ textDecoration: "inherit", color: "inherit" }}
+      <Wrapper>
+        <HeaderBox>
+          <HeaderTitle>
+            <Link to="/">
+              <img
+                src={omomo_title}
+                alt="header_title"
+                width="200px"
+                height="50px"
+              />
+            </Link>
+          </HeaderTitle>
+          <LoginMyPage>
+            {localStorage.uid ? (
+              <HeaderLogout onClick={onLogout}>Logout</HeaderLogout>
+            ) : (
+              <HeaderLogin onClick={() => setOpenModal(true)}>Login</HeaderLogin>
+            )}
+            {localStorage.uid ? (
+              <HeaderMyPage>
+                <Link
+                  to="/mypage"
+                  style={{ textDecoration: "inherit", color: "inherit" }}
+                >
+                  MyPage
+                </Link>
+              </HeaderMyPage>
+            ) : (
+              <HeaderMyPage
+                onClick={() =>
+                  Swal.fire({
+                    text: "로그인이 필요한 서비스입니다.",
+                    background: "#FEDB41",
+                    backdrop: "rgba(0,0,0,0.8)",
+                    confirmButtonColor: "#463400",
+                    icon: "info",
+                  })
+                }
               >
                 MyPage
-              </Link>
-            </HeaderMyPage>
-          ) : (
-            <HeaderMyPage
-              onClick={() =>
-                Swal.fire({
-                  text: "로그인이 필요한 서비스입니다.",
-                  background: "#FEDB41",
-                  backdrop: "rgba(0,0,0,0.8)",
-                  confirmButtonColor: "#463400",
-                  icon: "info",
-                })
-              }
-            >
-              MyPage
-            </HeaderMyPage>
-          )}
-        </LoginMyPage>
-      </HeaderBox>
-    </Wrapper>
+              </HeaderMyPage>
+            )}
+          </LoginMyPage>
+        </HeaderBox>
+      </Wrapper>
+    </Backgrond>
   );
 };
+const Backgrond = styled.div`
+  width: 100%;
+`
 
 const Wrapper = styled.div`
   display: flex;
   height: 100px;
-  width: 100%;
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto;
   @media screen and (max-width: 414px) {
     height: 60px;
@@ -111,10 +114,7 @@ const HeaderTitle = styled.span`
 
 const LoginMyPage = styled.div`
   position: absolute;
-  right: 6.25rem;
-  @media screen and (max-width: 1600px) {
-    right: 0px;
-  }
+  right: 0;
 `;
 const HeaderLogin = styled.button`
   font-size: 1.25rem;
