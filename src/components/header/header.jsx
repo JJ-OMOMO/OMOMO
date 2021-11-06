@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SocialLogin from "../social_login_modal/socialLogin";
 import omomo_title from "../../images/omomo_title.png";
+import Swal from "sweetalert2";
+import OMO from "../../images/OMO.png";
 
 const Header = ({ authService }) => {
   const history = useHistory();
@@ -45,7 +47,17 @@ const Header = ({ authService }) => {
               </Link>
             </HeaderMyPage>
           ) : (
-            <HeaderMyPage onClick={() => alert("로그인 먼저 해주세요")}>
+            <HeaderMyPage
+              onClick={() =>
+                Swal.fire({
+                  text: "로그인이 필요한 서비스입니다.",
+                  background: "#FEDB41",
+                  backdrop: "rgba(0,0,0,0.8)",
+                  confirmButtonColor: "#463400",
+                  icon: "info",
+                })
+              }
+            >
               MyPage
             </HeaderMyPage>
           )}
@@ -99,7 +111,7 @@ const HeaderTitle = styled.span`
 
 const LoginMyPage = styled.div`
   position: absolute;
-  right: 100px;
+  right: 6.25rem;
   @media screen and (max-width: 1600px) {
     right: 0px;
   }
