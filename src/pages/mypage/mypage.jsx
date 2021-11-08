@@ -268,7 +268,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #ffc6a4;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 1600px) {
     height: 120vh;
   }
 `;
@@ -281,10 +281,11 @@ const Container = styled.div`
   align-items: center;
   font-size: 30px;
   width: 100%;
+  height: 110vh;
   margin: 0 auto;
   background-color: #bb5b3f;
   font-family: "CookieRun-Regular";
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     flex-direction: column; 
     height: 110vh;
   }
@@ -297,7 +298,7 @@ const MainSection = styled.div`
   overflow: hidden;
   margin-bottom: 3vh;
   margin-top: 5vh;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     flex-direction: column;
     height: 100%;
   }
@@ -341,7 +342,7 @@ const Profile = styled.div`
       transform: scale(1.05);
     }
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     margin-bottom: 5rem;
     padding: 3rem 0;
     & > input {
@@ -416,8 +417,8 @@ const TodoList = styled.div`
       }
     }
   }
-  @media screen and (max-width: 414px) {
-    font-size: 5rem;
+  @media screen and (max-width: 425px) {
+    font-size: 3.5rem;
     padding-bottom: 2rem;
     height: 40vh;
   }
@@ -429,7 +430,7 @@ const BottomSection = styled.div`
   width: 100%;
   height: 47vh;
   margin-bottom: 2vh;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     height: 60vh;
     overflow: scroll;
     overflow-x: hidden;
@@ -459,7 +460,7 @@ const RouletteList = styled.div`
     justify-content: center;
     flex-direction: column;
     font-size: 1rem;
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 425px) {
       margin-left: 5rem;
       & > div {
         height: 25%;
@@ -515,10 +516,10 @@ const RouletteList = styled.div`
         }
       }
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       grid-template-columns: repeat(3, minmax(2rem, 1fr));
     }
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 425px) {
       grid-template-columns: repeat(2, minmax(2rem, 1fr));
     }
   }

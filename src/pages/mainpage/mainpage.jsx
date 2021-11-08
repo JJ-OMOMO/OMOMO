@@ -41,21 +41,21 @@ const Mainpage = ({ authService }) => {
   const create = () => {
     !test
       ? Swal.fire({
-          text: "내용을 입력해주세요",
-          background: "#FEDB41",
-          backdrop: "rgba(0,0,0,0.8)",
-          confirmButtonColor: "#463400",
-          icon: "info",
-        })
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : data.length === 8
-      ? Swal.fire({
+        ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
           backdrop: "rgba(0,0,0,0.8)",
           confirmButtonColor: "#463400",
           icon: "info",
         })
-      : setData([...data, { option: test }]);
+        : setData([...data, { option: test }]);
     setTest("");
   };
   // console.log("MAINDATA", data);
@@ -154,10 +154,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #ffc6a4;
-  @media screen and (max-width: 1024px) {
-    height: 100%;
+  @media screen and (max-width: 1600px) {
+    height: 120vh;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     height: 100%;
   }
 `;
@@ -196,12 +196,12 @@ const TrialRouletteIntro = styled.div`
   font-family: "CookieRun-Regular";
   padding-bottom: 20px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1.8rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     font-size: 4rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
@@ -224,7 +224,7 @@ const AddItem = styled.div`
     r &::placeholder {
       color: #a0958a;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       margin-top: -0.8rem;
       height: 30px;
       font-size: 1.2rem;
@@ -238,7 +238,7 @@ const AddItem = styled.div`
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: #fdfae6;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       margin-top: -0.8rem;
       width: 50px;
       height: 30px;
@@ -262,7 +262,7 @@ const Bottom = styled.div`
     background-color: #fdfae6;
     margin: 0 10px 10px 0;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     padding-top: -1.2rem;
     padding-bottom: 0.8rem;
   }
@@ -278,10 +278,10 @@ const RouletteDescription = styled.div`
   background-color: #bb5b3f;
   padding-top: 0.625rem;
   padding-bottom: 0.3rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     padding-top: 1.7rem;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     padding-top: 6rem;
     padding-bottom: 5rem;
   }
@@ -291,12 +291,12 @@ const RouletteDescriptionIntro = styled.div`
   color: #fdfae6;
   font-family: "CookieRun-Regular";
   padding: 0rem 1.063rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1.9rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     font-size: 4rem;
     padding-top: 2rem;
     padding-bottom: 0.5rem;
@@ -316,11 +316,11 @@ const Avatar = styled.div`
   background-color: #fdfae6;
   border-radius: 50%;
   margin-right: 10px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     width: 8rem;
     height: 8rem;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     width: 15rem;
     height: 15rem;
   }
@@ -355,7 +355,7 @@ const DescriptionBubbleLeft = styled.div`
     border-bottom: 0;
     margin-top: -10px;
     margin-left: -20px;
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 425px) {
       content: "";
       position: absolute;
       left: 0;
@@ -370,13 +370,13 @@ const DescriptionBubbleLeft = styled.div`
       margin-left: -10px;
     }
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1.5rem;
     // width: 27rem;
     width: 50%;
     height: auto;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     font-size: 3rem;
     // width: 50rem;
     width: 65%;
@@ -421,7 +421,7 @@ const DescriptionBubbleRight = styled.div`
     border-top: 0;
     margin-top: -10px;
     margin-right: -20px;
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 425px) {
       content: "";
       position: absolute;
       right: 0;
@@ -436,13 +436,13 @@ const DescriptionBubbleRight = styled.div`
       margin-right: -10px;
     }
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1.5rem;
     // width: 31rem;
     width: 53%;
     height: auto;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     font-size: 3rem;
     width: 60%;
     height: auto;

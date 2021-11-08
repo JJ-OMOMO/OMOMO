@@ -76,7 +76,7 @@ const Wrapper = styled.div`
   height: 100px;
   max-width: 1600px;
   margin: 0 auto;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     height: 60px;
   }
 `;
@@ -92,7 +92,7 @@ const HeaderLogout = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     height: 30px;
   }
 `;
@@ -104,6 +104,7 @@ const HeaderBox = styled.div`
   align-items: center;
   width: 100%;
   margin: auto;
+  height: 5vh;
 `;
 const HeaderTitle = styled.span`
   color: #f7fa1b;
@@ -127,7 +128,7 @@ const HeaderLogin = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     height: 30px;
   }
 `;
@@ -144,7 +145,7 @@ const HeaderMyPage = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     height: 30px;
     margin-right: 2px;
   }

@@ -53,7 +53,7 @@ const LoginModal = styled.div`
   background-image: url(${roulette_bg});
   background-size: cover;
   background-repeat: no-repeat;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     width: 50rem;
     height: 50rem;
   }
@@ -84,7 +84,7 @@ const GoogleLogin = styled.button`
   border: 2px solid #ff2132;
   border-radius: 0.5rem;
   background-color: #ff8da8;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     font-size: 3rem;
     width: 30%;
     height: 4.5rem;
@@ -107,7 +107,7 @@ const GithubLogin = styled.button`
   border: 2px solid #ff2132;
   border-radius: 0.5rem;
   background-color: #ff8da8;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     font-size: 3rem;
     width: 30%;
     height: 4.5rem;
