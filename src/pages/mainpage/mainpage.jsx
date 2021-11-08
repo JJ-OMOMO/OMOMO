@@ -248,7 +248,8 @@ const AddItem = styled.div`
       font-size: 1.2rem;
     }
     @media screen and (max-width: 500px) {
-      font-size: 3rem;
+      font-size: 2.5rem;
+      width: 100%;
       height: 33px;
     }
   }
