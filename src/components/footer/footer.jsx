@@ -38,10 +38,10 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100px;
   background-color: #2f4858;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     height: 80px;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 425px) {
     height: 55px;
   }
 `;
@@ -50,7 +50,7 @@ const FooterTitle = styled.div`
   font-size: 1.125rem;
   font-family: "CookieRun-Regular";
   color: #f7fa1b;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1.2rem;
   }
 `;
@@ -63,7 +63,7 @@ const FooterContent = styled.div`
   font-size: 1.125rem;
   font-family: "CookieRun-Regular";
   color: #f7fa1b;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1.4rem;
   }
 `;
@@ -81,7 +81,7 @@ const ContactRights = styled.div`
   font-size: 0.938rem;
   font-family: "GowunDodum-Regular";
   color: #f7fa1b;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     font-size: 1rem;
   }
 `;
