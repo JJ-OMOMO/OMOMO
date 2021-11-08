@@ -77,21 +77,21 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const create = () => {
     !newOptionName
       ? Swal.fire({
-        text: "내용을 입력해주세요",
-        background: "#FEDB41",
-        backdrop: "rgba(0,0,0,0.8)",
-        confirmButtonColor: "#463400",
-        icon: "info",
-      })
+          text: "내용을 입력해주세요",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
       : data.length === 8
-        ? Swal.fire({
+      ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
           backdrop: "rgba(0,0,0,0.8)",
           confirmButtonColor: "#463400",
           icon: "info",
         })
-        : setData([...data, { option: newOptionName }]);
+      : setData([...data, { option: newOptionName }]);
     setNewOptionName("");
   };
 
@@ -498,6 +498,9 @@ const RouletteTime = styled.div`
     width: 30%;
     font-size: 1rem;
     color: black;
+    @media screen and (max-width: 500px) {
+      font-size: 2.5rem;
+    }
   }
   & > input {
     font-family: "CookieRun-Regular";
