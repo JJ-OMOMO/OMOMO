@@ -97,7 +97,7 @@ const ModalContainer = styled.div`
     width: 55rem;
     height: 55rem;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 100%;
     height: 120vh;
   }
@@ -112,7 +112,7 @@ const BackButton = styled.div`
   -webkit-text-stroke-color: #006e5e;
   font-size: 2.5rem;
   cursor: pointer;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 5rem;
   }
 `;
@@ -134,7 +134,7 @@ const Profile = styled.div`
     font-family: "CookieRun-Regular";
     background-color: #006e5e;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     & > input {
       font-size: 5rem;
     }
@@ -158,7 +158,7 @@ const CharacterList = styled.div`
     cursor: pointer;
     margin: 10px;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     height: 30rem;
     & > span {
       width: 20rem;
@@ -178,7 +178,7 @@ const SaveButton = styled.button`
   margin-top: 30px;
   background-color: #006e5e;
   cursor: pointer;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 180px;
     height: 10rem;
     font-size: 5rem;

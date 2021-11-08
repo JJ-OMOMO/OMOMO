@@ -76,7 +76,7 @@ const Wrapper = styled.div`
   height: 100px;
   max-width: 1600px;
   margin: 0 auto;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     height: 60px;
   }
 `;
@@ -92,7 +92,7 @@ const HeaderLogout = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     height: 30px;
   }
 `;
@@ -128,7 +128,7 @@ const HeaderLogin = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     height: 30px;
   }
 `;
@@ -145,7 +145,7 @@ const HeaderMyPage = styled.button`
   &:hover {
     background-color: #bb5b3f;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     height: 30px;
     margin-right: 2px;
   }
