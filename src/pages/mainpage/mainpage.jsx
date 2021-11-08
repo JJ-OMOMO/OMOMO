@@ -341,6 +341,7 @@ const DescriptionBubbleLeft = styled.div`
   border-radius: 4px;
   margin-left: 20px;
   // white-space: nowrap;
+  word-break: keep-all;
   &:after {
     content: "";
     position: absolute;
@@ -371,11 +372,14 @@ const DescriptionBubbleLeft = styled.div`
   }
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
-    width: 27rem;
+    // width: 27rem;
+    width: 50%;
     height: auto;
   }
   @media screen and (max-width: 414px) {
-    width: 50rem;
+    font-size: 3rem;
+    // width: 50rem;
+    width: 65%;
     height: auto;
     margin-left: 5px;
     margin-top: 3px;
@@ -403,6 +407,7 @@ const DescriptionBubbleRight = styled.div`
   border-radius: 4px;
   margin-right: 27px;
   // white-space: nowrap;
+  word-break: keep-all;
   &:after {
     content: "";
     position: absolute;
@@ -433,11 +438,13 @@ const DescriptionBubbleRight = styled.div`
   }
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
-    width: 31rem;
+    // width: 31rem;
+    width: 53%;
     height: auto;
   }
   @media screen and (max-width: 414px) {
-    width: 52rem;
+    font-size: 3rem;
+    width: 60%;
     height: auto;
     margin-top: 3px;
     margin-right: 13px;

@@ -15,7 +15,8 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   );
   const [newSartTime, setNewSartTime] = useState(rouletteData.startTime);
   const [newEndTime, setNewEndTime] = useState(rouletteData.endTime);
-  const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
+  // const [newOptionName, setNewOptionName] = useState(rouletteData.optionName);
+  const [newOptionName, setNewOptionName] = useState("");
   const ModalBack = useRef(null);
 
   const onDelete = async () => {
@@ -74,15 +75,15 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   };
 
   const create = () => {
-    // data.length === 0
-    // ? Swal.fire({
-    //     text: "내용을 입력해주세요",
-    //     background: "#FEDB41",
-    //     backdrop: "rgba(0,0,0,0.8)",
-    //     confirmButtonColor: "#463400",
-    //     icon: "info",
-    //   })
-    data.length === 8
+    !newOptionName
+      ? Swal.fire({
+          text: "내용을 입력해주세요",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
+      : data.length === 8
       ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
@@ -91,6 +92,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
           icon: "info",
         })
       : setData([...data, { option: newOptionName }]);
+    setNewOptionName("");
   };
 
   const handleSpinClick = async () => {
@@ -108,7 +110,9 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
       <RouletteModalWrapper>
         <RouletteHeader>
           <span>Roulette</span>
-          <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
+          <ExitButton onClick={() => closeModal(false)}>
+            <i className="fas fa-times"></i>
+          </ExitButton>
         </RouletteHeader>
         <RouletteModalBody>
           <LeftSection>
@@ -144,7 +148,7 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
             {edit && (
               <AddItem>
                 <input
-                  // value={newOptionName}
+                  value={newOptionName}
                   onChange={(e) => setNewOptionName(e.target.value)}
                 ></input>
                 <button onClick={() => create()}>추가</button>
@@ -262,7 +266,8 @@ const RouletteModalWrapper = styled.div`
   background-color: rgb(250, 250, 231);
   border-radius: 1rem;
   font-family: "CookieRun-Regular";
-  width: 80rem;
+  // width: 80rem;
+  width: 100%;
   height: 60rem;
   @media only screen and (max-width: 768px) {
     width: 55rem;
@@ -296,9 +301,9 @@ const RouletteHeader = styled.header`
 `;
 const ExitButton = styled.button`
   position: absolute;
-  top: 20%;
-  right: 2%;
-  font-size: 2rem;
+  top: 10%;
+  right: 1%;
+  font-size: 3rem;
   font-weight: xx-large;
   cursor: pointer;
   background: none;

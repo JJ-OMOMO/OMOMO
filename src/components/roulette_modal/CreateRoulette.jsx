@@ -30,21 +30,21 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
     console.log("create");
     !temp
       ? Swal.fire({
-        text: "내용을 입력해주세요",
-        background: "#FEDB41",
-        backdrop: "rgba(0,0,0,0.8)",
-        confirmButtonColor: "#463400",
-        icon: "info",
-      })
+          text: "내용을 입력해주세요",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
       : data.length === 8
-        ? Swal.fire({
+      ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
           backdrop: "rgba(0,0,0,0.8)",
           confirmButtonColor: "#463400",
           icon: "info",
         })
-        : setData([...data, { option: temp }]);
+      : setData([...data, { option: temp }]);
     console.log(data);
     await setTemp("");
   };
@@ -52,12 +52,12 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   const CheckSubmit = () => {
     !rouletteName || !data || !startTime || !endTime
       ? Swal.fire({
-        text: "내용을 입력해주세요",
-        background: "#FEDB41",
-        backdrop: "rgba(0,0,0,0.8)",
-        confirmButtonColor: "#463400",
-        icon: "info",
-      })
+          text: "내용을 입력해주세요",
+          background: "#FEDB41",
+          backdrop: "rgba(0,0,0,0.8)",
+          confirmButtonColor: "#463400",
+          icon: "info",
+        })
       : onSubmit();
     getRoulette();
   };
@@ -81,7 +81,7 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   };
 
   const onClickCloseModal = (e) => {
-    e.target === ModalBack.current && closeModal(false)
+    e.target === ModalBack.current && closeModal(false);
   };
 
   return (
@@ -89,7 +89,9 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
       <RouletteModalWrapper>
         <RouletteHeader>
           <span>Roulette</span>
-          <ExitButton onClick={() => closeModal(false)}>X</ExitButton>
+          <ExitButton onClick={() => closeModal(false)}>
+            <i className="fas fa-times"></i>
+          </ExitButton>
         </RouletteHeader>
         <RouletteModalBody>
           <LeftSection>
@@ -160,20 +162,20 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
 };
 
 const ModalBackground = styled.div`
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 1000;
-      background-color: rgba(0, 0, 0, 0.8);
-      @media screen and (max-width: 414px) {
-        position: absolute;
-        height: 100%;
-      }
-      `;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  @media screen and (max-width: 414px) {
+    position: absolute;
+    height: 100%;
+  }
+`;
 
 const RouletteModalWrapper = styled.div`
   display: flex;
@@ -183,7 +185,7 @@ const RouletteModalWrapper = styled.div`
   background-color: rgb(250, 250, 231);
   border-radius: 1rem;
   font-family: "CookieRun-Regular";
-  width: 80rem;
+  width: 100%;
   height: 60rem;
   @media only screen and (max-width: 768px) {
     width: 55rem;
@@ -217,9 +219,9 @@ const RouletteHeader = styled.header`
 `;
 const ExitButton = styled.button`
   position: absolute;
-  top: 20%;
-  right: 2%;
-  font-size: 2rem;
+  top: 10%;
+  right: 1%;
+  font-size: 3rem;
   font-weight: xx-large;
   cursor: pointer;
   background: none;

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 import CUTE from "../../images/cuteIcon.png";
 import Github from "../../images/github.png";
 import Boy from "../../images/Glassesboy.png";
@@ -43,7 +43,7 @@ const ProfileModal = ({ closeModal, Nick, setNick, Char, setChar }) => {
           )}
           <input
             tpye="text"
-            defaultValue={Nick || ''}
+            defaultValue={Nick || ""}
             onChange={(e) => setNick(e.target.value)}
           ></input>
         </Profile>
@@ -80,7 +80,7 @@ const ModalBackground = styled.div`
   @media screen and (max-width: 414px) {
     position: absolute;
     height: 180rem;
-      };
+  } ;
 `;
 
 const ModalContainer = styled.div`
@@ -100,7 +100,7 @@ const ModalContainer = styled.div`
   @media screen and (max-width: 414px) {
     width: 100%;
     height: 180rem;
-      }
+  }
 `;
 
 const BackButton = styled.div`
@@ -114,7 +114,7 @@ const BackButton = styled.div`
   cursor: pointer;
   @media screen and (max-width: 414px) {
     font-size: 5rem;
-      }
+  }
 `;
 
 const Profile = styled.div`
@@ -160,7 +160,7 @@ const CharacterList = styled.div`
   }
   @media screen and (max-width: 414px) {
     height: 30rem;
-      & > span {
+    & > span {
       width: 20rem;
       height: 20rem;
     }
@@ -182,7 +182,7 @@ const SaveButton = styled.button`
     width: 180px;
     height: 10rem;
     font-size: 5rem;
-    }
+  }
 `;
 
 export default ProfileModal;
