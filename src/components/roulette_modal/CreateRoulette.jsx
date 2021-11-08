@@ -185,7 +185,7 @@ const RouletteModalWrapper = styled.div`
   background-color: rgb(250, 250, 231);
   border-radius: 1rem;
   font-family: "CookieRun-Regular";
-  width: 80rem;
+  width: 100%;
   height: 60rem;
   @media only screen and (max-width: 768px) {
     width: 55rem;
@@ -219,8 +219,8 @@ const RouletteHeader = styled.header`
 `;
 const ExitButton = styled.button`
   position: absolute;
-  top: -20%;
-  right: 2%;
+  top: 10%;
+  right: 1%;
   font-size: 3rem;
   font-weight: xx-large;
   cursor: pointer;
