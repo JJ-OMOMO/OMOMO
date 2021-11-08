@@ -272,7 +272,7 @@ const RouletteModalWrapper = styled.div`
     width: 55rem;
     height: 50rem;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 500px) {
     width: 100%;
     height: 120vh;
   }
@@ -291,7 +291,7 @@ const RouletteHeader = styled.header`
     font-weight: 700;
     color: #ffc770;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 500px) {
     height: 20rem;
     & > span {
       font-size: 10rem;
@@ -313,7 +313,7 @@ const ExitButton = styled.button`
     transform: scale(1.2);
     color: #f88f70;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 500px) {
     font-size: 4rem;
   }
 `;
@@ -327,7 +327,7 @@ const RouletteModalBody = styled.div`
   margin: 1% 0;
   border-top: 5px solid #ffb896;
   border-bottom: 5px solid #ffb896;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     flex-direction: column-reverse;
     height: 140rem;
     border: none;
@@ -355,7 +355,7 @@ const LeftSection = styled.div`
       content: url(${Share});
     }
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 100%;
     height: 70%;
     border: none;
@@ -399,7 +399,7 @@ const AddItem = styled.div`
       background: #f88f70;
     }
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     margin: 2rem 0;
     & > input {
       width: 45rem;
@@ -433,7 +433,7 @@ const Bottom = styled.div`
       transform: scale(1.1);
       background: #f88f70;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 500px) {
       width: 75vw;
       height: 8rem;
       margin: 0 auto;
@@ -449,7 +449,7 @@ const RightSection = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 100%;
     height: 30%;
   }
@@ -470,7 +470,7 @@ const RouletteName = styled.input`
   &::placeholder {
     color: #a0958a;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 80vw;
     height: 10rem;
     font-size: 5rem;
@@ -487,7 +487,7 @@ const RouletteTime = styled.div`
   background: #ffc770;
   border-radius: 1rem;
   font-family: "CookieRun-Regular";
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 80vw;
     height: 8rem;
   }
@@ -507,7 +507,7 @@ const RouletteTime = styled.div`
     font-size: 1.5rem;
     border: none;
     background-color: transparent;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 500px) {
       width: 80%;
       height: 10rem;
       font-size: 5rem;
@@ -524,7 +524,7 @@ const RouletteButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 100%;
     height: 18rem;
   }
@@ -545,7 +545,7 @@ const RoultteButton = styled.button`
     transform: scale(1.1);
     background-color: #f88f70;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 3.5rem;
     width: 100%;
     height: 100%;

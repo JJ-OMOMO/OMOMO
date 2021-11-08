@@ -201,7 +201,7 @@ const TrialRouletteIntro = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 1rem;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 4rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
@@ -281,7 +281,7 @@ const RouletteDescription = styled.div`
   @media screen and (max-width: 1024px) {
     padding-top: 1.7rem;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     padding-top: 6rem;
     padding-bottom: 5rem;
   }
@@ -296,7 +296,7 @@ const RouletteDescriptionIntro = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 1rem;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 4rem;
     padding-top: 2rem;
     padding-bottom: 0.5rem;
@@ -320,7 +320,7 @@ const Avatar = styled.div`
     width: 8rem;
     height: 8rem;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     width: 15rem;
     height: 15rem;
   }
@@ -355,7 +355,7 @@ const DescriptionBubbleLeft = styled.div`
     border-bottom: 0;
     margin-top: -10px;
     margin-left: -20px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 500px) {
       content: "";
       position: absolute;
       left: 0;
@@ -376,7 +376,7 @@ const DescriptionBubbleLeft = styled.div`
     width: 50%;
     height: auto;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 3rem;
     // width: 50rem;
     width: 65%;
@@ -421,7 +421,7 @@ const DescriptionBubbleRight = styled.div`
     border-top: 0;
     margin-top: -10px;
     margin-right: -20px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 500px) {
       content: "";
       position: absolute;
       right: 0;
@@ -442,7 +442,7 @@ const DescriptionBubbleRight = styled.div`
     width: 53%;
     height: auto;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 3rem;
     width: 60%;
     height: auto;
