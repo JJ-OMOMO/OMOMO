@@ -417,6 +417,9 @@ const RouletteTime = styled.div`
     width: 30%;
     font-size: 1rem;
     color: black;
+    @media screen and (max-width: 500px) {
+    font-size: 2.5rem;
+  }
   }
   & > input {
     font-family: "CookieRun-Regular";
