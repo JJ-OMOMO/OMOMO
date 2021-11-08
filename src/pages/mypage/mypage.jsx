@@ -395,12 +395,18 @@ const TodoList = styled.div`
       width: 20%;
       margin-left: 1rem;
       font-size: 1.2rem;
+      @media screen and (max-width: 500px) {
+        font-size: 2.5rem;
+      }
     }
     & > p {
       text-align: center;
       width: 32%;
       font-size: 1.3rem;
       margin: 0 1.5%;
+      @media screen and (max-width: 500px) {
+        font-size: 2.5rem;
+      }
     }
     & > span {
       width: 25%;
@@ -414,6 +420,9 @@ const TodoList = styled.div`
         border: none;
         text-align: center;
         font-size: 1rem;
+        @media screen and (max-width: 500px) {
+        font-size: 2.5rem;
+      }
       }
     }
   }
