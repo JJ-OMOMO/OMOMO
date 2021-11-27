@@ -334,16 +334,6 @@ const RouletteModalBody = styled.div`
     border: none;
   }
 `;
-const rouletteAnimation = keyframes`
-  from {
-    transform:rotate(0deg);
-    border-radius:0px;
-  }
-  to {
-    transform: rotate(360deg);
-    border-radius:100px;
-  }
-  `;
 
 const LeftSection = styled.div`
   display: flex;
@@ -357,9 +347,6 @@ const LeftSection = styled.div`
   & > :nth-child(1) {
     width: 40vw;
     height: 40vw;
-    & > :nth-child(1) {
-      animation: ${rouletteAnimation} 5s linear infinite;
-    }
     & > :nth-child(2) {
       position: absolute;
       z-index: 5;

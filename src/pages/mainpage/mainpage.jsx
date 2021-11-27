@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
@@ -27,19 +27,22 @@ const Mainpage = ({ authService }) => {
   const [data, setData] = useState([]);
   const [test, setTest] = useState("");
   const [prizeNumber, setPrizeNumber] = useState(0);
+  const [stopAnimation, setStopAnimation] = useState(false);
 
   const handleSpinClick = async () => {
-    const newPrizeNumber = Math.floor(Math.random() * initialData.length)
-    if (data.length > 1) newPrizeNumber = Math.floor(Math.random() * data.length)
+    setStopAnimation(true);
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
     await setPrizeNumber(newPrizeNumber);
     await setMustSpin(true);
   };
 
   const reset = () => {
     setData([]);
+    setStopAnimation(false);
   };
 
   const create = () => {
+    setStopAnimation(true);
     !test
       ? Swal.fire({
         text: "내용을 입력해주세요",
@@ -65,7 +68,7 @@ const Mainpage = ({ authService }) => {
     <Wrapper>
       <Header authService={authService} userId={userId} />
       <Container>
-        <TrialRoulette>
+        <TrialRoulette stopAnimation={stopAnimation}>
           <TrialRouletteIntro>나만의 룰렛을 만들어보세요.</TrialRouletteIntro>
           <Wheel
             mustSpin={mustSpin}
@@ -199,7 +202,9 @@ const TrialRoulette = styled.div`
   background-color: #f88f70;
   & > :nth-child(2) {
     & > :nth-child(1) {
-    animation: ${rouletteAnimation} 5s linear infinite;
+    ${props => !props.stopAnimation && css`
+    animation:${rouletteAnimation} 15s linear infinite;
+    `}
   }
     & > :nth-child(2) {
       content: url(${RedShare});
