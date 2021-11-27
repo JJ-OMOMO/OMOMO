@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import Wheel from "../../components/roulette_wheel/roulette_wheel";
@@ -29,9 +29,10 @@ const Mainpage = ({ authService }) => {
   const [prizeNumber, setPrizeNumber] = useState(0);
 
   const handleSpinClick = async () => {
-    const newPrizeNumber = Math.floor(Math.random() * data.length);
-    setPrizeNumber(newPrizeNumber);
-    setMustSpin(true);
+    const newPrizeNumber = Math.floor(Math.random() * initialData.length)
+    if (data.length > 1) newPrizeNumber = Math.floor(Math.random() * data.length)
+    await setPrizeNumber(newPrizeNumber);
+    await setMustSpin(true);
   };
 
   const reset = () => {
@@ -41,24 +42,25 @@ const Mainpage = ({ authService }) => {
   const create = () => {
     !test
       ? Swal.fire({
-          text: "내용을 입력해주세요",
-          background: "#FEDB41",
-          backdrop: "rgba(0,0,0,0.8)",
-          confirmButtonColor: "#463400",
-          icon: "info",
-        })
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : data.length === 8
-      ? Swal.fire({
+        ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
           backdrop: "rgba(0,0,0,0.8)",
           confirmButtonColor: "#463400",
           icon: "info",
         })
-      : setData([...data, { option: test }]);
+        : setData([...data, { option: test }]);
     setTest("");
   };
   // console.log("MAINDATA", data);
+
   return (
     <Wrapper>
       <Header authService={authService} userId={userId} />
@@ -175,6 +177,18 @@ const Container = styled.div`
   }
 `;
 
+const rouletteAnimation = keyframes`
+  from {
+    transform:rotate(0deg);
+    border-radius:0px;
+  }
+  to {
+    transform: rotate(360deg);
+    border-radius:100px;
+  }
+  `;
+
+
 const TrialRoulette = styled.div`
   display: flex;
   flex-direction: column;
@@ -183,13 +197,18 @@ const TrialRoulette = styled.div`
   flex-basis: 50%;
   padding-top: 10px;
   background-color: #f88f70;
-  & > :nth-child(2) > :nth-child(2) {
-    content: url(${RedShare});
-    z-index: 5;
-    width: 17%;
-    right: 6px;
-    top: 30px;
+  & > :nth-child(2) {
+    & > :nth-child(1) {
+    animation: ${rouletteAnimation} 5s linear infinite;
   }
+    & > :nth-child(2) {
+      content: url(${RedShare});
+      z-index: 5;
+      width: 17%;
+      right: 6px;
+      top: 30px;
+    };
+  };
 `;
 
 const TrialRouletteIntro = styled.div`

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Wheel from "../roulette_wheel/roulette_wheel";
 import { dbService } from "../../service/firebase";
 import Share from "../../images/share.png";
@@ -77,28 +77,29 @@ const GetRoulette = ({ closeModal, rouletteData, getRoulette }) => {
   const create = () => {
     !newOptionName
       ? Swal.fire({
-          text: "내용을 입력해주세요",
-          background: "#FEDB41",
-          backdrop: "rgba(0,0,0,0.8)",
-          confirmButtonColor: "#463400",
-          icon: "info",
-        })
+        text: "내용을 입력해주세요",
+        background: "#FEDB41",
+        backdrop: "rgba(0,0,0,0.8)",
+        confirmButtonColor: "#463400",
+        icon: "info",
+      })
       : data.length === 8
-      ? Swal.fire({
+        ? Swal.fire({
           text: "최대 8개까지 설정가능합니다.",
           background: "#FEDB41",
           backdrop: "rgba(0,0,0,0.8)",
           confirmButtonColor: "#463400",
           icon: "info",
         })
-      : setData([...data, { option: newOptionName }]);
+        : setData([...data, { option: newOptionName }]);
     setNewOptionName("");
   };
 
   const handleSpinClick = async () => {
-    const newPrizeNumber = Math.floor(Math.random() * data.length);
-    setPrizeNumber(newPrizeNumber);
-    setMustSpin(true);
+    const { optionName } = rouletteData
+    const newPrizeNumber = Math.floor(Math.random() * optionName.length)
+    await setPrizeNumber(newPrizeNumber);
+    await setMustSpin(true);
   };
 
   const onClickCloseModal = (e) => {
@@ -333,6 +334,16 @@ const RouletteModalBody = styled.div`
     border: none;
   }
 `;
+const rouletteAnimation = keyframes`
+  from {
+    transform:rotate(0deg);
+    border-radius:0px;
+  }
+  to {
+    transform: rotate(360deg);
+    border-radius:100px;
+  }
+  `;
 
 const LeftSection = styled.div`
   display: flex;
@@ -346,6 +357,9 @@ const LeftSection = styled.div`
   & > :nth-child(1) {
     width: 40vw;
     height: 40vw;
+    & > :nth-child(1) {
+      animation: ${rouletteAnimation} 5s linear infinite;
+    }
     & > :nth-child(2) {
       position: absolute;
       z-index: 5;
