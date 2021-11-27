@@ -27,7 +27,7 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
   };
 
   const create = async () => {
-    console.log("create");
+    // console.log("create");
     !temp
       ? Swal.fire({
         text: "내용을 입력해주세요",
@@ -45,7 +45,7 @@ const CreateRoulette = ({ closeModal, getRoulette }) => {
           icon: "info",
         })
         : setData([...data, { option: temp }]);
-    console.log(data);
+    // console.log(data);
     await setTemp("");
   };
 
